@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Julian Orchard, Blog</title>
-    <link>https://julianorchard.github.io/</link>
-    <description>Recent content on Julian Orchard, Blog</description>
+    <title>Posts on Julian Orchard, Blog</title>
+    <link>https://julianorchard.github.io/posts/</link>
+    <description>Recent content in Posts on Julian Orchard, Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 11 Nov 2021 12:19:23 +0000</lastBuildDate><atom:link href="https://julianorchard.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Nov 2021 12:19:23 +0000</lastBuildDate><atom:link href="https://julianorchard.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First Post</title>
       <link>https://julianorchard.github.io/posts/first-post/</link>
