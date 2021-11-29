@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# Very Minimal Static Site Generator
+
+#   Features:
+#  		- blog -n --new to compose a new draft
+# 		- blog -b --build to build the blog at any time
+# 		that's it; that's all I plan
+
+
+# Help Function
+ help () {
+    echo ""
+    echo "Usage of this tiny static site generator:"
+    echo " -n / --new         create a new post"
+    echo " -b / --build     build the full site"
+ } 
+
+
+# Write A New Post
+  new_post () {
+		# Get Title
+      read -p "Please give your page a title: " file_title
+		# Get File Name from Title
+			file_name=$(echo ${file_title,,} | sed -r 's/[[:punct:]]*//g;s/ /-/g')
+			#	Check user is happy with the title, and if not, allow them to input a different file name
+				read -p "Are you happy with this file being called $file_name.markdown? (Y/n) " file_name_confirm
+				match=" |'"
+				while [[ $file_name =~ $match ]] || [[ "$file_name_confirm" = "n" ]] || [[ "$file_name_confirm" = "no" ]] ; do
+					read -p "Please enter the file name you want (cannot contain spaces): " file_name
+					file_name_confirm="yes"
+				done
+				file_name=$(echo ${file_name,,} | sed -r 's/[[:punct:]]*//g;s/.markdown//g;s/ /-/g')
+				echo "Your file will be $file_name.markdown." 
+		# Get Description
+			read -p "Please give your page a description: " file_description
+		# Get Date
+			printf -v file_date '%(%Y/%m/%d)T\n' -1
+		# Static Page or Not
+			read -p "Do you want this to be a post? (Y/n) " page_or_post
+
+		# Print to File
+			if [[ "$page_or_post" == "n" ]] || [[ "$page_or_post" == "no" ]]; then
+				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\n-->">content/$file_name.markdown
+			else 
+				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_date: $file_date-->">content/$file_name.markdown
+			fi
+  }
+
+
+# Build Every Page on Site
+  build_site () {
+	# Loop Through Draft Folder, Checking If 'Published'
+		for file in content/*.markdown; do
+			if grep -iq "page_status: published" "$file"; then
+					new_file=$(echo $file | sed -r "s/.+\/(.+)\..+/\1/")
+					file_title=$(grep "page_title:" $file | cut -f 2- -d ' ')
+					file_description=$(grep "page_description:" $file | cut -f 2- -d ' ')
+				# Adjust whether page_date is present
+						if grep -q "page_date" $file ; then
+							file_date=$(awk '/page_date/ {print $2}' $file)
+							new_file="posts/$file_date/$new_file/"
+							mkdir -p $new_file
+						elif [ $new_file == "index" ] ; then
+							new_file=""
+						else
+							mkdir -p $new_file
+							new_file="$new_file/"
+						fi
+				# Create File
+						echo "" > ${new_file}index.html
+						sed "s/PAGE_TITLE/$file_title/g;s/PAGE_DESCRIPTION/$file_description/g" \
+									src/head.html >> ${new_file}index.html
+						pandoc -f markdown $file >> ${new_file}index.html
+						cat src/foot.html >> ${new_file}index.html
+			fi
+		done
+	}
+
+# Confirm Necessary Packages are Installed
+	if ! command -v pandoc -v &>/dev/null ; then
+		echo "Pandoc needs to be installed for this script to work"
+		exit 1
+	fi
+# Handle Flag Input
+  case "$1" in
+    -h|--help) 			help ;;
+    -n|--new) 			new_post ;;
+    -b|--build) 		build_site ;;
+    *) help ;;
+  esac
+

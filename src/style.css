@@ -1,0 +1,307 @@
+/*
+ *
+ *  Stylesheet, style.css:
+ *
+ *      Actually taken from a really
+ *      old website I made, years ago!
+ *      Happy I got to make use of it.
+ *
+ */
+
+
+
+/* General */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=IBM+Plex+Sans+Condensed:ital,wght@0,200;1,200&display=swap');)
+        /*
+         * font-family: 'DM Serif Text', serif;
+         * font-family: 'IBM Plex Sans Condensed', sans-serif;
+         */
+        ::selection {
+            background-color: rgba(241,244,141,0.4);
+        }
+        img::selection {
+            background-color: rgba(101,111,165,0.4);
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            font-family: 'IBM Plex Sans Condensed', sans-serif;
+        }
+        h1,h2,h3,h4,h5,h6,p {
+            font-weight: 100;
+        }
+        p {
+            line-height: 2;
+        }
+        p>a {
+            line-height: 1.5;
+        }
+        b, sup {
+            color: #656fa5;
+            font-weight: 100;
+        }
+/*LINKS*/
+        a {
+            text-decoration: none;
+            position: relative;
+            color: #000;
+            width: auto;
+            display: inline-block;
+        }
+        a::before {
+            content: '';
+            position: absolute;
+            background-color: #C4C4C4;
+            opacity: 0.8;
+            bottom: -6px;
+            left: -5%;
+            width: 105%;
+            height: 4px;
+            transform: skewX(-20deg);
+            transition: background-color ease 2s,
+                        transform ease 0.5s;
+        }
+        a:hover::before {
+            transition: background-color ease 0.5s,
+                        transform ease 0.3s;
+            background-color: #656fa5;
+            transform: translateY(2px) !important;
+        }
+    /* Highlight Links */
+        a::after {
+            content: '';
+            position: absolute;
+            background-color: #f1f48d;
+            bottom: 0px;
+            left: -1.5px;
+            width: 0px;
+            height: 100%;
+            transform: skewX(-20deg);
+            transition: width cubic-bezier(.75,.9,.9,1.5) 0.4s;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        a:hover::after {
+            width: 100% !important;
+            transition: width cubic-bezier(.75,.9,.9,1.5) 0.15s 0.2s;
+        }
+        a:active::after {
+            background-color: red !important;
+        }
+    /* Arrow Links */
+        a.link--arrow::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 90%;
+            top: 20%;
+            left: 120%;
+            opacity: 0.6;
+            overflow: hidden;
+        /*bg*/
+            background-image: url('/res/arrow.svg');
+            background-position: -50px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transition: background-position cubic-bezier(.75,.9,.9,1.5) 0.15s 0.4s,
+                        left cubic-bezier(.75,.9,.9,1.5) 0.15s 0.4s;
+        }
+        a.link--arrow:hover::after {
+            left: 60%;
+            background-position: 30px;
+        }
+/*NAV*/
+        section, nav, footer {
+            width: 95%;
+            max-width: 900px;
+            margin: 0px auto;
+            padding: 5% 0px;
+            position: relative;
+        }
+        nav>ul {
+            list-style: none;
+            text-align: right;
+        }
+        nav>ul>li {
+            display: inline;
+            padding: 20px;
+        }
+        /* There's always one... */
+        .fixed {
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+            text-align: center;
+            padding: 40px 0px 25px 0px;
+            background-color: rgb(255,255,255,0.8);
+            top: 0px;
+            left: 0px;
+            margin: 0px !important;
+            animation: smooth-intro 0.2s;
+            transition: background-color ease 1s;
+        }
+        .fixed:hover {
+            background-color: rgb(255,255,255,1) !important;
+        }
+        @keyframes smooth-intro {
+            from {transform: translateY(-200px);}
+            to {transform: translateY(0px);}
+        }
+        @media only screen and (max-width: 900px) {
+            .fixed {
+                width: 100%; 
+                right: 0%;
+            }
+        }
+/*HERO*/
+        #hero h1 {
+            font-size: 3.5rem;
+            font-family: 'DM Serif Text', serif;
+            opacity: 1;
+        }
+        #hero h3>a {
+            display: inline-block;
+            margin: 0px 100px 0px 0px;
+        }
+/*HERO SMALL*/
+        #hero-small h1 {
+            font-size: 3rem;
+            font-family: 'DM Serif Text', serif;
+            opacity: 1;
+            margin-top: -50px;
+        }
+        #hero-small h3 {
+          line-height: 2;
+        }
+/*CIRCLE*/
+        div.circle {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -10;
+        }
+        div.circle>div {
+            opacity: 0.8;
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            top: -30%;
+            left: -100px;
+            background-image: url('/res/circle1.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            animation: slowlyturn 200s infinite linear;
+        }
+        @keyframes slowlyturn {
+            from {transform: rotate(0deg)}
+            to {transform: rotate(360deg)}
+        }
+/*BODY OF CONTENT*/
+        #content>div, footer>div {
+            display: inline-block;
+            vertical-align: text-top;
+            position: relative;
+        }
+        @media only screen and (max-width: 700px) {
+            section {
+                text-align: left;
+                width: 80% !important;
+                margin: 0px auto !important;
+            }
+            #content {
+                direction: rtl;
+                transform: rotate(180deg);
+            }
+            #content>div {
+                width: 100% !important;
+                display: block;
+                transform: rotate(180deg);
+                padding: 20px 0px !important;
+            }
+            #content>div.content-left {
+                position: relative !important;
+            }
+        }
+        #content>div.content-left {
+            width: 20%;
+            position: sticky;
+            top: 65px;
+        }
+        #content>div.content-left>ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+        #content>div.content-left>ul>li {
+            padding: 10px 0px;
+        }
+        #content>div.content-right {
+            padding-left: 5%;
+            width: 75%;
+        }
+        #content h2 {
+            padding-top: 1rem;
+        }
+        /*special leading char*/
+        .rel {
+            position: relative;
+            padding: 10px 0px 0px 0px;
+        }
+        span {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: -15px;
+            left: -35px;
+            font-size: 100px;
+            opacity: 0.05;
+            font-weight: 100;
+            font-family: 'DM Serif Text', serif;
+        }
+/*TILES*/
+        #tiles {
+            overflow: auto;
+            height: 100%;
+            padding: 0;
+        }
+        .wide {
+            max-width: 1200px;
+        }
+        #tiles>div {
+            vertical-align: text-top;
+            width: 25%;
+            padding: 4%;
+        }
+        #tiles div.image {
+            height: 200px;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+        }
+        #tiles div.text {
+            padding-top: 10px;
+        }
+/*FOOTER*/
+        #tiles>div,footer>div {
+            display: inline-block;
+        }
+        footer>div {
+          width: 29.25%;
+          vertical-align: bottom;
+        }
+        footer>div.left {
+            text-align: left;
+        }
+        footer>div.center {
+            padding: 0px 4% !important;
+            text-align: center;
+        }
+        footer>div.right {
+            text-align: right;
+        }
