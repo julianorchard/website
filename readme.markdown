@@ -45,6 +45,8 @@ page_status: published
 It creates a folder `about` with an `index.html` file in there with this
 content.
 
+You can use `page_head:` to let the script know you want that page to generate with a large heading style (this simply changes what tag the bulk of the page is in). 
+
 
 ## Installation
 

@@ -11,5 +11,5 @@
 		let textnode =  document.createTextNode(leadingCharacterContent.charAt(0));
 		// To Lower
 		node.appendChild(textnode);
-		leadingCharacter.appendChild(node);
+		leadingCharacter.appendChild(node + " .");
 	}

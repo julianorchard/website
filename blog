@@ -8,6 +8,10 @@
 # 		that's it; that's all I plan
 
 
+PAGE_URL="https://julian.rocks"
+SITE_TITLE=" | Julian Orchard"
+
+
 # Help Function
  help () {
     echo ""
@@ -49,16 +53,16 @@
 	
 
 	build_file() {
-			page_url="https://julian.rocks/$1"
+			page_url_full="$PAGE_URL/$1"
 		# Create File
 			echo "" > $1index.html
 			# Using + as the divider, because I'm using / in the page_url
-			sed "s+PAGE_TITLE+$2+g;s+PAGE_DESCRIPTION+$3+g;s+PAGE_URL+$page_url+g" src/head.html >> $1index.html
+			sed "s+PAGE_TITLE+$2$SITE_TITLE+g;s+PAGE_DESCRIPTION+$3+g;s+PAGE_URL+$page_url_full+g" src/head.html >> $1index.html
 			file_head=$(awk '/page_head/ {print $2}' $4)
 			if [ ! -z $file_head ] && [ "$file_head"="large" ] ; then
-				echo "<article id=\"hero\">">>$1index.html
+				echo "<article id=\"expanded\">">>$1index.html
 			else
-				echo "<article id=\"hero-small\">">>$1index.html
+				echo "<article id=\"regular\">">>$1index.html
 			fi
 			pandoc -f markdown $4 >> $1index.html
 			echo "</article>">>$1index.html 
@@ -72,7 +76,7 @@
 	# Clear src/list.html
 	echo "<ul class=\"post-list\">">src/list.html
 	# Loop Through Draft Folder, Checking If 'Published'
-		for file in $(ls -1 "content/*.markdown" | sort -r); do
+		for file in content/*.markdown; do
 			if grep -iq "page_status: published" "$file"; then
 					new_file=$(echo $file | sed -r "s/.+\/(.+)\..+/\1/")
 					file_title=$(grep "page_title:" $file | cut -f 2- -d ' ')
