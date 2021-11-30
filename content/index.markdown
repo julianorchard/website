@@ -2,6 +2,7 @@
 page_title: Julian Orchard's Website and Blog
 page_description:Space on the internet belonging to Julian Orchard; Marketing Coordinator, internet enjoyer.
 page_status: published
+page_head: large
 -->
 
 # Hi there, I'm Julian Orchard

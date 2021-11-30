@@ -33,6 +33,7 @@
         }
         p {
             line-height: 2;
+						position: relative;
         }
         p>a {
             line-height: 1.5;
@@ -89,6 +90,13 @@
         a:active::after {
             background-color: red !important;
         }
+				ul.post-list {
+					padding: 20px;
+					list-style-image: url('/res/arrow.svg');
+				}
+				ul.post-list>li{
+					line-height: 5;
+				}
     /* Arrow Links */
         a.link--arrow::after {
             content: '';
@@ -116,19 +124,25 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            top: 5px;
-            left: -5px;
+            top: -100px;
+            left: -50px;
             font-size: 100px;
-            opacity: 0.1;
+            opacity: 0.15;
             font-weight: 100;
             font-family: 'DM Serif Text', serif;
+						-webkit-touch-callout: none;
+						  -webkit-user-select: none;
+						   -khtml-user-select: none;
+						     -moz-user-select: none;
+						      -ms-user-select: none;
+						          user-select: none;
         }
 
 
 
 
 /*NAV*/
-        section, nav, footer {
+        article, nav, footer {
             width: 95%;
             max-width: 900px;
             margin: 0px auto;
@@ -168,12 +182,16 @@
 
 
 /*BODY OF CONTENT*/
-        #content>p,#content>h2,#content>h3 {
+        article p,#content>p,#content>h2,#content>h3 {
           width: 90%;
           margin-left: 5%;
         }
+				article p:nth-of-type(1) {
+					display: inline-block !important;
+					margin-top: 100px;
+				}
         @media only screen and (max-width: 700px) {
-            section {
+            article {
                 text-align: left;
                 width: 80% !important;
                 margin: 0px auto !important;
@@ -191,7 +209,7 @@
 
 /*FOOTER*/
         footer>div {
-          width: 49.8%;
+          width: 48%;
           display: inline-block;
           vertical-align: bottom;
         }
