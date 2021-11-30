@@ -4,12 +4,11 @@
 		// looks a little too much), put it in a loop to the length
 		// of the leadingCharacters const.
 		const leadingCharacters = document.getElementsByTagName("p");
-		console.log(leadingCharacters.length)
 		let leadingCharacter        = leadingCharacters[0];
 		let leadingCharacterContent = leadingCharacter.innerHTML.toLowerCase();
 		let node     = document.createElement("span");
 		let textnode =  document.createTextNode(leadingCharacterContent.charAt(0));
 		// To Lower
 		node.appendChild(textnode);
-		leadingCharacter.appendChild(node + " .");
+		leadingCharacter.appendChild(node);
 	}

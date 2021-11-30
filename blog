@@ -8,7 +8,7 @@
 # 		that's it; that's all I plan
 
 
-PAGE_URL="https://julian.rocks"
+PAGE_URL="https://julianorchard.co.uk"
 SITE_TITLE=" | Julian Orchard"
 
 
@@ -18,7 +18,7 @@ SITE_TITLE=" | Julian Orchard"
     echo "Usage of this tiny static site generator:"
     echo " -n / --new         create a new post"
     echo " -b / --build     build the full site"
- } 
+ }
 
 
 # Write A New Post
@@ -26,7 +26,7 @@ SITE_TITLE=" | Julian Orchard"
 		# Get Title
       read -p "Please give your page a title: " file_title
 		# Get File Name from Title
-			file_name=$(echo ${file_title,,} | sed -r 's/[[:punct:]]*//g;s/ /-/g')
+			file_name=$(echo ${file_title,,} | sed -r 's/[[:punct:]]*//g;s/\.markdown//g' | sed -r 's/ /-/g')
 			#	Check user is happy with the title, and if not, allow them to input a different file name
 				read -p "Are you happy with this file being called $file_name.markdown? (Y/n) " file_name_confirm
 				match=" |'"
@@ -34,8 +34,8 @@ SITE_TITLE=" | Julian Orchard"
 					read -p "Please enter the file name you want (cannot contain spaces): " file_name
 					file_name_confirm="yes"
 				done
-				file_name=$(echo ${file_name,,} | sed -r 's/[[:punct:]]*//g;s/.markdown//g;s/ /-/g')
-				echo "Your file will be $file_name.markdown." 
+				file_name=$(echo ${file_name,,} | sed -r 's/\.markdown//g')
+				echo "Your file will be $file_name.markdown."
 		# Get Description
 			read -p "Please give your page a description: " file_description
 		# Get Date
@@ -46,11 +46,11 @@ SITE_TITLE=" | Julian Orchard"
 		# Print to File
 			if [[ "$page_or_post" == "n" ]] || [[ "$page_or_post" == "no" ]]; then
 				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\n-->">content/$file_name.markdown
-			else 
+			else
 				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_date: $file_date-->">content/$file_name.markdown
 			fi
   }
-	
+
 
 	build_file() {
 			page_url_full="$PAGE_URL/$1"
@@ -65,7 +65,7 @@ SITE_TITLE=" | Julian Orchard"
 				echo "<article id=\"regular\">">>$1index.html
 			fi
 			pandoc -f markdown $4 >> $1index.html
-			echo "</article>">>$1index.html 
+			echo "</article>">>$1index.html
 			cat src/foot.html >> $1index.html
 			return
 	}
@@ -86,7 +86,7 @@ SITE_TITLE=" | Julian Orchard"
 							file_date=$(awk '/page_date/ {print $2}' $file)
 							new_file="posts/$file_date/$new_file/"
 							mkdir -p $new_file
-							echo "<li><a href=\"/${new_file}index.html\">$file_title</a>  /  $file_date</li>">>src/list.html
+							echo "<li><a href=\"/${new_file}index.html\">$file_title</a> <div>$file_date</div></li>">>src/list.html
 						# If Index File
 						elif [ $new_file == "index" ] ; then
 							new_file=""
@@ -124,4 +124,3 @@ SITE_TITLE=" | Julian Orchard"
 		-b|--build) 		build_site ;;
 		*) help ;;
 	esac
-

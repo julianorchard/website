@@ -28,7 +28,7 @@
             border: 0;
             font-family: 'IBM Plex Sans Condensed', sans-serif;
         }
-        h1,h2,h3,h4,h5,h6,p {
+        h1,h2,h3,h4,h5,h6,p,ul {
             font-weight: 800;
         }
         p {
@@ -87,37 +87,55 @@
             width: 100% !important;
             transition: width cubic-bezier(.75,.9,.9,1.5) 0.15s 0.2s;
         }
-        a:active::after {
-            background-color: red !important;
-        }
 				ul.post-list {
-					padding: 20px;
-					list-style-image: url('/res/arrow.svg');
+          list-style: none;
 				}
-				ul.post-list>li{
-					line-height: 5;
-				}
-    /* Arrow Links */
-        a.link--arrow::after {
+        ul.post-list>li {
+          padding: 20px;
+          width: 70%;
+        }
+        ul.post-list>li>a {
+          text-decoration: none;
+          position: relative;
+          color: #000;
+          width: auto;
+          display: inline-block;
+        }
+    /* Arrow Links (for Post List) */
+        ul.post-list>li>a::after {
             content: '';
             position: absolute;
-            width: 80px;
+            background-color: #fff;
+            width: 54px;
             height: 90%;
-            top: 20%;
+            bottom: -1px;
             left: 120%;
-            opacity: 0.6;
+            opacity: 1;
             overflow: hidden;
-        /*bg*/
+            transform: skewX(0deg);
             background-image: url('/res/arrow.svg');
-            background-position: -50px;
+            background-position: -40px;
             background-repeat: no-repeat;
             background-size: contain;
-            transition: background-position cubic-bezier(.75,.9,.9,1.5) 0.15s 0.4s,
-                        left cubic-bezier(.75,.9,.9,1.5) 0.15s 0.4s;
+            transition: background-position cubic-bezier(.75,.9,.9,1.5) 0.2s 0.1s,
+                        left cubic-bezier(.75,.9,.9,1.5) 0.2s 0.1s;
         }
-        a.link--arrow:hover::after {
-            left: 60%;
-            background-position: 30px;
+        ul.post-list>li>a:hover::after {
+            left: 110%;
+            background-position: 13px;
+            width: 54px !important;
+        }
+        ul.post-list>li>div {
+           float: right;
+           margin-right: 0px;
+           display: inline;
+        }
+        @media only screen and (max-width: 700px) {
+          ul.post-list>li {
+            margin-left: -10%;
+            padding: 20px 0px;
+            width: 110%;
+          }
         }
       /* Leading Character */
         span {
