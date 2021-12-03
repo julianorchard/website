@@ -103,16 +103,15 @@ SITE_TITLE=" | Julian Orchard"
 						grep -q "page_list" ${new_file}index.html && rebuild_list+=("${new_file}")
 			fi
 		done
+
+# Ammend files that have a page_list in them
 	#	Add posts to src/list.html
-		IFS=$'\n' post_items_sorted=($(sort <<<"${post_items[*]}")) ; unset IFS
+		IFS=$'\n' post_items_sorted=($(sort -r <<<"${post_items[*]}")) ; unset IFS
 		echo "<ul class=\"post-list\">">src/list.html
-		echo ""
 		for j in "${post_items_sorted[@]}" ; do
-			echo "huh"
 			file_title=$(grep "page_title:" $j | cut -f 2- -d ' ')
-			file_date=$(awk '/page_date/ {print $2}' $i)
-			echo "$file_title and $file_date"
-			echo "<li><a href=\"/${i}index.html\">$file_title</a> <div>$file_date</div></li>">>src/list.html
+			file_date=$(awk '/page_date/ {print $2}' $j)
+			echo "<li><a href=\"/${j}\">$file_title</a> <div>$file_date</div></li>">>src/list.html
 		done
 		echo "</ul>">>src/list.html>>src/list.html
 	# Ammend Pages Needing src/list.html
