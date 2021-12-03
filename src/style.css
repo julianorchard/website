@@ -11,7 +11,6 @@
 
 
 /* General */
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=IBM+Plex+Sans+Condensed:ital,wght@0,200;1,200&display=swap');)
         /*
          * font-family: 'DM Serif Text', serif;
          * font-family: 'IBM Plex Sans Condensed', sans-serif;
@@ -28,9 +27,12 @@
             border: 0;
             font-family: 'IBM Plex Sans Condensed', sans-serif;
         }
-        h1,h2,h3,h4,h5,h6,p,ul {
+        h1 {
             font-weight: 800;
         }
+				h2,h3,h4,h5,h6,p,ul {
+					font-weight: 400;
+				}
         p {
             line-height: 2;
 						position: relative;

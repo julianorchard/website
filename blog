@@ -74,8 +74,8 @@ SITE_TITLE=" | Julian Orchard"
 # Build Every Page on Site
   build_site () {
 	# Clear src/list.html
-	echo "<ul class=\"post-list\">">src/list.html
 	# Loop Through Draft Folder, Checking If 'Published'
+		post_items=()
 		for file in content/*.markdown; do
 			if grep -iq "page_status: published" "$file"; then
 					new_file=$(echo $file | sed -r "s/.+\/(.+)\..+/\1/")
@@ -86,7 +86,8 @@ SITE_TITLE=" | Julian Orchard"
 							file_date=$(awk '/page_date/ {print $2}' $file)
 							new_file="posts/$file_date/$new_file/"
 							mkdir -p $new_file
-							echo "<li><a href=\"/${new_file}index.html\">$file_title</a> <div>$file_date</div></li>">>src/list.html
+							# Create array to eventually add to list.html
+								post_items+=("${new_file}index.html")
 						# If Index File
 						elif [ $new_file == "index" ] ; then
 							new_file=""
@@ -102,7 +103,17 @@ SITE_TITLE=" | Julian Orchard"
 						grep -q "page_list" ${new_file}index.html && rebuild_list+=("${new_file}")
 			fi
 		done
-		echo "</ul>">>src/list.html
+
+# Ammend files that have a page_list in them
+	#	Add posts to src/list.html
+		IFS=$'\n' post_items_sorted=($(sort -r <<<"${post_items[*]}")) ; unset IFS
+		echo "<ul class=\"post-list\">">src/list.html
+		for j in "${post_items_sorted[@]}" ; do
+			file_title=$(grep "page_title:" $j | cut -f 2- -d ' ')
+			file_date=$(awk '/page_date/ {print $2}' $j)
+			echo "<li><a href=\"/${j}\">$file_title</a> <div>$file_date</div></li>">>src/list.html
+		done
+		echo "</ul>">>src/list.html>>src/list.html
 	# Ammend Pages Needing src/list.html
 		for i in ${rebuild_list[@]}; do
 			echo $(awk -v page_list="page_list" -v list_file="$(<src/list.html)" '
