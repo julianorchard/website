@@ -8,7 +8,7 @@
 # 		that's it; that's all I plan
 
 
-PAGE_URL="https://julianorchard.co.uk"
+PAGE_URL="https://julian.rocks"
 SITE_TITLE=" | Julian Orchard"
 
 
@@ -42,16 +42,38 @@ SITE_TITLE=" | Julian Orchard"
 			printf -v file_date '%(%Y/%m/%d)T\n' -1
 		# Static Page or Not
 			read -p "Do you want this to be a post? (Y/n) " page_or_post
+		# Custom image or Default
+			read -p "Do you wish to use the default image for meta tags etc.? (Y/n) " image_confirm
+			if [ "$image_confirm" = "n" ] || [ "$image_confirm" = "no" ] ; then
+				read -p "Please enter a URL or a location within /res/: " image
+				# Don't do much validating if it's an external image; 
+				# could try pinging to see if it responds? Or downloading the 
+				# image to serve it from /res/?
+				if [[ ! "$image" =~ \/\/ ]] ; then
+					# It's likely an internal URL
+					# remove either /res/ or res/, if present
+					[[ $image == /* ]] && image="${image:1}" || image="${image/res\//}"
+					image="$PAGE_URL/$image"
+					[[ $image ==
+				fi
+			else
+			# Use Default Image
+				$image="$PAGE_URL/res/default.png"
+			fi
+			echo "it's $image"
+
+exit 1
 
 		# Print to File
 			if [[ "$page_or_post" == "n" ]] || [[ "$page_or_post" == "no" ]]; then
-				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\n-->">content/$file_name.markdown
+				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_image: $image\n-->">content/$file_name.markdown
 			else
-				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_date: $file_date-->">content/$file_name.markdown
+				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_date: $file_date\npage_image: $image\n-->">content/$file_name.markdown
 			fi
   }
 
 
+# Called from build_site(); builds the individual page
 	build_file() {
 			page_url_full="$PAGE_URL/$1"
 		# Create File
@@ -104,7 +126,7 @@ SITE_TITLE=" | Julian Orchard"
 			fi
 		done
 
-# Ammend files that have a page_list in them
+# Ammend files that have a page_list in them 
 	#	Add posts to src/list.html
 		IFS=$'\n' post_items_sorted=($(sort -r <<<"${post_items[*]}")) ; unset IFS
 		echo "<ul class=\"post-list\">">src/list.html
