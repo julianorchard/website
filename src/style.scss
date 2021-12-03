@@ -1,0 +1,27 @@
+/*
+
+Playing with SCSS
+
+*/
+
+/* General */ 
+	body {
+		padding: 0;
+		margin: 0;
+		border: 0;
+		font-family: 'IBM Plex Sans Condensed', sans-serif;
+	}
+
+	@mixin alltext {
+		h1, h2, h3, 
+		h4, h5, h6, 
+		p, ul {
+			@content
+		}
+	}
+	
+	@include alltext {
+		font-weight: 800
+	}
+
+
