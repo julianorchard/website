@@ -45,24 +45,21 @@ SITE_TITLE=" | Julian Orchard"
 		# Custom image or Default
 			read -p "Do you wish to use the default image for meta tags etc.? (Y/n) " image_confirm
 			if [ "$image_confirm" = "n" ] || [ "$image_confirm" = "no" ] ; then
-				read -p "Please enter a URL or a location within /res/: " image
+				read -p "Please enter a URL or a location locally: " image
 				# Don't do much validating if it's an external image; 
 				# could try pinging to see if it responds? Or downloading the 
 				# image to serve it from /res/?
 				if [[ ! "$image" =~ \/\/ ]] ; then
 					# It's likely an internal URL
-					# remove either /res/ or res/, if present
-					[[ $image == /* ]] && image="${image:1}" || image="${image/res\//}"
+					# clean slash away, if present
+					[[ $image == /* ]] && image="${image:1}"
 					image="$PAGE_URL/$image"
-					[[ $image ==
 				fi
 			else
 			# Use Default Image
 				$image="$PAGE_URL/res/default.png"
 			fi
-			echo "it's $image"
-
-exit 1
+			echo "Image will be $image."
 
 		# Print to File
 			if [[ "$page_or_post" == "n" ]] || [[ "$page_or_post" == "no" ]]; then
@@ -79,7 +76,7 @@ exit 1
 		# Create File
 			echo "" > $1index.html
 			# Using + as the divider, because I'm using / in the page_url
-			sed "s+PAGE_TITLE+$2$SITE_TITLE+g;s+PAGE_DESCRIPTION+$3+g;s+PAGE_URL+$page_url_full+g" src/head.html >> $1index.html
+			sed "s+PAGE_TITLE+$2$SITE_TITLE+g;s+PAGE_DESCRIPTION+$3+g;s+PAGE_URL+$page_url_full+g;s+PAGE_IMAGE+$5+g" src/head.html >> $1index.html
 			file_head=$(awk '/page_head/ {print $2}' $4)
 			if [ ! -z $file_head ] && [ "$file_head"="large" ] ; then
 				echo "<article id=\"expanded\">">>$1index.html
@@ -103,6 +100,8 @@ exit 1
 					new_file=$(echo $file | sed -r "s/.+\/(.+)\..+/\1/")
 					file_title=$(grep "page_title:" $file | cut -f 2- -d ' ')
 					file_description=$(grep "page_description:" $file | cut -f 2- -d ' ')
+					file_image=$(grep "page_image:" $file | cut -f 2- -d ' ')
+					[ -z $file_image ] && file_image="$PAGE_URL/res/default.png"
 				# Adjust whether page_date is present
 						if grep -q "page_date" $file ; then
 							file_date=$(awk '/page_date/ {print $2}' $file)
@@ -120,7 +119,7 @@ exit 1
 						fi
 				# Build the File
 						[ ! -z $new_file ] && echo "Building: $new_file" || echo "Building: index.html"
-						build_file "${new_file}" "${file_title}" "${file_description}" "${file}"
+						build_file "${new_file}" "${file_title}" "${file_description}" "${file}" "${file_image}"
 				# Add pages with page_list to array to finish later
 						grep -q "page_list" ${new_file}index.html && rebuild_list+=("${new_file}")
 			fi
@@ -131,9 +130,11 @@ exit 1
 		IFS=$'\n' post_items_sorted=($(sort -r <<<"${post_items[*]}")) ; unset IFS
 		echo "<ul class=\"post-list\">">src/list.html
 		for j in "${post_items_sorted[@]}" ; do
+		#	Remove index.html from filename
+			k=${j::-10}
 			file_title=$(grep "page_title:" $j | cut -f 2- -d ' ')
 			file_date=$(awk '/page_date/ {print $2}' $j)
-			echo "<li><a href=\"/${j}\">$file_title</a> <div>$file_date</div></li>">>src/list.html
+			echo "<li><a href=\"/${k}\">$file_title</a> <div>$file_date</div></li>">>src/list.html
 		done
 		echo "</ul>">>src/list.html>>src/list.html
 	# Ammend Pages Needing src/list.html

@@ -3,9 +3,9 @@
 <html>
   <head>
     <title>
-      Hello World! | Julian Orchard
+      Meta Images are now built into this blog | Julian Orchard
     </title>
-    <meta name="description" content="My first 'real' post on this blog I've written, in bash.">
+    <meta name="description" content="This is a quick post to showcase how I've implemented meta images into this blog, rather nicely.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="index, follow">
@@ -13,14 +13,14 @@
 		<!--Social-->
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@julianorchardd">
-		<meta name="twitter:title" content="Hello World! | Julian Orchard">
-		<meta name="twitter:description" content="My first 'real' post on this blog I've written, in bash.">
-		<meta name="twitter:image" conteog:image:widthnt="https://julian.rocks/res/default.png">
+		<meta name="twitter:title" content="Meta Images are now built into this blog | Julian Orchard">
+		<meta name="twitter:description" content="This is a quick post to showcase how I've implemented meta images into this blog, rather nicely.">
+		<meta name="twitter:image" conteog:image:widthnt="https://images.unsplash.com/photo-1520004434532-668416a08753?ixlib=rb-1.2.1PAGE_IMAGEixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8PAGE_IMAGEauto=formatPAGE_IMAGEfit=cropPAGE_IMAGEw=1740PAGE_IMAGEq=80">
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Hello World! | Julian Orchard" />
-		<meta property="og:description" content="My first 'real' post on this blog I've written, in bash."/>
-		<meta property="og:url" content="https://julian.rocks/posts/2021/11/30/hello-world/" />
-		<meta property="og:image" content="https://julian.rocks/res/default.png" />
+		<meta property="og:title" content="Meta Images are now built into this blog | Julian Orchard" />
+		<meta property="og:description" content="This is a quick post to showcase how I've implemented meta images into this blog, rather nicely."/>
+		<meta property="og:url" content="https://julian.rocks/posts/2021/12/04/blog-feature-meta-images/" />
+		<meta property="og:image" content="https://images.unsplash.com/photo-1520004434532-668416a08753?ixlib=rb-1.2.1PAGE_IMAGEixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8PAGE_IMAGEauto=formatPAGE_IMAGEfit=cropPAGE_IMAGEw=1740PAGE_IMAGEq=80" />
 		<!--Favicon (https://www.favicon-generator.org/) -->
 		<link rel="apple-touch-icon" sizes="57x57" href="/res/fav/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="/res/fav/apple-icon-60x60.png">
@@ -62,20 +62,21 @@
     </nav>
 <article id="regular">
 <!--
-page_title: Hello World!
-page_description: My first 'real' post on this blog I've written, in bash.
+page_title: Meta Images are now built into this blog
+page_description: This is a quick post to showcase how I've implemented meta images into this blog, rather nicely.
 page_status: published
-page_date: 2021/11/30
+page_date: 2021/12/04
+page_image: https://images.unsplash.com/photo-1520004434532-668416a08753?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80
 -->
-<h1 id="hello-world">Hello world!</h1>
-<h2 id="a-pretty-traditional-but-nice-way-to-title-the-first-post-on-a-pretty-traditional-static-site-generator-written-in-bash">A pretty traditional, but nice, way to title the first post on a pretty traditional static site generator (written in bash)</h2>
-<p>This blog is powered by a tiny static site generator I’ve written in bash script. It’s just over 100 lines long! The only features are ‘./blog -n or –new’ to create a new post, and ‘./blog -b or –build’, which is used to generate the whole site. It’s therefore pretty simple.</p>
-<p>However, I’ve really tried to make this super simple to use and nice looking too.</p>
-<h2 id="why">Why?</h2>
-<p>I simply don’t have much <em>need</em> to learn a fully featured static site generator such as the incredible <a href="https://gohugo.io">Hugo</a> or the much beloved <a href="https://jekyllrb.com">Jekyll</a>. I just want something to be able to jot down some notes, and writing a short script to do this for me was actually the most efficient way to do this, in my opinion.</p>
-<p><a href="https://wordpress.org/">Wordpress</a>? It’s great, but it’s far more hassle in terms of maintenance and would be way overkill for this use case. I also like being able to just go into the terminal, jot down some thoughts in <a href="https://www.vim.org/">Vim</a> (especially with the <a href="https://github.com/junegunn/goyo.vim">Goyo plugin</a>), and keep it simple.</p>
-<p>Anyway, to see exactly how this works, visit the <a href="https://github.com/julianorchard/julianorchard.github.io">repo</a> where I’ve written a little bit more about how it functions from a technical standpoint.</p>
-<p>See you in the next post!</p>
+<h1 id="meta-images-now-a-feature-of-this-blog">Meta Images; now a feature of this blog!</h1>
+<p>Meta images are actually incredibly important to how well a website will present itself to the world. Obviously having other good social sharing meta tags like <code>og:title</code> and <code>og:description</code> are important, but meta images are your chance to really make a link look good!</p>
+<p>They’re there when we show a page in an instant messenger, ususally, and they’re also usually present on social media. It’s a free pass to get some attention, and now, this blog works nicely with them.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>When you run <code>./blog -n</code>, the final question you’ll be asked is now “Do you wish to use the default image for meta tags?”. A default <code>yes</code> response will mean the page just includes an image stored in <code>/res/default.png</code>, and a <code>no</code> response will prompt you to enter either a URL or a local location (ideally, store your images in <code>/res/</code>).</p>
+<figure>
+<img src="/res/blog-meta-example.png" alt="Example of what the default sharing looks like." /><figcaption>Example of what the default sharing looks like.</figcaption>
+</figure>
+<p>That’s it. Now links to this blog look nicer.</p>
 </article>
 
 	<footer>
