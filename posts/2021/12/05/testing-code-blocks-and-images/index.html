@@ -3,9 +3,9 @@
 <html>
   <head>
     <title>
-      Privacy Policy | Julian Orchard
+      Testing Code Blocks and Images | Julian Orchard
     </title>
-    <meta name="description" content="I do care about Privacy Policies, and even though this is a small website, I want to make sure it's included.">
+    <meta name="description" content="This is a quick test of how I've implemented <code> and <img stylings!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
 		<!--Social-->
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@julianorchardd">
-		<meta name="twitter:title" content="Privacy Policy | Julian Orchard">
-		<meta name="twitter:description" content="I do care about Privacy Policies, and even though this is a small website, I want to make sure it's included.">
+		<meta name="twitter:title" content="Testing Code Blocks and Images | Julian Orchard">
+		<meta name="twitter:description" content="This is a quick test of how I've implemented <code> and <img stylings!">
 		<meta name="twitter:image" conteog:image:widthnt="https://julianorchard.co.uk/res/default.png">
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Privacy Policy | Julian Orchard" />
-		<meta property="og:description" content="I do care about Privacy Policies, and even though this is a small website, I want to make sure it's included."/>
-		<meta property="og:url" content="https://julianorchard.co.uk/privacy/" />
+		<meta property="og:title" content="Testing Code Blocks and Images | Julian Orchard" />
+		<meta property="og:description" content="This is a quick test of how I've implemented <code> and <img stylings!"/>
+		<meta property="og:url" content="https://julianorchard.co.uk/posts/2021/12/05/testing-code-blocks-and-images/" />
 		<meta property="og:image" content="https://julianorchard.co.uk/res/default.png" />
 		<!--Favicon (https://www.favicon-generator.org/) -->
 		<link rel="apple-touch-icon" sizes="57x57" href="/res/fav/apple-icon-57x57.png">
@@ -62,15 +62,29 @@
     </nav>
 <article id="regular">
 <!--
-page_title: Privacy Policy
-page_description: I do care about Privacy Policies, and even though this is a small website, I want to make sure it's included.
+page_title: Testing Code Blocks and Images
+page_description: This is a quick test of how I've implemented <code> and <img stylings!
 page_status: published
+page_date: 2021/12/05
+page_image: https://julianorchard.co.uk/res/default.png
 -->
-<h1 id="privacy-and-cookies">Privacy and Cookies</h1>
-<p>There’s nothing here yet. This site doesn’t collect data on you at the moment. I plan on using Google Analytics to keep track over views to certain pages, but there’s nothing at the moment.</p>
-<p>The only way I would retain any data about you is if you get in contact with me by email or via Twitter, at which point that’s necessary data (and I’m not a business anyway at the end of the day). If you’re contacting me <em>regarding</em> something business related, I won’t share your info with anyone unless I’m granted permission by you.</p>
-<p>This site is hosted with <a href="https://pages.github.com/">GitHub Pages</a> and you can check I’ve not implemented any tracking stuff by checking <a href="https://github.com/julianorchard/julianorchard.github.io">this site’s code</a> there too.</p>
-<p>I <em>will</em> update this policy, if and when I get round to implementing anything that uses cookies.</p>
+<h1 id="this-post-is-an-example">This Post Is An Example…</h1>
+<p>HTML <code>code</code> tags and <code>img</code> tags are something I want to look nice on this blog, and <code>code</code> tags aren’t something I’ve really had to make a huge effort with before. I’ve not written a website where I have a huge need to style them, but since I’ll probably be writing about code I’ve written on this blog, I <em>will</em> need them here:</p>
+<h2 id="how-ive-settled-on-code-tags-working">How I’ve settled on code tags working</h2>
+<pre><code>@echo off
+
+echo Hello World!
+
+echo This is a really, really long line of code and it&#39;s just going to keep going and going and going because I need it to be a long line of code and to keep going.
+</code></pre>
+<p>The only thing is code highlighting. I’ve looked into <a href="https://highlightjs.org/usage/">highlightjs</a>, but I think it’s overkill, and if there’s any very large bits of code I want to include, I’ll probably just use <a href="https://gist.gihub.com">GitHub gists</a> to include them here.</p>
+<h2 id="how-ive-settled-on-images-working">How I’ve settled on images working</h2>
+<p>Images will look like…</p>
+<figure>
+<img src="https://images.unsplash.com/photo-1638459554090-675e14d87d1b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt="This is what image captions will be like!" /><figcaption>This is what image captions will be like!</figcaption>
+</figure>
+<p>When <a href="https://pandoc.org/">Pandoc</a> (which the <a href="https://github.com/julianorchard/julianorchard.github.io">script</a> used to run this site calls) converts Markdown to HTML, it adds any image description to <code>&lt;figcaption&gt;</code>, as well as the image <code>alt=</code> text. I therefore wanted to come up with a nice way to display this caption, and based on the colours I was already using for other parts of the site, this is what I came up with. It used a <code>:before</code> CSS element to add a border in the top left, and the bottom right caption is the <code>&lt;figcaption&gt;</code> element.</p>
+<p>Anyway, that’s it.</p>
 </article>
 
 	<footer>

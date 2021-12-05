@@ -44,6 +44,30 @@
             color: #656fa5;
             font-weight: 100;
         }
+				code {
+					font-family: 'IBM Plex Mono', Monospace;
+					display: inline;
+					background-color: #d7dcf7;
+					font-size: 14px;
+					padding: 2px 5px;
+					border-radius: 4px;
+					margin: 0px 5px;
+					white-space: pre-wrap;
+				}
+				pre>code::-webkit-scrollbar {
+					display: none;
+				}
+				pre>code {
+					display: block;
+					padding: 30px;
+					width: 80%;
+					overflow-x: scroll;
+					-ms-overflow-style: none;
+					scrollbar-width: none;
+					word-wrap: break-word;
+					white-space: pre;
+					margin: 40px 0px;
+				}
 /*LINKS*/
         a {
             text-decoration: none;
@@ -222,6 +246,9 @@
                 width: 80% !important;
                 margin: 0px auto !important;
             }
+						figure {
+							width: 100% !important;
+						}
         }
         article h2 {
             padding-top: 1rem;
@@ -230,16 +257,31 @@
             position: relative;
             width: 100%;
         }
+				/*Image Border*/
+				figure:before {
+						content: '';
+						background-color: #656fa5;
+						position: absolute;
+						width: 20%;
+						height: 20%;
+						top: -10px;
+						left: -10px;
+				}
         figure {
-          width: 50%;
-          margin: 0px auto;
+					position: relative;
+          max-width: 80%;
+					height: auto;
+          margin: 40px auto;
         }
         figcaption {
           font-style: italic;
           text-align: right;
-          padding: 0;
-          font-size: 9px;
-          margin: 0 0 0 0;
+          padding: 10px;
+          font-size: 12px;
+          margin: -4px 0 0 50%;
+					background-color: #656fa5;
+					width: calc(50%-10px);
+					color: #fff;
         }
 
 
