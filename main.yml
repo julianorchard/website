@@ -1,0 +1,16 @@
+name: Build Blog On Push
+
+on: 
+	push: 
+		branches: [ main ] 
+	pull_requests: 
+		branches: [ main ]
+
+	jobs: 
+		build: 
+			runs-on: ubuntu-latest
+			steps: 
+				- uses: actions/checkout@v2
+				- name: Build Blog
+					run: sh ./blog
+
