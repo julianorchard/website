@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      J-USB, My USB Password Setup | Julian Orchard
+    </title>
+    <meta name="description" content="I've started moving away from online password storage, and started using KeePassXC on a USB stick; here's how my setup works...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="index, follow">
+		<meta charset="utf-8">
+		<!--Social-->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@0x68ee">
+		<meta name="twitter:title" content="J-USB, My USB Password Setup | Julian Orchard">
+		<meta name="twitter:description" content="I've started moving away from online password storage, and started using KeePassXC on a USB stick; here's how my setup works...">
+		<meta name="twitter:image" conteog:image:widthnt="https://julianorchard.co.uk/res/default.png">
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="J-USB, My USB Password Setup | Julian Orchard" />
+		<meta property="og:description" content="I've started moving away from online password storage, and started using KeePassXC on a USB stick; here's how my setup works..."/>
+		<meta property="og:url" content="https://julianorchard.co.uk/posts/2022/02/07/jusb-my-usb-password-setup/" />
+		<meta property="og:image" content="https://julianorchard.co.uk/res/default.png" />
+		<!--Favicon (https://www.favicon-generator.org/) -->
+		<link rel="apple-touch-icon" sizes="57x57" href="/res/fav/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/res/fav/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/res/fav/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/res/fav/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/res/fav/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/res/fav/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/res/fav/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/res/fav/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/res/fav/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/res/fav/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/res/fav/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/res/fav/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/res/fav/favicon-16x16.png">
+		<link rel="manifest" href="/res/fav/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/res/fav/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		<!--Style-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=IBM+Plex+Mono&family=IBM+Plex+Sans+Condensed&family=Noto+Serif+JP&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a class="link" href="/">Home</a>
+        </li>
+        <li>
+          <a class="link" href="/about/">About</a>
+        </li>
+        <li>
+          <a class="link" href="/posts/">Posts</a>
+        </li>
+      </ul>
+    </nav>
+<article id="regular">
+<!--
+page_title: J-USB, My USB Password Setup
+page_description: I've started moving away from online password storage, and started using KeePassXC on a USB stick; here's how my setup works...
+page_status: published
+page_date: 2022/02/07
+page_image: https://julianorchard.co.uk/res/default.png
+-->
+<h1 id="my-offline-password-setup">My Offline Password Setup</h1>
+<p>I’ve recently, finally, started to move away from the standard online Google password storage system. This is for a few reasons, but it’s just something I’ve never felt 100% comfortable with.</p>
+<p>The best option I found that I wanted to briefly write about was the open source <a href="https://github.com/keepassxreboot/keepassxc">KeePassXC</a>. The <a href="https://github.com/keepassxreboot/keepassxc/releases/tag/2.6.6">portable</a> version of the project is what I found to be the best, as I wanted to be able to manage passwords even on machines I’d not visited, and figured the best way to do this, offline, would be to just carry them on a USB Stick.</p>
+<h2 id="backing-up-the-database">Backing Up The Database</h2>
+<p>KeePassXC generates a database of passwords, <code>Passwords.kdbx</code> as standard. This is a script I wrote to back this up, so that when I plug in the USB into my home machine, I can just double click this script to run it;</p>
+<pre><code>&#39; File:        backup.vbs
+&#39; Author:      Julian Orachrd (hello@julianorchard.co.uk)
+&#39; Description: This script mainly exists to ensure I
+&#39;              remember to consider if a machine is
+&#39;              trustworthy before backing up the database file
+&#39; Date:        10/01/2022
+
+&#39; File System Object
+    Set fso = CreateObject(&quot;Scripting.FileSystemObject&quot;)
+&#39; Backup Folder
+    bkp = CreateObject(&quot;WScript.Shell&quot;).ExpandEnvironmentStrings(&quot;%USERPROFILE%&quot;) &amp; &quot;\JUSBackup\&quot;
+    bkf = bkp &amp; &quot;Passwords.kdbx&quot;
+
+&#39; If there&#39;s already a backup database file, just proceed
+    If fso.FileExists(bkf) Then
+        proceed=6
+    Else
+        proceed=MsgBox(&quot;Are you SURE you want to back up your KeePassXC Database to this machine?&quot; &amp; vbNewLine &amp; vbNewLine &amp; &quot;Only back up the database to a machine you trust.&quot; &amp; vbNewLine &amp; vbNewLine &amp; &quot;Saves to: &quot; &amp; bkp, 308, &quot;Trust No One, Not Even Your Printer&quot;)
+
+    End If
+
+&#39; Copy database if either user is happy to do so
+&#39; or if the database file already exists...
+    If proceed = 6 Then
+        If Not fso.FolderExists(bkp) Then
+            fso.CreateFolder bkp
+        End If
+        fso.CopyFile &quot;KeePassXC\Passwords.kdbx&quot;, bkf
+    End If</code></pre>
+<p>It’s mainly to remind me not to back up the password database to machines I don’t trust…</p>
+<p>That’s it, just wanted to share my setup as I’ve had fun doing it.</p>
+</article>
+
+	<footer>
+		<div class="left">
+			<p>
+				Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+			<br />
+				LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+			<br />
+				Twitter: <a href="https://twitter.com/0x68ee" class="highlight">@0x68ee</a> <u class="footer-kanji" style="font-family: 'Noto Serif JP', serif; text-decoration: none;  line-height: 0px; font-size: 20px;">森</u>
+			</p>
+		</div><!--
+		--><div class="right">
+			<p>
+				Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+				<br />
+				About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+			</p>
+			<p>
+				Copyright Julian Orchard, 2021
+			</p>
+		</div>
+	</footer>
+
+      <script src="/src/script.js"></script>
+    </body>
+  </html>
