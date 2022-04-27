@@ -214,7 +214,7 @@ nav>ul>li {
 	}
 
 /*BODY OF CONTENT*/
-article p,#content>p,#content>h2,#content>h3 {
+article p,#content>p,#content>h2,#content>h3,#content>ul {
 	width: 90%;
 	margin-left: 5%;
 }

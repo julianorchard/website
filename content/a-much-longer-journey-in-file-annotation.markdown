@@ -106,3 +106,11 @@ I've tested it with my Neovim config, which is new for me, and it seems to also
 work well. 
 
 That's it.
+
+## Edit, almost immediately after publishing:
+
+No, that's not it! The plugin is
+[here](https://github.com/julianorchard/desc.vim) if you want to check it out,
+or have any much appreciated feedback!
+
+That's it.
