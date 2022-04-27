@@ -12,4 +12,4 @@ I'm Julian and I've been working for half a decade as a Marketing Coordinator. W
 
 This website is mostly going to be used to jot down thoughts about work related things. I want to share knowledge, and I want to make a habit of blogging for *myself*, as a positive routine.
 
-If you want to get in contact with me, my email is [hello@julianorchard.co.uk](mailto:hello@julianorchard.co.uk), or I'm available on [Twitter dot com](https://twitter.com/0x68ee).
+If you want to get in contact with me, my email is [hello@julianorchard.co.uk](mailto:hello@julianorchard.co.uk), or I'm available on [Mastodon](https://mastodon.social/@jdo).
