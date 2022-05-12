@@ -109,8 +109,7 @@ That's it.
 
 ## Edit, almost immediately after publishing:
 
-No, that's not it! The plugin is
-[here](https://github.com/julianorchard/desc.vim) if you want to check it out,
-or have any much appreciated feedback!
-
-That's it.
+> No, that's not it! The plugin is
+> [here](https://github.com/julianorchard/desc.vim) if you want to check it out,
+> or have any much appreciated feedback!
+> That's it.
