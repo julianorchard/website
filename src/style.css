@@ -56,6 +56,30 @@ pre>code {
 	white-space: pre;
 	margin: 40px 0px;
 }
+blockquote {
+	font-family: 'DM Serif Text', serif;
+	font-weight: 100;
+	font-size: 20px;
+	margin: 40px 0px;
+	background-color: #feffde;
+	border-radius: 4px;
+	position: relative;
+	width: 80%;
+	padding: 30px;
+}
+blockquote:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 10px;
+	background-color: #f1f48d;
+	border-radius: 4px 0px 0px 4px;
+}
+blockquote>p {
+	margin: 2% 5% !important;
+}
 /*LINKS*/
 a {
 	text-decoration: none;
@@ -280,9 +304,9 @@ footer>div.right {
 	text-align: right;
 }
 .footer-kanji {
-	font-family: 'Noto Serif JP', serif; 
-	text-decoration: none; 
-	line-height: 0; 
+	font-family: 'Noto Serif JP', serif;
+	text-decoration: none;
+	line-height: 0;
 	font-size: 22px;
 	display: inline-block;
 	transform: translate(5px, 5px);
