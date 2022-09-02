@@ -69,71 +69,48 @@ page_date: 2021/12/05
 page_image: https://julianorchard.co.uk/res/default.png
 -->
 <h1 id="this-post-is-an-example">This Post Is An Example…</h1>
-<p>HTML <code>code</code> tags and <code>img</code> tags are something I
-want to look nice on this blog, and <code>code</code> tags aren’t
-something I’ve really had to make a huge effort with before. I’ve not
-written a website where I have a huge need to style them, but since I’ll
-probably be writing about code I’ve written on this blog, I
-<em>will</em> need them here:</p>
-<h2 id="how-ive-settled-on-code-tags-working">How I’ve settled on code
-tags working</h2>
+<p>HTML <code>code</code> tags and <code>img</code> tags are something I want to look nice on this blog, and <code>code</code> tags aren’t something I’ve really had to make a huge effort with before. I’ve not written a website where I have a huge need to style them, but since I’ll probably be writing about code I’ve written on this blog, I <em>will</em> need them here:</p>
+<h2 id="how-ive-settled-on-code-tags-working">How I’ve settled on code tags working</h2>
 <pre><code>@echo off
 
 echo Hello World!
 
 echo This is a really, really long line of code and it&#39;s just going to keep going and going and going because I need it to be a long line of code and to keep going.
 </code></pre>
-<p>The only thing is code highlighting. I’ve looked into <a
-href="https://highlightjs.org/usage/">highlightjs</a>, but I think it’s
-overkill, and if there’s any very large bits of code I want to include,
-I’ll probably just use <a href="https://gist.gihub.com">GitHub gists</a>
-to include them here.</p>
-<h2 id="how-ive-settled-on-images-working">How I’ve settled on images
-working</h2>
+<p>The only thing is code highlighting. I’ve looked into <a href="https://highlightjs.org/usage/">highlightjs</a>, but I think it’s overkill, and if there’s any very large bits of code I want to include, I’ll probably just use <a href="https://gist.gihub.com">GitHub gists</a> to include them here.</p>
+<h2 id="how-ive-settled-on-images-working">How I’ve settled on images working</h2>
 <p>Images will look like…</p>
 <figure>
-<img
-src="https://images.unsplash.com/photo-1638459554090-675e14d87d1b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80"
-alt="This is what image captions will be like!" />
-<figcaption aria-hidden="true">This is what image captions will be
-like!</figcaption>
+<img src="https://images.unsplash.com/photo-1638459554090-675e14d87d1b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt="This is what image captions will be like!" /><figcaption aria-hidden="true">This is what image captions will be like!</figcaption>
 </figure>
-<p>When <a href="https://pandoc.org/">Pandoc</a> (which the <a
-href="https://github.com/julianorchard/julianorchard.github.io">script</a>
-used to run this site calls) converts Markdown to HTML, it adds any
-image description to <code>&lt;figcaption&gt;</code>, as well as the
-image <code>alt=</code> text. I therefore wanted to come up with a nice
-way to display this caption, and based on the colours I was already
-using for other parts of the site, this is what I came up with. It used
-a <code>:before</code> CSS element to add a border in the top left, and
-the bottom right caption is the <code>&lt;figcaption&gt;</code>
-element.</p>
+<p>When <a href="https://pandoc.org/">Pandoc</a> (which the <a href="https://github.com/julianorchard/julianorchard.github.io">script</a> used to run this site calls) converts Markdown to HTML, it adds any image description to <code>&lt;figcaption&gt;</code>, as well as the image <code>alt=</code> text. I therefore wanted to come up with a nice way to display this caption, and based on the colours I was already using for other parts of the site, this is what I came up with. It used a <code>:before</code> CSS element to add a border in the top left, and the bottom right caption is the <code>&lt;figcaption&gt;</code> element.</p>
 <p>Anyway, that’s it.</p>
 </article>
 
-	<footer>
-		<div class="left">
-			<p>
-				Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
-			<br />
-				LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
-			<br />
-				Mastodon: <a href="https://mastodon.social/@jdo"
-          class="highlight">@jdo@mastodon.social</a> <u class="footer-kanji" style="font-family: 'Noto Serif JP', serif; text-decoration: none;  line-height: 0px; font-size: 20px;">森</u>
-			</p>
-		</div><!--
-		--><div class="right">
-			<p>
-				Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
-				<br />
-				About <a href="/privacy/" class="highlight">Privacy Policy</a>.
-			</p>
-			<p>
-				Copyright Julian Orchard, 2021
-			</p>
-		</div>
-	</footer>
+<footer>
+  <div class="left">
+    <p>
+      Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+      <br />
+      LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+      <br />
+      Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
+      <br />
+      Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
+    </p>
+  </div><!--
+--><div class="right">
+    <p>
+      Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+      <br />
+      About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+    </p>
+    <p>
+      Copyright Julian Orchard, 2022
+    </p>
+  </div>
+</footer>
 
-      <script src="/src/script.js"></script>
-    </body>
-  </html>
+<script src="/src/script.js"></script>
+</body>
+</html>
