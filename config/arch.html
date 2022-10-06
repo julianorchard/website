@@ -3,14 +3,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-10-06 Thu 10:20 -->
+<!-- 2022-10-06 Thu 22:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Arch</title>
-<meta name="generator" content="Org mode" />
+<title>My Arch Linux Configuration (btw)</title>
 <meta name="author" content="Julian Orchard &lt;hello@julianorchard.co.uk&gt;" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="description" content="I use Arch Linux, btw. Nowhere near as much as I'd like, but this is my configuration (literately written, using Emacs Org Mode)." />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -31,8 +32,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -41,21 +43,21 @@
   pre.src {
     position: relative;
     overflow: auto;
-    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,88 +192,66 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
+  .org-svg { }
 </style>
-<link rel="stylesheet"
-                        href="../src/org-style.css"
-                        type="text/css"/>
-<script type="text/javascript">
-// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
-<!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
-// @license-end
-</script>
+
+<link rel="stylesheet" href="../src/org-style.css" type="text/css"/>
 </head>
 <body>
 <div id="preamble" class="status">
-<nav>
-                           <ul>
-                           <li>
-                           <a class="link" href="/">Home</a>
-                           </li>
-                           <li>
-                           <a class="link" href="/about/">About</a>
-                           </li>
-                           <li>
-                           <a class="link" href="/posts/">Posts</a>
-                           </li>
-                           </ul>
-                           </nav>
+
+  <nav>
+    <ul>
+      <li>
+        <a class="link" href="/">Home</a>
+      </li>
+      <li>
+        <a class="link" href="/about/">About</a>
+      </li>
+      <li>
+        <a class="link" href="/posts/">Posts</a>
+      </li>
+      <li>
+        <a class="link" href="/config/">Config</a>
+      </li>
+    </ul>
+  </nav>
 </div>
-<div id="content">
-<h1 class="title">Arch</h1>
-<div id="table-of-contents">
+<div id="content" class="content">
+<h1 class="title">My Arch Linux Configuration (btw)</h1>
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5276958">Content&#xa0;&#xa0;&#xa0;<span class="tag"><span class="toc">toc</span>&#xa0;<span class="quote">quote</span></span></a></li>
-<li><a href="#org989ea6f">Zshell</a></li>
-<li><a href="#orgbbde2ca">X11</a></li>
-<li><a href="#org9874d9e">Terminal</a></li>
-<li><a href="#orga1d098c">Window Manager</a>
+<li><a href="#orgfde7a36">Zshell</a></li>
+<li><a href="#orga70ffd9">X11</a></li>
+<li><a href="#org10a59a8">Terminal</a></li>
+<li><a href="#orgc7a6386">Window Manager</a>
 <ul>
-<li><a href="#org11af410">Basic Config</a></li>
-<li><a href="#org8728d2d">Bindings</a></li>
-<li><a href="#orgbf76396">Workstations</a></li>
-<li><a href="#orgc58211e">Resize</a></li>
-<li><a href="#org79cef8d">Bar</a></li>
-<li><a href="#org9bd0c27">i3blocks</a>
+<li><a href="#orgc27e18c">Basic Config</a></li>
+<li><a href="#orge3b7e24">Bindings</a></li>
+<li><a href="#org95d19b2">Workstations</a></li>
+<li><a href="#orge9e885a">Resize</a></li>
+<li><a href="#org7a622b7">Bar</a></li>
+<li><a href="#org6defee6">i3blocks</a>
 <ul>
-<li><a href="#orgfca109e">Syncthing status</a></li>
-<li><a href="#org45869b5">Internet Connection</a></li>
-<li><a href="#org7398019">Battery percentage</a></li>
-<li><a href="#orgf8d1053">Time</a></li>
-<li><a href="#org4bfb29e">Empty</a></li>
+<li><a href="#org1f3d35b">Syncthing status</a></li>
+<li><a href="#orgfc21675">Internet Connection</a></li>
+<li><a href="#orgb3147ab">Battery percentage</a></li>
+<li><a href="#org5b62b99">Time</a></li>
+<li><a href="#org769263b">Empty</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc380c54">Start Page</a></li>
-<li><a href="#orgb3bf95c">Zathura</a></li>
-<li><a href="#org30af893">LSD</a></li>
+<li><a href="#orgf5aea75">Zathura</a></li>
+<li><a href="#org0f4f0e1">LSD</a></li>
 </ul>
 </div>
 </div>
 <blockquote>
 <p>
-I use arch, btw.
+I use arch linux, btw.
 </p>
 </blockquote>
 
@@ -287,26 +267,9 @@ I'd love to use Arch more, to be honest, as it's a lovely experience, but I don'
 As a result, I've recently made it a mission to try and just get something simple, reproducable, and consistent going on. I'm using default <code>i3</code>, as a result (I've used a wide variety of similar window managers).
 </p>
 
-<div id="outline-container-org5276958" class="outline-2">
-<h2 id="org5276958">Content&#xa0;&#xa0;&#xa0;<span class="tag"><span class="toc">toc</span>&#xa0;<span class="quote">quote</span></span></h2>
-<div class="outline-text-2" id="text-org5276958">
-<blockquote>
-<ul class="org-ul">
-<li>[BROKEN LINK: zshell]</li>
-<li>[BROKEN LINK: x11]</li>
-<li>[BROKEN LINK: terminal]</li>
-<li>[BROKEN LINK: window-manager]</li>
-<li>[BROKEN LINK: start-page]</li>
-<li>[BROKEN LINK: zathura]</li>
-<li>[BROKEN LINK: lsd]</li>
-</ul>
-</blockquote>
-</div>
-</div>
-
-<div id="outline-container-org989ea6f" class="outline-2">
-<h2 id="org989ea6f">Zshell</h2>
-<div class="outline-text-2" id="text-org989ea6f">
+<div id="outline-container-orgfde7a36" class="outline-2">
+<h2 id="orgfde7a36">Zshell</h2>
+<div class="outline-text-2" id="text-orgfde7a36">
 <p>
 I switched from a <code>.bashrc</code> to <code>.zshrc</code> too late, I think. I didn't know how good it was!
 </p>
@@ -325,33 +288,33 @@ Firstly, we start by trying to accomplish the eternal task of cleaning the home 
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #505050;"># </span><span style="color: #505050;">Bundler, Ruby</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">BUNDLE_USER_CONFIG</span>=<span style="color: #2544bb;">"$XDG_CONFIG_HOME"</span>/bundle
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">BUNDLE_USER_CACHE</span>=<span style="color: #2544bb;">"$XDG_CACHE_HOME"</span>/bundle
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">BUNDLE_USER_PLUGIN</span>=<span style="color: #2544bb;">"$XDG_DATA_HOME"</span>/bundle
-<span style="color: #505050;"># </span><span style="color: #505050;">GPG</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">GNUPGHOME</span>=<span style="color: #2544bb;">"$XDG_CONFIG_HOME"</span>/gnupg
-<span style="color: #505050;"># </span><span style="color: #505050;">Less</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">LESSHISTFILE</span>=<span style="color: #2544bb;">"$XDG_CACHE_HOME"</span>/less/history
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">LESSKEY</span>=<span style="color: #2544bb;">"$XDG_CONFIG_HOME"</span>/less/lesskey
-<span style="color: #505050;"># </span><span style="color: #505050;">Not Much</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">NMBGIT</span>=<span style="color: #2544bb;">"$XDG_DATA_HOME"</span>/notmuch/nmbug&#9099;k
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">NOTMUCH_CONFIG</span>=<span style="color: #2544bb;">"$XDG_CONFIG_HOME"</span>/notmuch/notmuchrc
-<span style="color: #505050;"># </span><span style="color: #505050;">Node/NPM</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">NODE_PATH</span>=<span style="color: #2544bb;">"$NPM_PACKAGES"</span>/lib/node_modules:<span style="color: #2544bb;">"$NODE_PATH"</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">NODE_REPL_HISTORY</span>=<span style="color: #2544bb;">"$XDG_DATA_HOME"</span>/node_repl_history
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">NPM_PACKAGES</span>=<span style="color: #2544bb;">"$XDG_CONFIG_HOME"</span>/npm-packages
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">PATH</span>=<span style="color: #2544bb;">"$NPM_PACKAGES"</span>/bin:<span style="color: #2544bb;">"$PATH"</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">GNU Pass</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">PASSWORD_STORE_DIR</span>=<span style="color: #2544bb;">"$XDG_DATA_HOME"</span>/pass
-<span style="color: #505050;"># </span><span style="color: #505050;">X11</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">XAUTHORITY</span>=<span style="color: #2544bb;">"$XDG_RUNTIME_DIR"</span>/Xauthority
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">XINITRC</span>=<span style="color: #2544bb;">"$XDG_CONFIG_HOME"</span>/X11/xinitrc 
-<span style="color: #505050;"># </span><span style="color: #505050;">HISTFILE</span>
-<span style="color: #00538b;">HISTFILE</span>=~/.cache/zsh/zsh_histfile
-<span style="color: #505050;"># </span><span style="color: #505050;">ZDOTDIR (not sure if this changes the HISTFILE, </span>
-<span style="color: #505050;"># </span><span style="color: #505050;">so setting it for zcompdump anyway)</span>
-<span style="color: #00538b;">ZDOTDIR</span>=~/.cache/zsh/
+# Bundler, Ruby
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+# GPG
+export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+# Less
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+# Not Much
+export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug⎋k
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
+# Node/NPM
+export NODE_PATH="$NPM_PACKAGES"/lib/node_modules:"$NODE_PATH"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_PACKAGES="$XDG_CONFIG_HOME"/npm-packages
+export PATH="$NPM_PACKAGES"/bin:"$PATH"
+# GNU Pass
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+# X11
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc 
+# HISTFILE
+HISTFILE=~/.cache/zsh/zsh_histfile
+# ZDOTDIR (not sure if this changes the HISTFILE, 
+# so setting it for zcompdump anyway)
+ZDOTDIR=~/.cache/zsh/
 
 </pre>
 </div>
@@ -366,13 +329,13 @@ Next, some more Zsh setup (from the wizard):
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #00538b;">HISTSIZE</span>=1000
-<span style="color: #00538b;">SAVEHIST</span>=2000
-<span style="color: #505050;"># </span><span style="color: #505050;">AutoCD (cd without cd) and </span>
-<span style="color: #505050;"># </span><span style="color: #505050;">Notify of background processes</span>
+HISTSIZE=1000
+SAVEHIST=2000
+# AutoCD (cd without cd) and 
+# Notify of background processes
 setopt autocd notify
 bindkey -e
-zstyle :compinstall filename <span style="color: #2544bb;">'/home/ju/.zshrc'</span>
+zstyle :compinstall filename '/home/ju/.zshrc'
 autoload -Uz compinit
 compinit
 
@@ -384,7 +347,7 @@ We style the prompt:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #00538b;">PROMPT</span>=<span style="color: #2544bb;">" &#9651;  %1~  "</span>
+<pre class="src src-sh">PROMPT=" △  %1~  "
 </pre>
 </div>
 
@@ -394,9 +357,9 @@ We set some lang/locale stuff:
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">LANG</span>=en_GB.UTF8
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">LANGUAGE</span>=en_GB.UTF8
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">LC_CTYPE</span>=en_GB.UTF8
+export LANG=en_GB.UTF8
+export LANGUAGE=en_GB.UTF8
+export LC_CTYPE=en_GB.UTF8
 
 </pre>
 </div>
@@ -414,10 +377,10 @@ And we set some default applications to use:
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">BROWSER</span>=<span style="color: #2544bb;">"firefox"</span>
-[ -x /usr/bin/nvim ] &amp;&amp; <span style="color: #8f0075;">export</span> <span style="color: #00538b;">EDITOR</span>=<span style="color: #2544bb;">"nvim"</span> || <span style="color: #8f0075;">export</span> <span style="color: #00538b;">EDITOR</span>=<span style="color: #2544bb;">"vim"</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">FILE</span>=<span style="color: #2544bb;">"ranger"</span>
-<span style="color: #8f0075;">export</span> <span style="color: #00538b;">TERMINAL</span>=<span style="color: #2544bb;">"kitty"</span>
+export BROWSER="firefox"
+[ -x /usr/bin/nvim ] &amp;&amp; export EDITOR="nvim" || export EDITOR="vim"
+export FILE="ranger"
+export TERMINAL="kitty"
 
 </pre>
 </div>
@@ -472,30 +435,30 @@ Next, we set up some aliases that I commonly use. I've written a bit about them 
 
 <div class="org-src-container">
 <pre class="src src-sh">
-alias <span style="color: #00538b;">cls</span>=<span style="color: #2544bb;">'clear'</span>
-alias <span style="color: #00538b;">free</span>=<span style="color: #2544bb;">"free -h"</span>
-alias <span style="color: #00538b;">md</span>=<span style="color: #2544bb;">"mkdir -p"</span>
-alias <span style="color: #00538b;">xc</span>=<span style="color: #2544bb;">"xclip -sel c &lt;"</span>
-alias <span style="color: #00538b;">site</span>=<span style="color: #2544bb;">'cd /srv/http/'</span>
-alias <span style="color: #00538b;">home</span>=<span style="color: #2544bb;">'cd ${HOME}'</span>
-[ -x /usr/bin/bat ] &amp;&amp; alias <span style="color: #00538b;">cat</span>=<span style="color: #2544bb;">"bat"</span> 
-[ -x /usr/bin/hue ] &amp;&amp; alias <span style="color: #00538b;">lights</span>=<span style="color: #2544bb;">'hue lights'</span>
-[ -x /usr/bin/kitty ] &amp;&amp; alias <span style="color: #00538b;">iv</span>=<span style="color: #2544bb;">"kitty +kitten icat"</span>
-<span style="color: #5317ac;">if</span> [ -x /usr/bin/lsd ] ; <span style="color: #5317ac;">then</span>
-    alias <span style="color: #00538b;">la</span>=<span style="color: #2544bb;">"lsd -la"</span>
-    alias <span style="color: #00538b;">ll</span>=<span style="color: #2544bb;">"lsd -l"</span>
-    alias <span style="color: #00538b;">ls</span>=<span style="color: #2544bb;">"lsd"</span>
-<span style="color: #5317ac;">else</span>
-    alias <span style="color: #00538b;">la</span>=<span style="color: #2544bb;">"ls -la"</span>
-    alias <span style="color: #00538b;">ll</span>=<span style="color: #2544bb;">"ls -l"</span>
-    alias <span style="color: #00538b;">ls</span>=<span style="color: #2544bb;">"ls --color=tty"</span>
-<span style="color: #5317ac;">fi</span>
-[ -x /usr/bin/neomutt ] &amp;&amp; alias <span style="color: #00538b;">mutt</span>=<span style="color: #2544bb;">'neomutt'</span>
-[ -x /usr/bin/nvim ] &amp;&amp; alias <span style="color: #00538b;">vim</span>=<span style="color: #2544bb;">'nvim'</span>
-[ -x /usr/bin/protonvpn ] &amp;&amp; alias <span style="color: #00538b;">vpn</span>=<span style="color: #2544bb;">"protonvpn"</span>  
-[ -x /usr/bin/ranger ] &amp;&amp; alias <span style="color: #00538b;">r</span>=<span style="color: #2544bb;">"ranger"</span>
-[ -x /usr/bin/sxiv ] &amp;&amp; [ -z <span style="color: #2544bb;">"${HOME}/.bin/sxiv.sh"</span> ] &amp;&amp; alias <span style="color: #00538b;">sxiv</span>=<span style="color: #2544bb;">"${HOME}/.bin/sxiv.sh"</span>
-[ -x /usr/bin/zathura ] &amp;&amp; [ -z <span style="color: #2544bb;">"${HOME}/.bin/zath.sh"</span> ] &amp;&amp; alias <span style="color: #00538b;">z</span>=<span style="color: #2544bb;">"${HOME}/.bin/zath.sh"</span>
+alias cls='clear'
+alias free="free -h"
+alias md="mkdir -p"
+alias xc="xclip -sel c &lt;"
+alias site='cd /srv/http/'
+alias home='cd ${HOME}'
+[ -x /usr/bin/bat ] &amp;&amp; alias cat="bat" 
+[ -x /usr/bin/hue ] &amp;&amp; alias lights='hue lights'
+[ -x /usr/bin/kitty ] &amp;&amp; alias iv="kitty +kitten icat"
+if [ -x /usr/bin/lsd ] ; then
+    alias la="lsd -la"
+    alias ll="lsd -l"
+    alias ls="lsd"
+else
+    alias la="ls -la"
+    alias ll="ls -l"
+    alias ls="ls --color=tty"
+fi
+[ -x /usr/bin/neomutt ] &amp;&amp; alias mutt='neomutt'
+[ -x /usr/bin/nvim ] &amp;&amp; alias vim='nvim'
+[ -x /usr/bin/protonvpn ] &amp;&amp; alias vpn="protonvpn"  
+[ -x /usr/bin/ranger ] &amp;&amp; alias r="ranger"
+[ -x /usr/bin/sxiv ] &amp;&amp; [ -z "${HOME}/.bin/sxiv.sh" ] &amp;&amp; alias sxiv="${HOME}/.bin/sxiv.sh"
+[ -x /usr/bin/zathura ] &amp;&amp; [ -z "${HOME}/.bin/zath.sh" ] &amp;&amp; alias z="${HOME}/.bin/zath.sh"
 
 </pre>
 </div>
@@ -505,30 +468,30 @@ Finally, we set <b>possibly</b> the only path I'll need; <code>~/.local/bin</cod
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #8f0075;">export</span> <span style="color: #00538b;">PATH</span>=${<span style="color: #00538b;">PATH</span>}:${<span style="color: #00538b;">HOME</span>}/.local/bin/
-systemctl -q is-active graphical.target &amp;&amp; [[ <span style="color: #813e00;">!</span> $<span style="color: #00538b;">DISPLAY</span> &amp;&amp; $<span style="color: #00538b;">XDG_VTNR</span> -eq 1 ]] &amp;&amp; <span style="color: #5317ac;">exec</span> startx ${<span style="color: #00538b;">HOME</span>}/.config/X11/xinitrc
+<pre class="src src-sh">export PATH=${PATH}:${HOME}/.local/bin/
+systemctl -q is-active graphical.target &amp;&amp; [[ ! $DISPLAY &amp;&amp; $XDG_VTNR -eq 1 ]] &amp;&amp; exec startx ${HOME}/.config/X11/xinitrc
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbbde2ca" class="outline-2">
-<h2 id="orgbbde2ca">X11</h2>
-<div class="outline-text-2" id="text-orgbbde2ca">
+<div id="outline-container-orga70ffd9" class="outline-2">
+<h2 id="orga70ffd9">X11</h2>
+<div class="outline-text-2" id="text-orga70ffd9">
 <p>
 Some files for x11 include xinitrc, and that's it, for me. 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #505050;">#</span><span style="color: #505050;">!/bin/</span><span style="color: #5317ac;">sh</span>
+<pre class="src src-sh">#!/bin/sh
 
-<span style="color: #505050;"># </span><span style="color: #505050;">userresources=$HOME/.config/X11/Xresources</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">usermodmap=$HOME/.config/X11/Xmodmap</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">sysresources=/etc/X11/xinit/Xresources</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">sysmodmap=/etc/X11/xinit/.Xmodmap</span>
+# userresources=$HOME/.config/X11/Xresources
+# usermodmap=$HOME/.config/X11/Xmodmap
+# sysresources=/etc/X11/xinit/Xresources
+# sysmodmap=/etc/X11/xinit/.Xmodmap
 
-<span style="color: #505050;"># </span><span style="color: #505050;">Systemctl Fix</span>
-<span style="color: #505050;">#</span><span style="color: #505050;">systemctl --user set-environment DISPLAY=:0</span>
+# Systemctl Fix
+#systemctl --user set-environment DISPLAY=:0
 </pre>
 </div>
 
@@ -546,7 +509,7 @@ Basically, we're just pointing <a href="https://en.wikipedia.org/wiki/Xrdb">xrdb
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">xrdb -merge <span style="color: #2544bb;">"$HOME"</span>/.config/X11/Xresources
+<pre class="src src-sh">xrdb -merge "$HOME"/.config/X11/Xresources
 </pre>
 </div>
 
@@ -556,15 +519,15 @@ This part is from the default <code>xinitrc</code> file. I believe it just start
 
 <div class="org-src-container">
 <pre class="src src-sh">
-<span style="color: #505050;"># </span><span style="color: #505050;">if [ -d /etc/X11/xinit/xinitrc.d ]</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">then</span>
-<span style="color: #505050;">#   </span><span style="color: #505050;">for f in /etc/X11/xinit/xinitrc.d/?*.sh</span>
-<span style="color: #505050;">#   </span><span style="color: #505050;">do</span>
-<span style="color: #505050;">#     </span><span style="color: #505050;"># If $f executable, execute</span>
-<span style="color: #505050;">#     </span><span style="color: #505050;">[ -x "$f" ] &amp;&amp; . "$f"</span>
-<span style="color: #505050;">#   </span><span style="color: #505050;">done</span>
-<span style="color: #505050;">#   </span><span style="color: #505050;">unset f</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">fi</span>
+# if [ -d /etc/X11/xinit/xinitrc.d ]
+# then
+#   for f in /etc/X11/xinit/xinitrc.d/?*.sh
+#   do
+#     # If $f executable, execute
+#     [ -x "$f" ] &amp;&amp; . "$f"
+#   done
+#   unset f
+# fi
 
 </pre>
 </div>
@@ -574,11 +537,11 @@ Meanwhile, I want to start some programs of my own! Including the essential <a h
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #505050;"># </span><span style="color: #505050;">[ -x /usr/bin/udiskie ] &amp;&amp; exec udiskie</span>
+<pre class="src src-sh"># [ -x /usr/bin/udiskie ] &amp;&amp; exec udiskie
 
-<span style="color: #505050;"># </span><span style="color: #505050;">exec awesome</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">exec bspwm</span>
-<span style="color: #5317ac;">exec</span> i3
+# exec awesome
+# exec bspwm
+exec i3
 </pre>
 </div>
 
@@ -591,10 +554,10 @@ Right, but that's not the end. Here's my <i>MESS</i> of an Xresources file. It n
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">*foreground: <span style="color: #505050;">#</span><span style="color: #505050;">f1e0d1</span>
-*background: <span style="color: #505050;">#</span><span style="color: #505050;">141e27</span>
-*.foreground: <span style="color: #505050;">#</span><span style="color: #505050;">f1e0d1</span>
-*.background: <span style="color: #505050;">#</span><span style="color: #505050;">141e27</span>
+<pre class="src src-sh">*foreground: #f1e0d1
+*background: #141e27
+*.foreground: #f1e0d1
+*.background: #141e27
 </pre>
 </div>
 
@@ -603,22 +566,22 @@ But only that bit&#x2026;? Not sure. This is apparently for a <a href="https://w
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #813e00;">!</span> Terminal
-URxvt*foreground: <span style="color: #505050;">#</span><span style="color: #505050;">f1e0d1</span>
-<span style="color: #813e00;">!</span>URxvt*background: [100]#141e27
+<pre class="src src-sh">! Terminal
+URxvt*foreground: #f1e0d1
+!URxvt*background: [100]#141e27
 URxvt*background: [100]#949494
-URxvt*cursorColor: <span style="color: #505050;">#</span><span style="color: #505050;">f1e0d1</span>
+URxvt*cursorColor: #f1e0d1
 URxvt*borderColor: [100]#141e27
-<span style="color: #813e00;">!</span> Term Language Support
+! Term Language Support
 URxvt.inputMethod: ibus
 URxvt.preeditType: OverTheSpot
-<span style="color: #813e00;">!</span> Set depth to make transparency work.
+! Set depth to make transparency work.
 URxvt*depth: 32
-<span style="color: #813e00;">!</span> Sxiv
-Sxiv.foreground: <span style="color: #505050;">#</span><span style="color: #505050;">f1e9d1</span>
-Sxiv.background: <span style="color: #505050;">#</span><span style="color: #505050;">141e27</span>
-Sxiv.font: Roboto-Mono:<span style="color: #00538b;">size</span>=9
-<span style="color: #813e00;">!</span> Rofi
+! Sxiv
+Sxiv.foreground: #f1e9d1
+Sxiv.background: #141e27
+Sxiv.font: Roboto-Mono:size=9
+! Rofi
 rofi.font: RobotoMono-Light 8
 </pre>
 </div>
@@ -628,35 +591,35 @@ Now, a long list of the system colours:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #813e00;">!</span> Colors 0-15.
-<span style="color: #813e00;">!</span> special
-*.foreground:   <span style="color: #505050;">#</span><span style="color: #505050;">c5c8c6</span>
-*.background:   <span style="color: #505050;">#</span><span style="color: #505050;">1d1f21</span>
-*.cursorColor:  <span style="color: #505050;">#</span><span style="color: #505050;">c5c8c6</span>
-<span style="color: #813e00;">!</span> black
-*.color0:       <span style="color: #505050;">#</span><span style="color: #505050;">282a2e</span>
-*.color8:       <span style="color: #505050;">#</span><span style="color: #505050;">373b41</span>
-<span style="color: #813e00;">!</span> red
-*.color1:       <span style="color: #505050;">#</span><span style="color: #505050;">a54242</span>
-*.color9:       <span style="color: #505050;">#</span><span style="color: #505050;">cc6666</span>
-<span style="color: #813e00;">!</span> green
-*.color2:       <span style="color: #505050;">#</span><span style="color: #505050;">8c9440</span>
-*.color10:      <span style="color: #505050;">#</span><span style="color: #505050;">b5bd68</span>
-<span style="color: #813e00;">!</span> yellow
-*.color3:       <span style="color: #505050;">#</span><span style="color: #505050;">de935f</span>
-*.color11:      <span style="color: #505050;">#</span><span style="color: #505050;">f0c674</span>
-<span style="color: #813e00;">!</span> blue
-*.color4:       <span style="color: #505050;">#</span><span style="color: #505050;">5f819d</span>
-*.color12:      <span style="color: #505050;">#</span><span style="color: #505050;">81a2be</span>
-<span style="color: #813e00;">!</span> magenta
-*.color5:       <span style="color: #505050;">#</span><span style="color: #505050;">85678f</span>
-*.color13:      <span style="color: #505050;">#</span><span style="color: #505050;">b294bb</span>
-<span style="color: #813e00;">!</span> cyan
-*.color6:       <span style="color: #505050;">#</span><span style="color: #505050;">5e8d87</span>
-*.color14:      <span style="color: #505050;">#</span><span style="color: #505050;">8abeb7</span>
-<span style="color: #813e00;">!</span> white
-*.color7:       <span style="color: #505050;">#</span><span style="color: #505050;">707880</span>
-*.color15:      <span style="color: #505050;">#</span><span style="color: #505050;">c5c8c6</span>
+<pre class="src src-sh">! Colors 0-15.
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
 </pre>
 </div>
 
@@ -665,46 +628,46 @@ Now, for more colours, for xterm and Urxvt:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #813e00;">!</span> Atom One Light theme
-xterm*background: <span style="color: #505050;">#</span><span style="color: #505050;">f9f9f9</span>
-xterm*foreground: <span style="color: #505050;">#</span><span style="color: #505050;">383a42</span>
-xterm*cursorColor: <span style="color: #505050;">#</span><span style="color: #505050;">d0d0d0</span>
-xterm*color0: <span style="color: #505050;">#</span><span style="color: #505050;">000000</span>
-xterm*color1: <span style="color: #505050;">#</span><span style="color: #505050;">E45649</span>
-xterm*color2: <span style="color: #505050;">#</span><span style="color: #505050;">50A14F</span>
-xterm*color3: <span style="color: #505050;">#</span><span style="color: #505050;">986801</span>
-xterm*color4: <span style="color: #505050;">#</span><span style="color: #505050;">4078F2</span>
-xterm*color5: <span style="color: #505050;">#</span><span style="color: #505050;">A626A4</span>
-xterm*color6: <span style="color: #505050;">#</span><span style="color: #505050;">0184BC</span>
-xterm*color7: <span style="color: #505050;">#</span><span style="color: #505050;">A0A1A7</span>
-xterm*color8: <span style="color: #505050;">#</span><span style="color: #505050;">5c6370</span>
-xterm*color9: <span style="color: #505050;">#</span><span style="color: #505050;">e06c75</span>
-xterm*color10: <span style="color: #505050;">#</span><span style="color: #505050;">50A14F</span>
-xterm*color11: <span style="color: #505050;">#</span><span style="color: #505050;">986801</span>
-xterm*color12: <span style="color: #505050;">#</span><span style="color: #505050;">4078F2</span>
-xterm*color13: <span style="color: #505050;">#</span><span style="color: #505050;">A626A4</span>
-xterm*color14: <span style="color: #505050;">#</span><span style="color: #505050;">0184BC</span>
-xterm*color15: <span style="color: #505050;">#</span><span style="color: #505050;">ffffff</span>
-<span style="color: #813e00;">!</span> Atom One Light theme
-urxvt*background: <span style="color: #505050;">#</span><span style="color: #505050;">f9f9f9</span>
-urxvt*foreground: <span style="color: #505050;">#</span><span style="color: #505050;">383a42</span>
-urxvt*cursorColor: <span style="color: #505050;">#</span><span style="color: #505050;">d0d0d0</span>
-urxvt*color0: <span style="color: #505050;">#</span><span style="color: #505050;">000000</span>
-urxvt*color1: <span style="color: #505050;">#</span><span style="color: #505050;">E45649</span>
-urxvt*color2: <span style="color: #505050;">#</span><span style="color: #505050;">50A14F</span>
-urxvt*color3: <span style="color: #505050;">#</span><span style="color: #505050;">986801</span>
-urxvt*color4: <span style="color: #505050;">#</span><span style="color: #505050;">4078F2</span>
-urxvt*color5: <span style="color: #505050;">#</span><span style="color: #505050;">A626A4</span>
-urxvt*color6: <span style="color: #505050;">#</span><span style="color: #505050;">0184BC</span>
-urxvt*color7: <span style="color: #505050;">#</span><span style="color: #505050;">A0A1A7</span>
-urxvt*color8: <span style="color: #505050;">#</span><span style="color: #505050;">5c6370</span>
-urxvt*color9: <span style="color: #505050;">#</span><span style="color: #505050;">e06c75</span>
-urxvt*color10: <span style="color: #505050;">#</span><span style="color: #505050;">50A14F</span>
-urxvt*color11: <span style="color: #505050;">#</span><span style="color: #505050;">986801</span>
-urxvt*color12: <span style="color: #505050;">#</span><span style="color: #505050;">4078F2</span>
-urxvt*color13: <span style="color: #505050;">#</span><span style="color: #505050;">A626A4</span>
-urxvt*color14: <span style="color: #505050;">#</span><span style="color: #505050;">0184BC</span>
-urxvt*color15: <span style="color: #505050;">#</span><span style="color: #505050;">ffffff</span>
+<pre class="src src-sh">! Atom One Light theme
+xterm*background: #f9f9f9
+xterm*foreground: #383a42
+xterm*cursorColor: #d0d0d0
+xterm*color0: #000000
+xterm*color1: #E45649
+xterm*color2: #50A14F
+xterm*color3: #986801
+xterm*color4: #4078F2
+xterm*color5: #A626A4
+xterm*color6: #0184BC
+xterm*color7: #A0A1A7
+xterm*color8: #5c6370
+xterm*color9: #e06c75
+xterm*color10: #50A14F
+xterm*color11: #986801
+xterm*color12: #4078F2
+xterm*color13: #A626A4
+xterm*color14: #0184BC
+xterm*color15: #ffffff
+! Atom One Light theme
+urxvt*background: #f9f9f9
+urxvt*foreground: #383a42
+urxvt*cursorColor: #d0d0d0
+urxvt*color0: #000000
+urxvt*color1: #E45649
+urxvt*color2: #50A14F
+urxvt*color3: #986801
+urxvt*color4: #4078F2
+urxvt*color5: #A626A4
+urxvt*color6: #0184BC
+urxvt*color7: #A0A1A7
+urxvt*color8: #5c6370
+urxvt*color9: #e06c75
+urxvt*color10: #50A14F
+urxvt*color11: #986801
+urxvt*color12: #4078F2
+urxvt*color13: #A626A4
+urxvt*color14: #0184BC
+urxvt*color15: #ffffff
 </pre>
 </div>
 
@@ -714,9 +677,9 @@ Not the best.
 </div>
 </div>
 
-<div id="outline-container-org9874d9e" class="outline-2">
-<h2 id="org9874d9e">Terminal</h2>
-<div class="outline-text-2" id="text-org9874d9e">
+<div id="outline-container-org10a59a8" class="outline-2">
+<h2 id="org10a59a8">Terminal</h2>
+<div class="outline-text-2" id="text-org10a59a8">
 <p>
 I used urxvt for a very long time, but I now use Kitty, and it's brilliant.
 </p>
@@ -745,8 +708,8 @@ Sorting the cursor (although I think I was having trouble getting this working o
 <div class="org-src-container">
 <pre class="src src-sh">cursor_shape                    underline
 cursor_underline_thickness      3.0
-cursor                          <span style="color: #505050;">#</span><span style="color: #505050;">FF0000</span>
-cursor_text_color               <span style="color: #505050;">#</span><span style="color: #505050;">00FFFF</span>
+cursor                          #FF0000
+cursor_text_color               #00FFFF
 </pre>
 </div>
 
@@ -795,17 +758,17 @@ That's it for Kitty.
 </p>
 </div>
 </div>
-<div id="outline-container-orga1d098c" class="outline-2">
-<h2 id="orga1d098c">Window Manager</h2>
-<div class="outline-text-2" id="text-orga1d098c">
+<div id="outline-container-orgc7a6386" class="outline-2">
+<h2 id="orgc7a6386">Window Manager</h2>
+<div class="outline-text-2" id="text-orgc7a6386">
 <p>
 I'm using <code>i3</code>, because it <i>just works</i>. It's actually amazing how quickly I've got this working compared to using my previous window managers. I guess there's a reason it's one of the most popular choices&#x2026;
 </p>
 </div>
 
-<div id="outline-container-org11af410" class="outline-3">
-<h3 id="org11af410">Basic Config</h3>
-<div class="outline-text-3" id="text-org11af410">
+<div id="outline-container-orgc27e18c" class="outline-3">
+<h3 id="orgc27e18c">Basic Config</h3>
+<div class="outline-text-3" id="text-orgc27e18c">
 <div class="org-src-container">
 <pre class="src src-i3">
 set $mod Mod4
@@ -860,9 +823,9 @@ floating_modifier $mod
 </div>
 </div>
 
-<div id="outline-container-org8728d2d" class="outline-3">
-<h3 id="org8728d2d">Bindings</h3>
-<div class="outline-text-3" id="text-org8728d2d">
+<div id="outline-container-orge3b7e24" class="outline-3">
+<h3 id="orge3b7e24">Bindings</h3>
+<div class="outline-text-3" id="text-orge3b7e24">
 <p>
 Some basic movement keybindings and some normal bindings. I need to change lots of this still, but I plan on keeping it pretty simple. 
 </p>
@@ -908,9 +871,9 @@ bindsym $mod+a focus parent
 </div>
 </div>
 
-<div id="outline-container-orgbf76396" class="outline-3">
-<h3 id="orgbf76396">Workstations</h3>
-<div class="outline-text-3" id="text-orgbf76396">
+<div id="outline-container-org95d19b2" class="outline-3">
+<h3 id="org95d19b2">Workstations</h3>
+<div class="outline-text-3" id="text-org95d19b2">
 <p>
 This sets the workspace names, and then binds some basic workstation bindings to them for movement between and movement of windows between workstations.
 </p>
@@ -985,9 +948,9 @@ assign [class="Signal"] $ws9
 </div>
 </div>
 
-<div id="outline-container-orgc58211e" class="outline-3">
-<h3 id="orgc58211e">Resize</h3>
-<div class="outline-text-3" id="text-orgc58211e">
+<div id="outline-container-orge9e885a" class="outline-3">
+<h3 id="orge9e885a">Resize</h3>
+<div class="outline-text-3" id="text-orge9e885a">
 <p>
 Not that I use it much, but this is <i>resize mode</i>.
 </p>
@@ -1017,9 +980,9 @@ bindsym $mod+r mode "resize"
 </div>
 </div>
 
-<div id="outline-container-org79cef8d" class="outline-3">
-<h3 id="org79cef8d">Bar</h3>
-<div class="outline-text-3" id="text-org79cef8d">
+<div id="outline-container-org7a622b7" class="outline-3">
+<h3 id="org7a622b7">Bar</h3>
+<div class="outline-text-3" id="text-org7a622b7">
 <p>
 <code>i3status</code> is the bar used by i3wm. It's minimal but good for what I want (don't really want much interactivity, just basic stats and stuff). This is definitely not finished, however. 
 </p>
@@ -1042,17 +1005,17 @@ bar {
 </div>
 </div>
 
-<div id="outline-container-org9bd0c27" class="outline-3">
-<h3 id="org9bd0c27">i3blocks</h3>
-<div class="outline-text-3" id="text-org9bd0c27">
+<div id="outline-container-org6defee6" class="outline-3">
+<h3 id="org6defee6">i3blocks</h3>
+<div class="outline-text-3" id="text-org6defee6">
 <p>
 As far as I'm aware, the functionality of the build in i3bar is <i>fairly</i> limiated. It's therefore a nice idea to have something a little more robust to be able to use. That's why I've gone for i3blocks. I used it ages ago and remember quite enjoying it, so I'll try and get something nicely working again&#x2026;
 </p>
 </div>
 
-<div id="outline-container-orgfca109e" class="outline-4">
-<h4 id="orgfca109e">Syncthing status</h4>
-<div class="outline-text-4" id="text-orgfca109e">
+<div id="outline-container-org1f3d35b" class="outline-4">
+<h4 id="org1f3d35b">Syncthing status</h4>
+<div class="outline-text-4" id="text-org1f3d35b">
 <p>
 <code>ps ax</code> gets running processes, <code>grep -v</code> excludes the command itself from registering as a running process, then we <code>wc</code> (word count) the output of the command <code>grep "syncthing"</code>. If that's nothing, Syncthing isn't running&#x2026; it's not <i>likely</i> to be running:
 </p>
@@ -1066,9 +1029,9 @@ interval=60
 </div>
 </div>
 
-<div id="outline-container-org45869b5" class="outline-4">
-<h4 id="org45869b5">Internet Connection</h4>
-<div class="outline-text-4" id="text-org45869b5">
+<div id="outline-container-orgfc21675" class="outline-4">
+<h4 id="orgfc21675">Internet Connection</h4>
+<div class="outline-text-4" id="text-orgfc21675">
 <p>
 Ping <code>google.com</code> and just tell me if that works:
 </p>
@@ -1082,9 +1045,9 @@ interval=5
 </div>
 </div>
 
-<div id="outline-container-org7398019" class="outline-4">
-<h4 id="org7398019">Battery percentage</h4>
-<div class="outline-text-4" id="text-org7398019">
+<div id="outline-container-orgb3147ab" class="outline-4">
+<h4 id="orgb3147ab">Battery percentage</h4>
+<div class="outline-text-4" id="text-orgb3147ab">
 <p>
 This requires changing the permissions of the capacity file:
 </p>
@@ -1098,9 +1061,9 @@ interval=5
 </div>
 </div>
 
-<div id="outline-container-orgf8d1053" class="outline-4">
-<h4 id="orgf8d1053">Time</h4>
-<div class="outline-text-4" id="text-orgf8d1053">
+<div id="outline-container-org5b62b99" class="outline-4">
+<h4 id="org5b62b99">Time</h4>
+<div class="outline-text-4" id="text-org5b62b99">
 <div class="org-src-container">
 <pre class="src src-ini">[time]
 command=echo "$(date '+%H:%M')"
@@ -1110,9 +1073,9 @@ interval=5
 </div>
 </div>
 
-<div id="outline-container-org4bfb29e" class="outline-4">
-<h4 id="org4bfb29e">Empty</h4>
-<div class="outline-text-4" id="text-org4bfb29e">
+<div id="outline-container-org769263b" class="outline-4">
+<h4 id="org769263b">Empty</h4>
+<div class="outline-text-4" id="text-org769263b">
 <div class="org-src-container">
 <pre class="src src-ini">[time]
 command=echo " "
@@ -1124,34 +1087,24 @@ interval=once
 </div>
 </div>
 
-<div id="outline-container-orgc380c54" class="outline-2">
-<h2 id="orgc380c54">Start Page</h2>
-<div class="outline-text-2" id="text-orgc380c54">
-<p>
-Very minimal browser start page.
-</p>
-</div>
-</div>
-
-
-<div id="outline-container-orgb3bf95c" class="outline-2">
-<h2 id="orgb3bf95c">Zathura</h2>
-<div class="outline-text-2" id="text-orgb3bf95c">
+<div id="outline-container-orgf5aea75" class="outline-2">
+<h2 id="orgf5aea75">Zathura</h2>
+<div class="outline-text-2" id="text-orgf5aea75">
 <p>
 A very nice little PDF viewer, with a nice little config, here:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #505050;"># </span><span style="color: #505050;">Setting:</span>
-<span style="color: #8f0075;">set</span> statusbar-h-padding 0
-<span style="color: #8f0075;">set</span> statusbar-v-padding 0
-<span style="color: #8f0075;">set</span> page-padding 1
-<span style="color: #505050;"># </span><span style="color: #505050;">Colouring:</span>
-<span style="color: #8f0075;">set</span> default-bg      <span style="color: #2544bb;">"#FF0000"</span>
-<span style="color: #8f0075;">set</span> default-fg      <span style="color: #2544bb;">"#00FFFF"</span>
-<span style="color: #8f0075;">set</span> statusbar-bg    <span style="color: #2544bb;">"#00FFFF"</span>
-<span style="color: #8f0075;">set</span> statusbar-fg    <span style="color: #2544bb;">"#000000"</span>
-<span style="color: #505050;"># </span><span style="color: #505050;">Mapping:</span>
+<pre class="src src-sh"># Setting:
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+# Colouring:
+set default-bg      "#FF0000"
+set default-fg      "#00FFFF"
+set statusbar-bg    "#00FFFF"
+set statusbar-fg    "#000000"
+# Mapping:
 map i recolor
 </pre>
 </div>
@@ -1162,38 +1115,60 @@ I've had this same configuration since I basically started using Arch, and altho
 </div>
 </div>
 
-<div id="outline-container-org30af893" class="outline-2">
-<h2 id="org30af893">LSD</h2>
-<div class="outline-text-2" id="text-org30af893">
+<div id="outline-container-org0f4f0e1" class="outline-2">
+<h2 id="org0f4f0e1">LSD</h2>
+<div class="outline-text-2" id="text-org0f4f0e1">
 <p>
 A little LSD config:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml"><span style="color: #00538b;">blocks</span>:
+<pre class="src src-yaml">blocks:
   - permission
   - user
   - group
   - size
   - date
   - name
-<span style="color: #00538b;">color</span>:
-  <span style="color: #00538b;">when</span>: auto
-  <span style="color: #00538b;">theme</span>: default
-<span style="color: #00538b;">date</span>: <span style="color: #2544bb;">'+%d %b %X'</span>
-<span style="color: #00538b;">icons</span>:
-  <span style="color: #00538b;">when</span>: auto
-  <span style="color: #00538b;">theme</span>: fancy
-  <span style="color: #00538b;">separator</span>: <span style="color: #2544bb;">"  "</span>
+color:
+  when: auto
+  theme: default
+date: '+%d %b %X'
+icons:
+  when: auto
+  theme: fancy
+  separator: "  "
 </pre>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Julian Orchard &lt;hello@julianorchard.co.uk&gt;</p>
-<p class="date">Created: 2022-10-06 Thu 10:20</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+
+    <footer>
+      <div class="left">
+        <p>
+          Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+          <br />
+          LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+          <br />
+          Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
+          <br />
+          Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
+        </p>
+      </div><!--
+    --><div class="right">
+        <p>
+          Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+          <br />
+          About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+        </p>
+        <p>
+          Copyright Julian Orchard, 2022
+        </p>
+      </div>
+    </footer>
+    <script src="/src/script.js"></script>
 </div>
 </body>
 </html>
