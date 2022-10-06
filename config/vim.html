@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-10-06 Thu 10:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vim</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Julian Orchard &lt;git@julianorchard.co.uk&gt;" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet"
+                        href="../src/org-style.css"
+                        type="text/css"/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+                           <ul>
+                           <li>
+                           <a class="link" href="/">Home</a>
+                           </li>
+                           <li>
+                           <a class="link" href="/about/">About</a>
+                           </li>
+                           <li>
+                           <a class="link" href="/posts/">Posts</a>
+                           </li>
+                           </ul>
+                           </nav>
+</div>
+<div id="content">
+<h1 class="title">Vim</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org926c417">vimrc</a>
+<ul>
+<li><a href="#orgaa16cf3">Initial Setup</a></li>
+<li><a href="#org00bd50b">Plugins</a></li>
+<li><a href="#org0cc084f">Plugin Settings</a></li>
+<li><a href="#orgbded603">Defaults</a></li>
+<li><a href="#orgb5e69d4">Center Comment Function</a></li>
+<li><a href="#orgb31223e">Abbreviations</a></li>
+</ul>
+</li>
+<li><a href="#org129f264">gvimrc</a>
+<ul>
+<li><a href="#org8718c84">Defaults</a></li>
+<li><a href="#orgd435778">Fonts</a></li>
+<li><a href="#org6b6f2c0">Plugin Settings</a></li>
+<li><a href="#org5cd4cbd">Misc.</a></li>
+</ul>
+</li>
+<li><a href="#org866455d">Language Specific</a>
+<ul>
+<li><a href="#orgee6a598">About</a></li>
+<li><a href="#orge446c3b">Indentation</a></li>
+<li><a href="#org5f6773f">Filetype Plugin</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This is the main <code>.vimrc</code> file, but obviously it'll be in <code>.vim/vimrc</code>.
+</p>
+
+<div id="outline-container-org926c417" class="outline-2">
+<h2 id="org926c417">vimrc</h2>
+<div class="outline-text-2" id="text-org926c417">
+</div>
+<div id="outline-container-orgaa16cf3" class="outline-3">
+<h3 id="orgaa16cf3">Initial Setup</h3>
+<div class="outline-text-3" id="text-orgaa16cf3">
+<p>
+This does some initial stuff, and copies the configuration files to a more suitable Windows location (I want to be able to use this with Cygwin, primarily, but also Gvim and in CMD if required):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc">
+<span style="color: #5317ac;">se</span> all&amp;
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">viminfo</span><span style="color: #0000c0;">+=</span><span style="color: #5317ac;">n</span>~/<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/<span style="color: #00538b;">viminfo</span>
+
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">expand</span>(<span style="color: #2544bb;">'%:p:h'</span>) <span style="color: #0000c0;">=~</span> <span style="color: #2544bb;">'.vim'</span> <span style="color: #0000c0;">&amp;&amp;</span> <span style="color: #721045;">has</span>(<span style="color: #2544bb;">'win32unix'</span>)
+  <span style="color: #5317ac;">silent</span> <span style="color: #0000c0;">!</span><span style="color: #00538b;">cp</span> ~/<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/vimrc ~/vimfiles/vimrc
+  <span style="color: #5317ac;">silent</span> <span style="color: #0000c0;">!</span><span style="color: #00538b;">cp</span> ~/<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/gvimrc ~/vimfiles/gvimrc
+<span style="color: #5317ac;">en</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org00bd50b" class="outline-3">
+<h3 id="org00bd50b">Plugins</h3>
+<div class="outline-text-3" id="text-org00bd50b">
+<p>
+I use <a href="https://github.com/junegunn/vim-plug">Vim Plug</a>, a very good plugin manager. The plugins I use are listed here:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/tpope/vim-sensible/">Vim Sensible</a>, by Tim Pope</li>
+<li><a href="https://github.com/blueyed/vim-diminactive">Vim Diminactive</a>, by Daniel Hahler</li>
+<li>&#x2026; Complete this list&#x2026;</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc">
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">empty</span>(<span style="color: #721045;">glob</span>(<span style="color: #2544bb;">'~/.vim/autoload/plug.vim'</span>))
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">has</span>(<span style="color: #2544bb;">'win32unix'</span>) <span style="color: #0000c0;">||</span> <span style="color: #721045;">has</span>(<span style="color: #2544bb;">'unix'</span>)
+<span style="color: #5317ac;">silent</span> <span style="color: #0000c0;">!</span>curl <span style="color: #0000c0;">-</span>fLo ~\<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>\autoload\plug<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span> <span style="color: #0000c0;">--</span>create<span style="color: #0000c0;">-</span>dirs
+\ https://raw<span style="color: #0000c0;">.</span>githubusercontent<span style="color: #0000c0;">.</span><span style="color: #00538b;">com</span>/junegunn/<span style="color: #5317ac;">vim</span><span style="color: #0000c0;">-</span>plug/master/plug<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>
+<span style="color: #5317ac;">aug</span> PLUG
+<span style="color: #5317ac;">au</span><span style="color: #0000c0;">!</span>
+<span style="color: #5317ac;">au</span> VimEnter * PlugInstall <span style="color: #0000c0;">--</span>sync | <span style="color: #00538b;">so</span> $MYVIMRC
+<span style="color: #5317ac;">aug</span> END
+<span style="color: #5317ac;">el</span>
+<span style="color: #505050;">" Use ps1 Script to Install</span>
+<span style="color: #5317ac;">echom</span> <span style="color: #505050;">"Please install Plugins with Cygwin, or script."</span>
+<span style="color: #5317ac;">en</span>
+<span style="color: #5317ac;">en</span>
+
+<span style="color: #5317ac;">call</span> plug#<span style="color: #721045;">begin</span>(<span style="color: #2544bb;">'~/.vim/plugged'</span>)
+Plug <span style="color: #2544bb;">'tpope/vim-sensible'</span>
+<span style="color: #505050;">" Appearance</span>
+Plug <span style="color: #2544bb;">'blueyed/vim-diminactive'</span>
+Plug <span style="color: #2544bb;">'flazz/vim-colorschemes'</span>
+Plug <span style="color: #2544bb;">'junegunn/goyo.vim'</span>
+Plug <span style="color: #2544bb;">'junegunn/limelight.vim'</span>
+Plug <span style="color: #2544bb;">'vim-airline/vim-airline'</span>
+Plug <span style="color: #2544bb;">'vim-airline/vim-airline-themes'</span>
+<span style="color: #505050;">" Org-Like</span>
+Plug <span style="color: #2544bb;">'itchyny/calendar.vim'</span>
+Plug <span style="color: #2544bb;">'dhruvasagar/vim-dotoo'</span>
+Plug <span style="color: #2544bb;">'mattn/vim-gist'</span>
+Plug <span style="color: #2544bb;">'mattn/webapi-vim'</span>
+<span style="color: #505050;">" Text Manipulation</span>
+Plug <span style="color: #2544bb;">'tpope/vim-commentary'</span>
+Plug <span style="color: #2544bb;">'tpope/vim-surround'</span>
+Plug <span style="color: #2544bb;">'dhruvasagar/vim-table-mode'</span>
+Plug <span style="color: #2544bb;">'mg979/vim-visual-multi'</span>
+<span style="color: #505050;">" NerdTree</span>
+Plug <span style="color: #2544bb;">'preservim/nerdtree'</span> |
+\ Plug <span style="color: #2544bb;">'Xuyuanp/nerdtree-git-plugin'</span>
+Plug <span style="color: #2544bb;">'ryanoasis/vim-devicons'</span>
+<span style="color: #505050;">" Language</span>
+Plug <span style="color: #2544bb;">'dense-analysis/ale'</span>
+Plug <span style="color: #2544bb;">'pprovost/vim-ps1'</span>
+<span style="color: #505050;">" Plug 'alvan/vim-closteag'</span>
+<span style="color: #505050;">" Plug 'mattn/vim-lsp-settings'</span>
+<span style="color: #505050;">" Plug 'pangloss/vim-javascript'</span>
+<span style="color: #505050;">" Plug 'prabirshrestha/asyncomplete-lsp.vim'</span>
+<span style="color: #505050;">" Plug 'prabirshrestha/asyncomplete.vim'</span>
+<span style="color: #505050;">" Plug 'prabirshrestha/vim-lsp'</span>
+<span style="color: #505050;">" Under Development</span>
+</pre>
+</div>
+
+<p>
+This is how I handly plugins that might have local versions I want to test, in this case, <a href="https://github.com/julianorchard/desc.vim/">desc.vim</a>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">try</span>
+<span style="color: #00538b;">so</span> ~/desc<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/plugin/desc<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>
+<span style="color: #5317ac;">cat</span>
+Plug <span style="color: #2544bb;">'julianorchard/desc.vim'</span>
+<span style="color: #5317ac;">endt</span>
+<span style="color: #5317ac;">call</span> plug#<span style="color: #721045;">end</span>()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0cc084f" class="outline-3">
+<h3 id="org0cc084f">Plugin Settings</h3>
+<div class="outline-text-3" id="text-org0cc084f">
+<p>
+Setting some variables for plugins is the goal here:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc">
+<span style="color: #505050;">" Desc</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">g:desc_author</span> <span style="color: #0000c0;">=</span> [[<span style="color: #505050;">"desc", "Julian Orchard <a href="mailto:hello%40julianorchard.co.uk">&lt;hello@julianorchard.co.uk&gt;</a>"],</span>
+\[<span style="color: #505050;">"wesc", "Wessex Lifts <a href="mailto:marketing%40wessexlifts.co.uk">&lt;marketing@wessexlifts.co.uk&gt;</a>"]]</span>
+<span style="color: #505050;">" Diminactive</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">g:diminactive_use_colorcolumn</span> <span style="color: #0000c0;">=</span> <span style="color: #4682b4;">0</span>
+
+<span style="color: #505050;">" Colourscheme</span>
+color louver
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">g:airline_theme</span><span style="color: #0000c0;">=</span><span style="color: #2544bb;">'silver'</span>
+<span style="color: #505050;">" Limelight</span>
+<span style="color: #5317ac;">aug</span> GOYOLL
+<span style="color: #5317ac;">au</span><span style="color: #0000c0;">!</span>
+<span style="color: #5317ac;">au</span> User GoyoEnter Limelight
+<span style="color: #5317ac;">au</span> User GoyoLeave Limelight<span style="color: #0000c0;">!</span>
+<span style="color: #5317ac;">aug</span> END
+<span style="color: #505050;">"Closetag Extensions</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">g:closetag_filenames</span> <span style="color: #0000c0;">=</span> <span style="color: #2544bb;">'*.html,*.xhtml,*.phtml,*.php'</span>
+<span style="color: #505050;">"Clock Shortcut</span>
+<span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">c</span><span style="color: #0000c0;">-</span>c<span style="color: #0000c0;">&gt;</span> :Calendar <span style="color: #0000c0;">-</span><span style="color: #5317ac;">view</span><span style="color: #0000c0;">=</span>clock<span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">cr</span><span style="color: #0000c0;">&gt;</span>
+<span style="color: #505050;">"NERDTree</span>
+<span style="color: #5317ac;">aug</span> NERD
+<span style="color: #5317ac;">au</span><span style="color: #0000c0;">!</span>
+<span style="color: #5317ac;">au</span> BufEnter * <span style="color: #5317ac;">if</span> <span style="color: #721045;">tabpagenr</span>(<span style="color: #2544bb;">'$'</span>) <span style="color: #0000c0;">==</span> <span style="color: #4682b4;">1</span> <span style="color: #0000c0;">&amp;&amp;</span> <span style="color: #721045;">winnr</span>(<span style="color: #2544bb;">'$'</span>) <span style="color: #0000c0;">==</span> <span style="color: #4682b4;">1</span> <span style="color: #0000c0;">&amp;&amp;</span>
+\<span style="color: #721045;">exists</span>(<span style="color: #2544bb;">'b:NERDTree'</span>) <span style="color: #0000c0;">&amp;&amp;</span> <span style="color: #00538b;">b:NERDTree</span><span style="color: #0000c0;">.</span><span style="color: #721045;">isTabTree</span>() | <span style="color: #5317ac;">quit</span> | <span style="color: #5317ac;">en</span>
+<span style="color: #5317ac;">aug</span> END
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">g:NERDTreeDirArrowExpandable</span> <span style="color: #0000c0;">=</span> <span style="color: #2544bb;">' |'</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">g:NERDTreeDirArrowCollapsible</span> <span style="color: #0000c0;">=</span> <span style="color: #2544bb;">'  &#8600;'</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">NERDTreeShowHidden</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">1</span>
+<span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span><span style="color: #5317ac;">t</span><span style="color: #0000c0;">&gt;</span> :NERDTreeToggle<span style="color: #0000c0;">&lt;</span>CR<span style="color: #0000c0;">&gt;</span>
+<span style="color: #505050;">"Vim Gist</span>
+<span style="color: #505050;">" ~/.vim-gist file wasn't working, source a file with:</span>
+<span style="color: #505050;">"   let g:gist_token = 'TOKEN'</span>
+<span style="color: #5317ac;">try</span>
+<span style="color: #00538b;">so</span> ~/<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/gist<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>
+<span style="color: #5317ac;">cat</span>
+<span style="color: #5317ac;">echom</span> <span style="color: #505050;">"ERROR SOURCING ~/.vim/gist.vim: Vim Gist needs token in ~/.vim/gist.vim"</span>
+<span style="color: #5317ac;">endt</span>
+<span style="color: #505050;">"asyncomplete.vim</span>
+<span style="color: #505050;">" inoremap &lt;expr&gt; &lt;Tab&gt;   pumvisible() ? "\&lt;C-n&gt;" : "\&lt;Tab&gt;"</span>
+<span style="color: #505050;">" inoremap &lt;expr&gt; &lt;S-Tab&gt; pumvisible() ? "\&lt;C-p&gt;" : "\&lt;S-Tab&gt;"</span>
+<span style="color: #505050;">" inoremap &lt;expr&gt; &lt;cr&gt;    pumvisible() ? asyncomplete#close_popup() : "\&lt;cr&gt;"</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbded603" class="outline-3">
+<h3 id="orgbded603">Defaults</h3>
+<div class="outline-text-3" id="text-orgbded603">
+<p>
+These are some of the basic defaults required in a vimrc, in my opinion:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc">
+<span style="color: #00538b;">syntax</span> <span style="color: #5317ac;">on</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">popt</span><span style="color: #0000c0;">=</span>paper:A4           <span style="color: #505050;">" print options</span>
+<span style="color: #5317ac;">set</span> <span style="color: #00538b;">noeb</span> vb t_vb<span style="color: #0000c0;">=</span>          <span style="color: #505050;">" no error bells</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">enc</span><span style="color: #0000c0;">=</span>utf8                <span style="color: #505050;">" file encoding</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">history</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">1000</span>            <span style="color: #505050;">" command (:) hist</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">mouse</span><span style="color: #0000c0;">=</span>                  <span style="color: #505050;">" mouse (default)</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">nosm</span>                    <span style="color: #505050;">" matching bracket on insert</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">nosol</span>                   <span style="color: #505050;">" jump to rough current cursor position</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">noswapfile</span>              <span style="color: #505050;">" yep</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">shm</span><span style="color: #0000c0;">=</span>a                   <span style="color: #505050;">" avoid all 'hit enter to continue'</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">title</span>                   <span style="color: #505050;">" title bar title (content below)</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">titlestring</span><span style="color: #0000c0;">=</span><span style="color: #5317ac;">vim</span>:\ %<span style="color: #4682b4;">-25.55</span>F\ %a%r%m <span style="color: #00538b;">titlelen</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">70</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">tf</span>                      <span style="color: #505050;">" better xterm mainly experience</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">backspace</span><span style="color: #0000c0;">=</span>indent,<span style="color: #00538b;">eol</span>,start
+
+<span style="color: #5317ac;">aug</span> RTS
+<span style="color: #5317ac;">au</span><span style="color: #0000c0;">!</span>
+<span style="color: #5317ac;">au</span> BufWritePre * :%s/\s\<span style="color: #0000c0;">+</span>$//<span style="color: #5317ac;">e</span>
+<span style="color: #5317ac;">aug</span> END
+
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">has</span>(<span style="color: #2544bb;">'persistent_undo'</span>)
+<span style="color: #5317ac;">silent</span> <span style="color: #0000c0;">!</span>mkdir ~/<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/backups <span style="color: #0000c0;">&gt;</span> /dev/null <span style="color: #4682b4;">2</span><span style="color: #0000c0;">&gt;</span>&amp;<span style="color: #4682b4;">1</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">undodir</span><span style="color: #0000c0;">=~</span>/<span style="color: #0000c0;">.</span><span style="color: #5317ac;">vim</span>/backups
+<span style="color: #5317ac;">se</span> undofile
+<span style="color: #5317ac;">en</span>
+
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">fo</span><span style="color: #0000c0;">+=</span><span style="color: #5317ac;">q</span> <span style="color: #00538b;">fo</span><span style="color: #0000c0;">+=</span><span style="color: #5317ac;">t</span>
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">has</span>(<span style="color: #505050;">"autocmd")</span>
+<span style="color: #5317ac;">autocmd</span> FileType * <span style="color: #5317ac;">setlocal</span> <span style="color: #00538b;">formatoptions</span><span style="color: #0000c0;">-=</span><span style="color: #5317ac;">c</span> <span style="color: #00538b;">formatoptions</span><span style="color: #0000c0;">-=</span><span style="color: #5317ac;">r</span> <span style="color: #00538b;">formatoptions</span><span style="color: #0000c0;">-=</span><span style="color: #5317ac;">o</span>
+<span style="color: #5317ac;">en</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">nolist</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">scrolloff</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">13</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">textwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">80</span>
+
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">autoindent</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">shiftround</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">smartindent</span>
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">has</span>(<span style="color: #505050;">"autocmd")</span>
+<span style="color: #00538b;">filetype</span> plugin indent <span style="color: #5317ac;">on</span>
+<span style="color: #5317ac;">en</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">cpoptions</span>  <span style="color: #0000c0;">+=</span>I
+
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">number</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">relativenumber</span>
+
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">hlsearch</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">ic</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">incsearch</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">showmatch</span>
+
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">list</span> <span style="color: #00538b;">lcs</span><span style="color: #0000c0;">=</span><span style="color: #5317ac;">tab</span>:&#183;\ ,nbsp:&#9251;
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">ts</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">2</span> <span style="color: #00538b;">shiftwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">2</span> <span style="color: #00538b;">et</span>
+<span style="color: #5317ac;">vn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">tab</span><span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&gt;</span>vgv
+<span style="color: #5317ac;">vn</span> <span style="color: #0000c0;">&lt;</span>s<span style="color: #0000c0;">-</span><span style="color: #5317ac;">tab</span><span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&lt;</span>vgv
+<span style="color: #5317ac;">nn</span> j gj
+<span style="color: #5317ac;">nn</span> k gk
+<span style="color: #5317ac;">vn</span> j gj
+<span style="color: #5317ac;">vn</span> k gk
+
+<span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">c</span><span style="color: #0000c0;">-</span>j<span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span>W<span style="color: #0000c0;">&gt;&lt;</span>C<span style="color: #0000c0;">-</span>J<span style="color: #0000c0;">&gt;</span>
+<span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">c</span><span style="color: #0000c0;">-</span>k<span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span>W<span style="color: #0000c0;">&gt;&lt;</span>C<span style="color: #0000c0;">-</span>K<span style="color: #0000c0;">&gt;</span>
+<span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">c</span><span style="color: #0000c0;">-</span>l<span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span>W<span style="color: #0000c0;">&gt;&lt;</span>C<span style="color: #0000c0;">-</span>L<span style="color: #0000c0;">&gt;</span>
+<span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">c</span><span style="color: #0000c0;">-</span>h<span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span>W<span style="color: #0000c0;">&gt;&lt;</span>C<span style="color: #0000c0;">-</span>H<span style="color: #0000c0;">&gt;</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb5e69d4" class="outline-3">
+<h3 id="orgb5e69d4">Center Comment Function</h3>
+<div class="outline-text-3" id="text-orgb5e69d4">
+<p>
+This is a local function which centres comments, like this bash example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #505050;">#                                   </span><span style="color: #505050;">A COMMENT                                   #</span>
+<span style="color: #505050;">#  </span><span style="color: #505050;">-------- ANOTHER, LONGER COMMENT, WITH A CHARACTER HIGHLIGHTING IT --------- #</span>
+</pre>
+</div>
+
+<p>
+And here it is, in all its unfinished, flawed glory:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc">
+<span style="color: #5317ac;">fun</span><span style="color: #0000c0;">!</span> <span style="color: #721045;">s:CenterComment</span>(<span style="color: #0000c0;">...</span>)
+<span style="color: #505050;">" Comment Strings</span>
+<span style="color: #5317ac;">let</span> [<span style="color: #5317ac;">l</span>,r] <span style="color: #0000c0;">=</span> <span style="color: #721045;">split</span>(<span style="color: #721045;">get</span>(<span style="color: #5317ac;">b</span>:, <span style="color: #2544bb;">'commentary_format'</span>,
+\<span style="color: #721045;">substitute</span>(&amp;<span style="color: #00538b;">commentstring</span>, <span style="color: #2544bb;">'^$'</span>, <span style="color: #2544bb;">'%s'</span>, <span style="color: #2544bb;">''</span>)), <span style="color: #2544bb;">'%s'</span>, <span style="color: #4682b4;">1</span>)
+<span style="color: #5317ac;">if</span> r <span style="color: #0000c0;">==</span> <span style="color: #505050;">""</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">r</span> <span style="color: #0000c0;">=</span> <span style="color: #5317ac;">l</span>
+<span style="color: #5317ac;">en</span>
+<span style="color: #505050;">" Chars and Text</span>
+<span style="color: #5317ac;">try</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:line_char</span> <span style="color: #0000c0;">=</span> a:<span style="color: #4682b4;">1</span>
+<span style="color: #5317ac;">cat</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:line_char</span> <span style="color: #0000c0;">=</span> <span style="color: #505050;">" "</span>
+<span style="color: #5317ac;">endt</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:line_text</span> <span style="color: #0000c0;">=</span> <span style="color: #505050;">" " . toupper(substitute(substitute(getline('.')</span>
+\, <span style="color: #505050;">".*" . l, "", ""), r, "", "")) . " "</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:line_len</span> <span style="color: #0000c0;">=</span> ((<span style="color: #4682b4;">80</span> <span style="color: #0000c0;">-</span> <span style="color: #721045;">strlen</span>(<span style="color: #00538b;">l:line_text</span>)) / <span style="color: #4682b4;">2</span>) <span style="color: #0000c0;">-</span> <span style="color: #4682b4;">2</span>
+<span style="color: #5317ac;">if</span> <span style="color: #00538b;">l:line_len</span> <span style="color: #0000c0;">&lt;</span> <span style="color: #4682b4;">6</span>
+<span style="color: #5317ac;">echom</span> <span style="color: #505050;">"This line is too long to add a title to."</span>
+<span style="color: #5317ac;">el</span>
+<span style="color: #505050;">" Make oddly numbered lines even</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:fill_char</span> <span style="color: #0000c0;">=</span> <span style="color: #505050;">""</span>
+<span style="color: #5317ac;">if</span> <span style="color: #721045;">strlen</span>(<span style="color: #00538b;">l:line_text</span>) % <span style="color: #4682b4;">2</span> <span style="color: #0000c0;">==</span> <span style="color: #4682b4;">1</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:fill_char</span> <span style="color: #0000c0;">=</span> <span style="color: #00538b;">l:line_char</span>
+<span style="color: #5317ac;">en</span>
+<span style="color: #505050;">" Create the Line Parts</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:i</span> <span style="color: #0000c0;">=</span> <span style="color: #4682b4;">1</span>
+<span style="color: #00538b;">wh</span> <span style="color: #00538b;">l:i</span> <span style="color: #0000c0;">&lt;</span> <span style="color: #00538b;">l:line_len</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:i</span> <span style="color: #0000c0;">+=</span> <span style="color: #4682b4;">1</span>
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">l:line_char</span> <span style="color: #0000c0;">=</span> <span style="color: #00538b;">l:line_char</span> <span style="color: #0000c0;">.</span> <span style="color: #00538b;">l:line_char</span>[<span style="color: #4682b4;">0</span>]
+<span style="color: #5317ac;">endw</span>
+<span style="color: #505050;">" Insert the Line and Text</span>
+<span style="color: #5317ac;">call</span> <span style="color: #721045;">setline</span>(<span style="color: #721045;">line</span>(<span style="color: #505050;">"."), substitute(getline('.'),</span>
+\ <span style="color: #721045;">getline</span>(<span style="color: #2544bb;">'.'</span>), <span style="color: #5317ac;">l</span> <span style="color: #0000c0;">.</span> <span style="color: #505050;">" ". l:line_char . l:line_text .</span>
+\ <span style="color: #00538b;">l:line_char</span> <span style="color: #0000c0;">.</span> <span style="color: #00538b;">l:fill_char</span> <span style="color: #0000c0;">.</span> <span style="color: #505050;">" " . r, "g"))</span>
+<span style="color: #5317ac;">en</span>
+endfun
+<span style="color: #505050;">" Function only accepts single chars</span>
+<span style="color: #5317ac;">nn</span> comm  :<span style="color: #5317ac;">call</span> <span style="color: #0000c0;">&lt;</span>SID<span style="color: #0000c0;">&gt;</span><span style="color: #721045;">CenterComment</span>(<span style="color: #505050;">" ")&lt;cr&gt;</span>
+<span style="color: #5317ac;">nn</span> comm<span style="color: #0000c0;">-</span> :<span style="color: #5317ac;">call</span> <span style="color: #0000c0;">&lt;</span>SID<span style="color: #0000c0;">&gt;</span><span style="color: #721045;">CenterComment</span>(<span style="color: #505050;">"-")&lt;cr&gt;</span>
+<span style="color: #5317ac;">nn</span> comm~ :<span style="color: #5317ac;">call</span> <span style="color: #0000c0;">&lt;</span>SID<span style="color: #0000c0;">&gt;</span><span style="color: #721045;">CenterComment</span>(<span style="color: #505050;">"~")&lt;cr&gt;</span>
+<span style="color: #5317ac;">nn</span> comm@ :<span style="color: #5317ac;">call</span> <span style="color: #0000c0;">&lt;</span>SID<span style="color: #0000c0;">&gt;</span><span style="color: #721045;">CenterComment</span>(<span style="color: #505050;">"@")&lt;cr&gt;</span>
+<span style="color: #5317ac;">nn</span> comm<span style="color: #0000c0;">!</span> :<span style="color: #5317ac;">call</span> <span style="color: #0000c0;">&lt;</span>SID<span style="color: #0000c0;">&gt;</span><span style="color: #721045;">CenterComment</span>(<span style="color: #505050;">"!")&lt;cr&gt;</span>
+<span style="color: #5317ac;">nn</span> comm* :<span style="color: #5317ac;">call</span> <span style="color: #0000c0;">&lt;</span>SID<span style="color: #0000c0;">&gt;</span><span style="color: #721045;">CenterComment</span>(<span style="color: #505050;">"*")&lt;cr&gt;</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb31223e" class="outline-3">
+<h3 id="orgb31223e">Abbreviations</h3>
+<div class="outline-text-3" id="text-orgb31223e">
+<p>
+And we end with some useful abbreviations:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc">
+iab @@ hello@julianorchard<span style="color: #0000c0;">.</span><span style="color: #00538b;">co</span><span style="color: #0000c0;">.</span>uk
+iab rubyenv #<span style="color: #0000c0;">!</span>/<span style="color: #5317ac;">c</span>/MAMP/<span style="color: #00538b;">bin</span>/<span style="color: #5317ac;">ruby</span>/<span style="color: #00538b;">bin</span>/<span style="color: #5317ac;">ruby</span><span style="color: #0000c0;">.</span>exe
+iab pythonenv #<span style="color: #0000c0;">!</span>/<span style="color: #5317ac;">c</span>/MAMP/<span style="color: #00538b;">bin</span>/<span style="color: #5317ac;">python</span>/<span style="color: #00538b;">bin</span>/<span style="color: #5317ac;">python</span><span style="color: #0000c0;">.</span>exe
+iab ~~ Julian Orchard <span style="color: #0000c0;"><a href="mailto:hello%40julianorchard.co.uk">&lt;</a></span><a href="mailto:hello%40julianorchard.co.uk">hello@julianorchard</a><span style="color: #0000c0;"><a href="mailto:hello%40julianorchard.co.uk">.</a></span><span style="color: #00538b;"><a href="mailto:hello%40julianorchard.co.uk">co</a></span><span style="color: #0000c0;"><a href="mailto:hello%40julianorchard.co.uk">.</a></span><a href="mailto:hello%40julianorchard.co.uk">uk</a><span style="color: #0000c0;"><a href="mailto:hello%40julianorchard.co.uk">&gt;</a></span>
+iab <span style="color: #0000c0;">&lt;</span>expr<span style="color: #0000c0;">&gt;</span> ~g <span style="color: #721045;">substitute</span>(<span style="color: #721045;">system</span>(<span style="color: #2544bb;">'git config --global user.name'</span>) <span style="color: #0000c0;">.</span> <span style="color: #505050;">" &lt;" .</span>
+\<span style="color: #721045;">system</span>(<span style="color: #2544bb;">'git config --global user.email'</span>) <span style="color: #0000c0;">.</span> <span style="color: #505050;">"&gt;", '\n', '', 'g')</span>
+iab lipsum
+\ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+\ eiusmod tempor incididunt <span style="color: #00538b;">ut</span> labore <span style="color: #00538b;">et</span> dolore magna aliqua<span style="color: #0000c0;">.</span> Ut enim ad minim
+\ veniam, quis nostrud exercitation ullamco laboris nisi <span style="color: #00538b;">ut</span> aliquip <span style="color: #00538b;">ex</span> ea
+\ commodo consequat<span style="color: #0000c0;">.</span> Duis aute irure dolor in reprehenderit in voluptate velit
+\ esse cillum dolore eu fugiat nulla pariatur<span style="color: #0000c0;">.</span> Excepteur sint occaecat cupidatat
+\ non proident, sunt in culpa qui officia deserunt mollit anim id est laborum<span style="color: #0000c0;">.</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org129f264" class="outline-2">
+<h2 id="org129f264">gvimrc</h2>
+<div class="outline-text-2" id="text-org129f264">
+</div>
+<div id="outline-container-org8718c84" class="outline-3">
+<h3 id="org8718c84">Defaults</h3>
+<div class="outline-text-3" id="text-org8718c84">
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">set</span> <span style="color: #00538b;">vb</span> t_vb<span style="color: #0000c0;">=</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">guioptions</span><span style="color: #0000c0;">-=</span><span style="color: #5317ac;">m</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">guioptions</span><span style="color: #0000c0;">-=</span>T
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">guioptions</span><span style="color: #0000c0;">-=</span><span style="color: #5317ac;">r</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">guioptions</span><span style="color: #0000c0;">-=</span>L
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">guioptions</span><span style="color: #0000c0;">-=</span>tT
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">guitabtooltip</span><span style="color: #0000c0;">=</span>%{<span style="color: #721045;">InfoGuiTooltip</span>()}
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">balloonexpr</span><span style="color: #0000c0;">=</span><span style="color: #721045;">FoldSpellBalloon</span>()
+<span style="color: #5317ac;">let</span> <span style="color: #00538b;">mapleader</span> <span style="color: #0000c0;">=</span> <span style="color: #505050;">","</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd435778" class="outline-3">
+<h3 id="orgd435778">Fonts</h3>
+<div class="outline-text-3" id="text-orgd435778">
+<p>
+I use slightly different fonts for the graphical version of vim:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">if</span> <span style="color: #721045;">has</span>(<span style="color: #2544bb;">'win32'</span>) <span style="color: #0000c0;">||</span> <span style="color: #721045;">has</span>(<span style="color: #2544bb;">'win32unix'</span>)
+  <span style="color: #5317ac;">set</span> <span style="color: #00538b;">guifont</span><span style="color: #0000c0;">=</span>Consolas:h12:cANSI
+<span style="color: #5317ac;">el</span>
+  <span style="color: #5317ac;">set</span> <span style="color: #00538b;">guifont</span><span style="color: #0000c0;">=</span>Monospace:h12
+<span style="color: #5317ac;">en</span>
+<span style="color: #5317ac;">se</span> <span style="color: #00538b;">textwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">50</span>
+</pre>
+</div>
+
+<p>
+And we defiantly need some spell checking: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">setl</span> <span style="color: #00538b;">spell</span> <span style="color: #00538b;">spelllang</span><span style="color: #0000c0;">=</span>en_gb
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6b6f2c0" class="outline-3">
+<h3 id="org6b6f2c0">Plugin Settings</h3>
+<div class="outline-text-3" id="text-org6b6f2c0">
+<p>
+The only plugin we use slightly differently is <a href="https://github.com/junegunn/goyo.vim">Goyo</a>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">augroup</span> GGOYO
+  <span style="color: #5317ac;">autocmd</span><span style="color: #0000c0;">!</span>
+  <span style="color: #5317ac;">autocmd</span> VimEnter * :Goyo <span style="color: #4682b4;">55</span>
+<span style="color: #5317ac;">augroup</span> END
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cd4cbd" class="outline-3">
+<h3 id="org5cd4cbd">Misc.</h3>
+<div class="outline-text-3" id="text-org5cd4cbd">
+<p>
+Ctrl+Backspace, we set to deleting a whole word. If I remember correctly, I don't think this works in the non-graphical vim. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">im</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span>BS<span style="color: #0000c0;">&gt;</span> <span style="color: #0000c0;">&lt;</span>C<span style="color: #0000c0;">-</span><span style="color: #5317ac;">w</span><span style="color: #0000c0;">&gt;</span>
+
+</pre>
+</div>
+
+<p>
+Finally, because I mostly call gvim from a Powershell vim-anywhere-esqe script, I usually want to close everything once I've finished typing (including Goyo). This does that: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">if</span> <span style="color: #721045;">expand</span>(<span style="color: #2544bb;">'%:p:h'</span>) <span style="color: #0000c0;">=~</span> <span style="color: #2544bb;">'vim-anywhere'</span>
+  <span style="color: #5317ac;">se</span> <span style="color: #00538b;">fo</span><span style="color: #0000c0;">+=</span>a
+  <span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span>Leader<span style="color: #0000c0;">&gt;</span><span style="color: #5317ac;">q</span> :<span style="color: #5317ac;">wqa</span><span style="color: #0000c0;">&lt;</span>cr<span style="color: #0000c0;">&gt;</span>
+<span style="color: #5317ac;">en</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org866455d" class="outline-2">
+<h2 id="org866455d">Language Specific</h2>
+<div class="outline-text-2" id="text-org866455d">
+</div>
+<div id="outline-container-orgee6a598" class="outline-3">
+<h3 id="orgee6a598">About</h3>
+<div class="outline-text-3" id="text-orgee6a598">
+<p>
+I was excited to be able to do this like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #505050;">#+begin_src vimrc :tangle php.vim css.vim something-else.vim :mkdirp yes</span>
+<span style="color: #000000;">      'file content would go here</span>
+<span style="color: #505050;">#+end_src </span>
+</pre>
+</div>
+
+<p>
+But you can't tangle the same block to multiple files like that, as far as I'm aware. So I'm going to have to look for another solution.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge446c3b" class="outline-3">
+<h3 id="orge446c3b">Indentation</h3>
+<div class="outline-text-3" id="text-orge446c3b">
+<p>
+This is stored in multiple files in <code>~/.vim/after/indent/</code>: 
+</p>
+
+<ul class="org-ul">
+<li>php.vim</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">set</span> <span style="color: #00538b;">tabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> <span style="color: #00538b;">softtabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">0</span> <span style="color: #00538b;">noexpandtab</span> <span style="color: #00538b;">shiftwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> smarttab
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>css.vim</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">set</span> <span style="color: #00538b;">tabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> <span style="color: #00538b;">softtabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">0</span> <span style="color: #00538b;">noexpandtab</span> <span style="color: #00538b;">shiftwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> smarttab
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>makefile.vim</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">set</span> <span style="color: #00538b;">tabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> <span style="color: #00538b;">softtabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">0</span> <span style="color: #00538b;">noexpandtab</span> <span style="color: #00538b;">shiftwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> smarttab
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>html.vim</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">set</span> <span style="color: #00538b;">tabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> <span style="color: #00538b;">softtabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">0</span> <span style="color: #00538b;">noexpandtab</span> <span style="color: #00538b;">shiftwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> smarttab
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>javascript.vim</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">set</span> <span style="color: #00538b;">tabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> <span style="color: #00538b;">softtabstop</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">0</span> <span style="color: #00538b;">noexpandtab</span> <span style="color: #00538b;">shiftwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">4</span> smarttab
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5f6773f" class="outline-3">
+<h3 id="org5f6773f">Filetype Plugin</h3>
+<div class="outline-text-3" id="text-org5f6773f">
+<p>
+These are a few file specific bits and pieces, loaded from <code>~/.vim/after/ftplugin/</code>: 
+</p>
+
+<ul class="org-ul">
+<li>AutoHotkey</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">setl</span> <span style="color: #00538b;">commentstring</span><span style="color: #0000c0;">=</span>;\ %s
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Go-lang</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">nn</span> <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">c</span><span style="color: #0000c0;">-</span>b<span style="color: #0000c0;">&gt;</span> :<span style="color: #0000c0;">!</span><span style="color: #00538b;">go</span> run % <span style="color: #0000c0;">&lt;</span><span style="color: #5317ac;">cr</span><span style="color: #0000c0;">&gt;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Markdown and Textfiles</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">setlocal</span> <span style="color: #00538b;">spell</span> <span style="color: #00538b;">spelllang</span><span style="color: #0000c0;">=</span>en_gb
+<span style="color: #5317ac;">set</span> <span style="color: #00538b;">textwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">50</span>
+<span style="color: #5317ac;">nnoremap</span> :<span style="color: #5317ac;">q</span> :<span style="color: #5317ac;">qa</span>
+<span style="color: #5317ac;">augroup</span> GOYOMD
+        <span style="color: #5317ac;">autocmd</span><span style="color: #0000c0;">!</span>
+        <span style="color: #5317ac;">autocmd</span> VimEnter * :Goyo
+<span style="color: #5317ac;">augroup</span> END
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-vimrc"><span style="color: #5317ac;">setlocal</span> <span style="color: #00538b;">spell</span> <span style="color: #00538b;">spelllang</span><span style="color: #0000c0;">=</span>en_gb
+<span style="color: #5317ac;">set</span> <span style="color: #00538b;">textwidth</span><span style="color: #0000c0;">=</span><span style="color: #4682b4;">50</span>
+<span style="color: #5317ac;">nnoremap</span> :<span style="color: #5317ac;">q</span> :<span style="color: #5317ac;">qa</span>
+<span style="color: #5317ac;">augroup</span> GOYOMD
+        <span style="color: #5317ac;">autocmd</span><span style="color: #0000c0;">!</span>
+        <span style="color: #5317ac;">autocmd</span> VimEnter * :Goyo
+<span style="color: #5317ac;">augroup</span> END
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Julian Orchard &lt;git@julianorchard.co.uk&gt;</p>
+<p class="date">Created: 2022-10-06 Thu 10:20</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

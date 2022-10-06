@@ -1,201 +1,194 @@
 #!/bin/bash
 
+# File:        blog
+# Author:      Julian Orchard <hello@julianorchard.co.uk>
+# Tag Added:   2022-09-13
+# Description: A very minimal static site generator.
+# Features:
+#  > `blog -n` or `blog  --new`       to compose a new draft
+#  > `blog -b` or `blog  --build`     to build the blog
 
-# Very Minimal Static Site Generator
 
-
-#   Features:
-#  		- blog -n --new to compose a new draft
-# 		- blog -b --build to build the blog at any time
-# 		that's it; that's all I plan
-
-
+# TODO:
+# - [ ] perhaps try doing something with the static pages
 
 PAGE_URL="https://julianorchard.co.uk"
 SITE_TITLE=" | Julian Orchard"
 
-
-
-
 # Help Function
  help () {
-    echo ""
-    echo "Usage of this tiny static site generator:"
-		echo ""
-    echo " -n / --new         create a new post"
-    echo " -b / --build     build the full site"
-		echo ""
+  echo ""
+  echo "Usage of this tiny static site generator:"
+  echo ""
+  echo " -n / --new         create a new post"
+  echo " -b / --build     build the full site"
+  echo ""
  }
 
+# Called from `blog -n` or `blog --new`
+new_post () {
 
+## TITLE
+  read -p "Please give your page a title: " file_title
+# get file name from title
+  file_name=$(echo ${file_title,,} | sed -r 's/[[:punct:]]*//g;s/\.md//g' | sed -r 's/ /-/g')
+# check user is happy with the title, and if not, allow them to input a different file name
+  read -p "Are you happy with this file being called $file_name.md? (Y/n) " file_name_confirm
+  match=" |'"
+  while [[ $file_name =~ $match ]] || [[ "$file_name_confirm" = "n" ]] || [[ "$file_name_confirm" = "no" ]] ; do
+    read -p "Please enter the file name you want (cannot contain spaces): " file_name
+    file_name_confirm="yes"
+  done
+  file_name=$(echo ${file_name,,} | sed -r 's/\.md//g')
+  echo "Your file will be $file_name.md."
 
-# Write A New Post
-  new_post () {
-		
-		# Get Title
-      read -p "Please give your page a title: " file_title
+## DESCRIPTION
+  read -p "Please give your page a description: " file_description
 
-		# Get File Name from Title
-			file_name=$(echo ${file_title,,} | sed -r 's/[[:punct:]]*//g;s/\.markdown//g' | sed -r 's/ /-/g')
+## DATE
+  printf -v file_date '%(%Y/%m/%d)T\n' -1
 
-			#	Check user is happy with the title, and if not, allow them to input a different file name
-				read -p "Are you happy with this file being called $file_name.markdown? (Y/n) " file_name_confirm
-				match=" |'"
+## OTHER METADATA
+# decided if it's going to be a static page on the site, or a post
+  read -p "Do you want this to be a post? (Y/n) " page_or_post
 
-				while [[ $file_name =~ $match ]] || [[ "$file_name_confirm" = "n" ]] || [[ "$file_name_confirm" = "no" ]] ; do
-					read -p "Please enter the file name you want (cannot contain spaces): " file_name
-					file_name_confirm="yes"
-				done
+# Custom image or Default
+  read -p "Do you wish to use the default image for meta tags etc.? (Y/n) " image_confirm
+  if [ "$image_confirm" = "n" ] || [ "$image_confirm" = "no" ] ; then
+    read -p "Please enter a URL or a location locally: " image
 
-				file_name=$(echo ${file_name,,} | sed -r 's/\.markdown//g')
-				echo "Your file will be $file_name.markdown."
+    # Don't do much validating if it's an external image;
+    # could try pinging to see if it responds? Or downloading the
+    # image to serve it from /res/?
+    if [[ ! "$image" =~ \/\/ ]] ; then
+      # It's likely an internal URL
+      # clean slash away, if present
+      [[ $image == /* ]] && image="${image:1}"
+      image="$PAGE_URL/$image"
+    fi
+  else
 
-		# Get Description
-			read -p "Please give your page a description: " file_description
-
-		# Get Date
-			printf -v file_date '%(%Y/%m/%d)T\n' -1
-
-		# Static Page or Not
-			read -p "Do you want this to be a post? (Y/n) " page_or_post
-
-		# Custom image or Default
-			read -p "Do you wish to use the default image for meta tags etc.? (Y/n) " image_confirm
-			if [ "$image_confirm" = "n" ] || [ "$image_confirm" = "no" ] ; then
-				read -p "Please enter a URL or a location locally: " image
-
-				# Don't do much validating if it's an external image; 
-				# could try pinging to see if it responds? Or downloading the 
-				# image to serve it from /res/?
-				if [[ ! "$image" =~ \/\/ ]] ; then
-					# It's likely an internal URL
-					# clean slash away, if present
-					[[ $image == /* ]] && image="${image:1}"
-					image="$PAGE_URL/$image"
-				fi
-			else
-
-			# Use Default Image
-				$image="$PAGE_URL/res/default.png"
-			fi
-			echo "Image will be $image."
+  # Use Default Image
+    $image="$PAGE_URL/res/default.png"
+  fi
+  echo "Image will be $image."
 
 
 
-		# Print to File
-			if [[ "$page_or_post" == "n" ]] || [[ "$page_or_post" == "no" ]]; then
-				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_image: $image\n-->">content/$file_name.markdown
-			else
-				printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_date: $file_date\npage_image: $image\n-->">content/$file_name.markdown
-			fi
-  }
+  # Print to File
+  if [[ "$page_or_post" == "n" ]] || [[ "$page_or_post" == "no" ]]; then
+    printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_image: $image\n-->">content/$file_name.md
+  else
+    printf "<!--\npage_title: $file_title\npage_description: $file_description\npage_status: draft\npage_date: $file_date\npage_image: $image\n-->">content/$file_name.md
+  fi
+}
 
 
 
 # Called from build_site(); builds the individual page
-	build_file() {
-			page_url_full="$PAGE_URL/$1"
+build_file() {
+    page_url_full="$PAGE_URL/$1"
 
-		# Create File
-			echo "" > $1index.html
+  # Create File
+    echo "" > $1index.html
 
-			# Using + as the divider, because I'm using / in the page_url
-			sed "s+PAGE_TITLE+$2$SITE_TITLE+g;s+PAGE_DESCRIPTION+$3+g;s+PAGE_URL+$page_url_full+g;s+PAGE_IMAGE+$5+g" src/head.html >> $1index.html
-			file_head=$(awk '/page_head/ {print $2}' $4)
-			if [ ! -z $file_head ] && [ "$file_head"="large" ] ; then
-				echo "<article id=\"expanded\">">>$1index.html
-			else
-				echo "<article id=\"regular\">">>$1index.html
-			fi
-			pandoc -f markdown $4 >> $1index.html
-			echo "</article>">>$1index.html
-			cat src/foot.html >> $1index.html
-			return
-	}
+    # Using + as the divider, because I'm using / in the page_url
+    sed "s+PAGE_TITLE+$2$SITE_TITLE+g;s+PAGE_DESCRIPTION+$3+g;s+PAGE_URL+$page_url_full+g;s+PAGE_IMAGE+$5+g" src/head.html >> $1index.html
+    file_head=$(awk '/page_head/ {print $2}' $4)
+    if [ ! -z $file_head ] && [ "$file_head"="large" ] ; then
+      echo "<article id=\"expanded\">">>$1index.html
+    else
+      echo "<article id=\"regular\">">>$1index.html
+    fi
+    pandoc -f markdown $4 >> $1index.html
+    echo "</article>">>$1index.html
+    cat src/foot.html >> $1index.html
+    return
+}
 
 
 
 # Build Every Page on Site
   build_site () {
 
-	# Clear src/list.html
-	# Loop Through Draft Folder, Checking If 'Published'
+  # Clear src/list.html
+  # Loop Through Draft Folder, Checking If 'Published'
 
-		post_items=()
-		for file in content/*.markdown; do
+    post_items=()
+    for file in content/*.md; do
 
-			if grep -iq "page_status: published" "$file"; then
-					new_file=$(echo $file | sed -r "s/.+\/(.+)\..+/\1/")
-					file_title=$(grep "page_title:" $file | cut -f 2- -d ' ')
-					file_description=$(grep "page_description:" $file | cut -f 2- -d ' ')
-					file_image=$(grep "page_image:" $file | cut -f 2- -d ' ')
-					[ -z $file_image ] && file_image="$PAGE_URL/res/default.png"
+      if grep -iq "page_status: published" "$file"; then
+          new_file=$(echo $file | sed -r "s/.+\/(.+)\..+/\1/")
+          file_title=$(grep "page_title:" $file | cut -f 2- -d ' ')
+          file_description=$(grep "page_description:" $file | cut -f 2- -d ' ')
+          file_image=$(grep "page_image:" $file | cut -f 2- -d ' ')
+          [ -z $file_image ] && file_image="$PAGE_URL/res/default.png"
 
-				# Adjust whether page_date is present
-						if grep -q "page_date" $file ; then
-							file_date=$(awk '/page_date/ {print $2}' $file)
-							new_file="posts/$file_date/$new_file/"
-							mkdir -p $new_file
+        # Adjust whether page_date is present
+            if grep -q "page_date" $file ; then
+              file_date=$(awk '/page_date/ {print $2}' $file)
+              new_file="posts/$file_date/$new_file/"
+              mkdir -p $new_file
 
-							# Create array to eventually add to list.html
-								post_items+=("${new_file}index.html")
+              # Create array to eventually add to list.html
+                post_items+=("${new_file}index.html")
 
-						# If Index File
-						elif [ $new_file == "index" ] ; then
-							new_file=""
+            # If Index File
+            elif [ $new_file == "index" ] ; then
+              new_file=""
 
-						# Otherwise it's a static page
-						else
-							mkdir -p $new_file
-							new_file="$new_file/"
-						fi
-				# Build the File
-						[ ! -z $new_file ] && echo "Building: $new_file" || echo "Building: index.html"
-						build_file "${new_file}" "${file_title}" "${file_description}" "${file}" "${file_image}"
-				# Add pages with page_list to array to finish later
-						grep -q "page_list" ${new_file}index.html && rebuild_list+=("${new_file}")
-			fi
+            # Otherwise it's a static page
+            else
+              mkdir -p $new_file
+              new_file="$new_file/"
+            fi
+        # Build the File
+            [ ! -z $new_file ] && echo "Building: $new_file" || echo "Building: index.html"
+            build_file "${new_file}" "${file_title}" "${file_description}" "${file}" "${file_image}"
+        # Add pages with page_list to array to finish later
+            grep -q "page_list" ${new_file}index.html && rebuild_list+=("${new_file}")
+      fi
 
-		done
+    done
 
 
 
-# Ammend files that have a page_list in them 
+# Ammend files that have a page_list in them
 
-	#	Add posts to src/list.html
-		IFS=$'\n' post_items_sorted=($(sort -r <<<"${post_items[*]}")) ; unset IFS
-		echo "<ul class=\"post-list\">">src/list.html
+  #  Add posts to src/list.html
+    IFS=$'\n' post_items_sorted=($(sort -r <<<"${post_items[*]}")) ; unset IFS
+    echo "<ul class=\"post-list\">">src/list.html
 
-		for j in "${post_items_sorted[@]}" ; do
-		#	Remove index.html from filename
-			k=${j::-10}
-			file_title=$(grep "page_title:" $j | cut -f 2- -d ' ')
-			file_date=$(awk '/page_date/ {print $2}' $j)
-			echo "<li><a href=\"/${k}\">$file_title</a> <div>$file_date</div></li>">>src/list.html
-		done
-		echo "</ul>">>src/list.html>>src/list.html
+    for j in "${post_items_sorted[@]}" ; do
+    #  Remove index.html from filename
+      k=${j::-10}
+      file_title=$(grep "page_title:" $j | cut -f 2- -d ' ')
+      file_date=$(awk '/page_date/ {print $2}' $j)
+      echo "<li><a href=\"/${k}\">$file_title</a> <div>$file_date</div></li>">>src/list.html
+    done
+    echo "</ul>">>src/list.html>>src/list.html
 
-	# Ammend Pages Needing src/list.html
-		for i in ${rebuild_list[@]}; do
-			echo $(awk -v page_list="page_list" -v list_file="$(<src/list.html)" '
-				{gsub(page_list,list_file); print }
-			' ${i}index.html)>${i}index.html
-		done
-	}
+  # Ammend Pages Needing src/list.html
+    for i in ${rebuild_list[@]}; do
+      echo $(awk -v page_list="page_list" -v list_file="$(<src/list.html)" '
+        {gsub(page_list,list_file); print }
+      ' ${i}index.html)>${i}index.html
+    done
+  }
 
 
 
 
 
 # Confirm Necessary Packages are Installed
-	if ! command -v pandoc -v &>/dev/null ; then
-		echo "Pandoc needs to be installed for this script to work"
-		exit 1
-	fi
+  if ! command -v pandoc -v &>/dev/null ; then
+    echo "Pandoc needs to be installed for this script to work"
+    exit 1
+  fi
 # Handle Flag Input
-	case "$1" in
-		-h|--help) 			help ;;
-		-n|--new) 			new_post ;;
-		-b|--build) 		build_site ;;
-		*) help ;;
-	esac
+  case "$1" in
+    -h|--help)       help ;;
+    -n|--new)       new_post ;;
+    -b|--build)     build_site ;;
+    *) help ;;
+  esac
