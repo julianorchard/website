@@ -84,7 +84,7 @@ echo This is a really, really long line of code and it&#39;s just going to keep 
 <h2 id="how-ive-settled-on-images-working">How I’ve settled on images working</h2>
 <p>Images will look like…</p>
 <figure>
-<img src="https://images.unsplash.com/photo-1638459554090-675e14d87d1b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt="This is what image captions will be like!" /><figcaption aria-hidden="true">This is what image captions will be like!</figcaption>
+<img src="https://images.unsplash.com/photo-1638459554090-675e14d87d1b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1740&amp;q=80" alt="This is what image captions will be like!" /><figcaption>This is what image captions will be like!</figcaption>
 </figure>
 <p>When <a href="https://pandoc.org/">Pandoc</a> (which the <a href="https://github.com/julianorchard/julianorchard.github.io">script</a> used to run this site calls) converts Markdown to HTML, it adds any image description to <code>&lt;figcaption&gt;</code>, as well as the image <code>alt=</code> text. I therefore wanted to come up with a nice way to display this caption, and based on the colours I was already using for other parts of the site, this is what I came up with. It used a <code>:before</code> CSS element to add a border in the top left, and the bottom right caption is the <code>&lt;figcaption&gt;</code> element.</p>
 <p>Anyway, that’s it.</p>
