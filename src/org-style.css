@@ -1,0 +1,297 @@
+::selection {
+    background-color: rgba(241,244,141,0.4);
+}
+img::selection {
+    background-color: rgba(101,111,165,0.4);
+}
+body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+h1 {
+    font-weight: 800;
+}
+h2,h3,h4,h5,h6,p,ul {
+    font-weight: 400;
+}
+p {
+    line-height: 2;
+    position: relative;
+}
+p>a {
+    line-height: 1.5;
+}
+b, sup {
+    color: #656fa5;
+    font-weight: 100;
+}
+code {
+    font-family: 'IBM Plex Mono', Monospace;
+    display: inline;
+    background-color: #d7dcf7;
+    font-size: 14px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin: 0px 5px;
+    white-space: pre-wrap;
+}
+pre>code::-webkit-scrollbar {
+    display: none;
+}
+pre>code {
+    display: block;
+    padding: 30px;
+    width: 80%;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    word-wrap: break-word;
+    white-space: pre;
+    margin: 40px 0px;
+}
+blockquote {
+    font-family: 'DM Serif Text', serif;
+    font-weight: 100;
+    font-size: 20px;
+    margin: 40px 0px;
+    background-color: #feffde;
+    border-radius: 4px;
+    position: relative;
+    width: 80%;
+    padding: 5px;
+}
+blockquote:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background-color: #f1f48d;
+    border-radius: 4px 0px 0px 4px;
+}
+blockquote>p {
+    margin: 2% 5% !important;
+}
+/*LINKS*/
+a {
+    text-decoration: none;
+    position: relative;
+    color: #000;
+    width: auto;
+    display: inline-block;
+}
+a::before {
+    content: '';
+    position: absolute;
+    background-color: #C4C4C4;
+    opacity: 0.8;
+    bottom: -6px;
+    left: 0%;
+    width: 100%;
+    height: 4px;
+    transform: skewX(-20deg);
+    transition: background-color ease 2s,
+		transform ease 0.5s;
+}
+a:hover::before {
+    transition: background-color ease 0.5s,
+		transform ease 0.3s;
+    background-color: #656fa5;
+    transform: translateY(2px) !important;
+}
+/* Highlight Links */
+a::after {
+    content: '';
+    position: absolute;
+    background-color: #f1f48d;
+    bottom: 0px;
+    left: -1.5px;
+    width: 0px;
+    height: 100%;
+    transform: skewX(-20deg);
+    transition: width cubic-bezier(.75,.9,.9,1.5) 0.4s;
+    opacity: 0.6;
+    z-index: -1;
+}
+a:hover::after {
+    width: 100% !important;
+    transition: width cubic-bezier(.75,.9,.9,1.5) 0.15s 0.2s;
+}
+ul {
+    line-height: 1.2;
+}
+ul>li {
+    padding: 20px;
+    width: 70%;
+}
+ul>li>a {
+    text-decoration: none;
+    position: relative;
+    color: #000;
+    width: auto;
+    display: inline-block;
+}
+#content,nav,#postamble {
+    width: 95%;
+    max-width: 900px;
+    margin: 0px auto;
+    padding: 5% 0px;
+    position: relative;
+}
+nav>ul {
+    list-style: none;
+    text-align: right;
+}
+nav>ul>li {
+    display: inline;
+    padding: 20px;
+}
+h1,h2,h3 {
+    font-family: 'DM Serif Text', serif;
+    opacity: 1;
+}
+h1 { font-size: 3.5rem; text-align: left !important; padding: 0 0 50px 0;}
+h2 { font-size: 2rem }
+h3 { font-size: 1.7rem }
+
+/*BODY OF CONTENT*/
+article p,#content>p,#content>h2,#content>h3,#content>ul {
+    width: 90%;
+    margin-left: 5%;
+}
+article p:nth-of-type(1) {
+    display: inline-block !important;
+    margin-top: 100px;
+}
+@media only screen and (max-width: 700px) {
+    article {
+	text-align: left;
+	width: 80% !important;
+	margin: 0px auto !important;
+    }
+    figure {
+	width: 100% !important;
+    }
+}
+article h2 {
+    padding-top: 1rem;
+}
+article img {
+    position: relative;
+    width: 100%;
+}
+/*Image Border*/
+figure:before {
+    content: '';
+    background-color: #656fa5;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: -10px;
+    left: -10px;
+}
+figure {
+    position: relative;
+    max-width: 80%;
+    height: auto;
+    margin: 40px auto;
+}
+figcaption {
+    font-style: italic;
+    text-align: right;
+    padding: 10px;
+    font-size: 12px;
+    margin: -4px 0 0 50%;
+    background-color: #656fa5;
+    width: calc(50%-10px);
+    color: #fff;
+}
+
+/*FOOTER*/
+footer>div {
+    width: 48%;
+    display: inline-block;
+    vertical-align: bottom;
+    color: #171717 !important;
+}
+footer>div.left {
+    text-align: left;
+}
+footer>div.right {
+    text-align: right;
+}
+.footer-kanji {
+    font-family: 'Noto Serif JP', serif;
+    text-decoration: none;
+    line-height: 0;
+    font-size: 22px;
+    display: inline-block;
+    transform: translate(5px, 5px);
+}
+@media only screen and (max-width: 700px) {
+    footer {
+	width: 80%;
+    }
+    footer>div {
+	width: 100%;
+	text-align: right !important;
+	display: block;
+    }
+}
+
+#table-of-contents {
+    position: fixed;
+    top: 20px;
+    right: 0;
+    width: 20%;
+}
+#table-of-contents h2 {
+    font-size: 1.7rem;
+}
+#table-of-contents li {
+    list-style: none;
+    padding: 10px 0;
+}
+#table-of-contents ul {
+    padding: 0;
+    margin: 10px;
+}
+#table-of-contents li>a::after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 54px;
+    height: 90%;
+    bottom: -1px;
+    left: 120%;
+    opacity: 1;
+    overflow: hidden;
+    transform: skewX(0deg);
+    background-image: url('/res/arrow.svg');
+    background-position: -40px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: background-position cubic-bezier(.75,.9,.9,1.5) 0.2s 0.1s,
+	        left cubic-bezier(.75,.9,.9,1.5) 0.2s 0.1s;
+}
+#table-of-contents li>a:hover::after {
+    left: 110%;
+    background-position: 13px;
+    width: 54px !important;
+}
+#table-of-contents li>div {
+    float: right;
+    margin-right: 0px;
+    display: inline;
+}
+
+/* This only becomes relevant if there's a 
+   table of contents element found style is
+   changed by script.js file : */
+body {
+    left: 0;
+    top: 0;
+}

@@ -201,7 +201,7 @@ span {
 }
 
 /*NAV*/
-article, nav, footer {
+article, nav, footer, .content {
 	width: 95%;
 	max-width: 900px;
 	margin: 0px auto;
