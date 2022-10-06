@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-10-06 Thu 22:40 -->
+<!-- 2022-10-06 Thu 22:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>My Emacs Configuration</title>
@@ -195,27 +195,30 @@
   .org-svg { }
 </style>
 
-<link rel="stylesheet" href="../src/org-style.css" type="text/css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=IBM+Plex+Mono&family=IBM+Plex+Sans+Condensed&family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/org-style.css" type="text/css"/>
 </head>
 <body>
 <div id="preamble" class="status">
 
-  <nav>
-    <ul>
-      <li>
-        <a class="link" href="/">Home</a>
-      </li>
-      <li>
-        <a class="link" href="/about/">About</a>
-      </li>
-      <li>
-        <a class="link" href="/posts/">Posts</a>
-      </li>
-      <li>
-        <a class="link" href="/config/">Config</a>
-      </li>
-    </ul>
-  </nav>
+    <nav>
+      <ul>
+        <li>
+          <a class="link" href="/">Home</a>
+        </li>
+        <li>
+          <a class="link" href="/about/">About</a>
+        </li>
+        <li>
+          <a class="link" href="/posts/">Posts</a>
+        </li>
+        <li>
+          <a class="link" href="/config/">Config</a>
+        </li>
+      </ul>
+    </nav>
 </div>
 <div id="content" class="content">
 <h1 class="title">My Emacs Configuration</h1>
@@ -250,9 +253,9 @@ This is my on-going project to <i>become</i> an <i>Emacs user</i> (from being ma
 <h2 id="org9fcdf07">The Basics</h2>
 <div class="outline-text-2" id="text-org9fcdf07">
 </div>
-<div id="outline-container-orgb02d6b1" class="outline-3">
-<h3 id="orgb02d6b1">About</h3>
-<div class="outline-text-3" id="text-orgb02d6b1">
+<div id="outline-container-org1c71621" class="outline-3">
+<h3 id="org1c71621">About</h3>
+<div class="outline-text-3" id="text-org1c71621">
 <p>
 Including a few nice bindings that I can't live without, and my name and stuff: 
 </p>
@@ -580,9 +583,9 @@ I'm not sure if this really <i>belongs</i> here, but we can move some of the var
 <h2 id="org7a6fbf6">Aesthetics</h2>
 <div class="outline-text-2" id="text-org7a6fbf6">
 </div>
-<div id="outline-container-org49d43f9" class="outline-3">
-<h3 id="org49d43f9">About</h3>
-<div class="outline-text-3" id="text-org49d43f9">
+<div id="outline-container-orgd255f19" class="outline-3">
+<h3 id="orgd255f19">About</h3>
+<div class="outline-text-3" id="text-orgd255f19">
 <p>
 This part used to be a lot more involved, but I've decided I want to keep things more minimal to actually enjoy <i>using</i> this software more, rather than endlessly making tiny aesthetic changes. I'm therefore planning on using the <del>stock Emacs themes</del>, or very similar, and <del>maybe</del> a light and dark version.
 </p>
@@ -822,9 +825,9 @@ For completion <i>outside</i> the minibuffer.
 <h2 id="org5fbee9c">Evil</h2>
 <div class="outline-text-2" id="text-org5fbee9c">
 </div>
-<div id="outline-container-orgd016b17" class="outline-3">
-<h3 id="orgd016b17">About</h3>
-<div class="outline-text-3" id="text-orgd016b17">
+<div id="outline-container-org5c74b49" class="outline-3">
+<h3 id="org5c74b49">About</h3>
+<div class="outline-text-3" id="text-org5c74b49">
 <p>
 The most vital Emacs package for me.
 </p>
@@ -1075,9 +1078,9 @@ Not sure if I'll end up using this much right now, but want to try it out.
 <h2 id="org3c6bfc4">Org</h2>
 <div class="outline-text-2" id="text-org3c6bfc4">
 </div>
-<div id="outline-container-org27962e2" class="outline-3">
-<h3 id="org27962e2">About</h3>
-<div class="outline-text-3" id="text-org27962e2">
+<div id="outline-container-org71b9141" class="outline-3">
+<h3 id="org71b9141">About</h3>
+<div class="outline-text-3" id="text-org71b9141">
 <p>
 One of the biggest draws to Emacs, for me, has become Org-mode. 
 </p>
@@ -1195,6 +1198,9 @@ It's getting difficult to justify using my own static site generator now (althou
 	 :publishing-directory "~/julianorchard.github.io/config/"
 	 :section-numbers nil
 	 :html-head "
+&lt;link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"&gt;
+&lt;link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin&gt;
+&lt;link href=\"https://fonts.googleapis.com/css2?family=DM+Serif+Text&amp;family=IBM+Plex+Mono&amp;family=IBM+Plex+Sans+Condensed&amp;family=Noto+Serif+JP&amp;display=swap\" rel=\"stylesheet\"&gt;
 &lt;link rel=\"stylesheet\" href=\"../src/org-style.css\" type=\"text/css\"/&gt;"
 	 :html-preamble "
   &lt;nav&gt;
@@ -1517,9 +1523,9 @@ Not using this <i>yet</i>.
 <h2 id="orgd93e69a">Eshell</h2>
 <div class="outline-text-2" id="text-orgd93e69a">
 </div>
-<div id="outline-container-orgf966b18" class="outline-3">
-<h3 id="orgf966b18">About</h3>
-<div class="outline-text-3" id="text-orgf966b18">
+<div id="outline-container-org7bade14" class="outline-3">
+<h3 id="org7bade14">About</h3>
+<div class="outline-text-3" id="text-org7bade14">
 <p>
 I mainly use <code>eshell-prompt-extras</code> for the shell. 
 </p>
@@ -1584,9 +1590,9 @@ Navigation and absolute essentials.
 <h2 id="orgd91b434">Tramp</h2>
 <div class="outline-text-2" id="text-orgd91b434">
 </div>
-<div id="outline-container-org6a48a58" class="outline-3">
-<h3 id="org6a48a58">About</h3>
-<div class="outline-text-3" id="text-org6a48a58">
+<div id="outline-container-orgf275e70" class="outline-3">
+<h3 id="orgf275e70">About</h3>
+<div class="outline-text-3" id="text-orgf275e70">
 <p>
 Remote connecting with Tramp.
 </p>
@@ -1633,9 +1639,9 @@ This is a todo, really. Taken from Daviwils dotfiles.
 <h2 id="org629c856">Magit</h2>
 <div class="outline-text-2" id="text-org629c856">
 </div>
-<div id="outline-container-org06dc5af" class="outline-3">
-<h3 id="org06dc5af">About</h3>
-<div class="outline-text-3" id="text-org06dc5af">
+<div id="outline-container-orgc13c805" class="outline-3">
+<h3 id="orgc13c805">About</h3>
+<div class="outline-text-3" id="text-orgc13c805">
 <p>
 <del>I need to get this working with my SSH key.</del> I'm not using this at the moment, so leaving it commented for a moment. I <i>will</i> make use of it in the future, but it's not a priority.
 </p>
@@ -1666,9 +1672,9 @@ This is a todo, really. Taken from Daviwils dotfiles.
 <h2 id="org43b6826">Snippets</h2>
 <div class="outline-text-2" id="text-org43b6826">
 </div>
-<div id="outline-container-org5893150" class="outline-3">
-<h3 id="org5893150">About</h3>
-<div class="outline-text-3" id="text-org5893150">
+<div id="outline-container-orgcf610a3" class="outline-3">
+<h3 id="orgcf610a3">About</h3>
+<div class="outline-text-3" id="text-orgcf610a3">
 <p>
 I use <i>YASNIPPET</i> to create snippets.
 </p>
@@ -1745,9 +1751,9 @@ There's probably a better way to do this, but we use <code>general-nmap</code> a
 <h2 id="org391a853">Language Modes</h2>
 <div class="outline-text-2" id="text-org391a853">
 </div>
-<div id="outline-container-org1c71621" class="outline-3">
-<h3 id="org1c71621">About</h3>
-<div class="outline-text-3" id="text-org1c71621">
+<div id="outline-container-orgd388c32" class="outline-3">
+<h3 id="orgd388c32">About</h3>
+<div class="outline-text-3" id="text-orgd388c32">
 <p>
 Some language-specific stuff, which modes to pick, etc.
 </p>
@@ -2399,30 +2405,30 @@ This is as far as I got, but lots of good ideas (from <a href="https://stackover
 </div>
 <div id="postamble" class="status">
 
-    <footer>
-      <div class="left">
-        <p>
-          Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
-          <br />
-          LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
-          <br />
-          Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
-          <br />
-          Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
-        </p>
-      </div><!--
-    --><div class="right">
-        <p>
-          Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
-          <br />
-          About <a href="/privacy/" class="highlight">Privacy Policy</a>.
-        </p>
-        <p>
-          Copyright Julian Orchard, 2022
-        </p>
-      </div>
-    </footer>
-    <script src="/src/script.js"></script>
+      <footer>
+        <div class="left">
+          <p>
+            Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+            <br />
+            LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+            <br />
+            Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
+            <br />
+            Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
+          </p>
+        </div><!--
+      --><div class="right">
+          <p>
+            Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+            <br />
+            About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+          </p>
+          <p>
+            Copyright Julian Orchard, 2022
+          </p>
+        </div>
+      </footer>
+      <script src="/src/script.js"></script>
 </div>
 </body>
 </html>
