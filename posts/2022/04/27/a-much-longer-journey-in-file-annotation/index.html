@@ -78,7 +78,7 @@ page_image:https://julianorchard.co.uk/res/desc-vim.png
 <h2 id="the-good-the-bad-the-ugly">The Good, The Bad, &amp; The Ugly</h2>
 <p>The plugin I ended up creating has some really nice elements, some elements I struggled with, and some problems I’m yet to solve…</p>
 <h3 id="the-good">The Good</h3>
-<p>I needed a way to let someone using the file input their signature (e.g., “Julian Orchard <a href="mailto:hello@julianorchard.co.uk">hello@julianorchard.co.uk</a>”), and I came up with a way of doing that which works really well in my opinion.</p>
+<p>I needed a way to let someone using the file input their signature (e.g., “Julian Orchard <a href="mailto:hello@julianorchard.co.uk" class="email">hello@julianorchard.co.uk</a>”), and I came up with a way of doing that which works really well in my opinion.</p>
 <p>Once the plugin is installed (I use <a href="https://github.com/junegunn/vim-plug">Vim-Plug</a> for regular Vim, and with Neovim I use <a href="https://github.com/wbthomason/packer.nvim">Packer.nvim</a>), you can define either a string in your <code>.vimrc</code> file, or a list.</p>
 <p>For example;</p>
 <pre><code>
@@ -122,29 +122,30 @@ iab &lt;expr&gt; ~g substitute(system(&#39;git config --global user.name&#39;) .
 </blockquote>
 </article>
 
-	<footer>
-		<div class="left">
-			<p>
-				Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
-			<br />
-				LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
-			<br />
-				Mastodon: <a href="https://mastodon.social/@jdo"
-          class="highlight">@jdo@mastodon.social</a> <u class="footer-kanji" style="font-family: 'Noto Serif JP', serif; text-decoration: none;  line-height: 0px; font-size: 20px;">森</u>
-			</p>
-		</div><!--
-		--><div class="right">
-			<p>
-				Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
-				<br />
-				About <a href="/privacy/" class="highlight">Privacy Policy</a>.
-			</p>
-			<p>
-				Copyright Julian Orchard, 2021
-			</p>
-		</div>
-	</footer>
+<footer>
+  <div class="left">
+    <p>
+      Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+      <br />
+      LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+      <br />
+      Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
+      <br />
+      Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
+    </p>
+  </div><!--
+--><div class="right">
+    <p>
+      Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+      <br />
+      About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+    </p>
+    <p>
+      Copyright Julian Orchard, 2022
+    </p>
+  </div>
+</footer>
 
-      <script src="/src/script.js"></script>
-    </body>
-  </html>
+<script src="/src/script.js"></script>
+</body>
+</html>

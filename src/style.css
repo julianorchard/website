@@ -303,14 +303,6 @@ footer>div.left {
 footer>div.right {
 	text-align: right;
 }
-.footer-kanji {
-	font-family: 'Noto Serif JP', serif;
-	text-decoration: none;
-	line-height: 0;
-	font-size: 22px;
-	display: inline-block;
-	transform: translate(5px, 5px);
-}
 @media only screen and (max-width: 700px) {
 	footer {
 		width: 80%;

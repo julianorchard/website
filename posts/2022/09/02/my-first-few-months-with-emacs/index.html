@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      My First Few Months With Emacs | Julian Orchard
+    </title>
+    <meta name="description" content="Documenting some random thoughts and experiences with Emacs after my first few months of solid use.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="index, follow">
+		<meta charset="utf-8">
+		<!--Social-->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@0x68ee">
+		<meta name="twitter:title" content="My First Few Months With Emacs | Julian Orchard">
+		<meta name="twitter:description" content="Documenting some random thoughts and experiences with Emacs after my first few months of solid use.">
+		<meta name="twitter:image" conteog:image:widthnt="https://julianorchard.co.uk/res/default.png">
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="My First Few Months With Emacs | Julian Orchard" />
+		<meta property="og:description" content="Documenting some random thoughts and experiences with Emacs after my first few months of solid use."/>
+		<meta property="og:url" content="https://julianorchard.co.uk/posts/2022/09/02/my-first-few-months-with-emacs/" />
+		<meta property="og:image" content="https://julianorchard.co.uk/res/default.png" />
+		<!--Favicon (https://www.favicon-generator.org/) -->
+		<link rel="apple-touch-icon" sizes="57x57" href="/res/fav/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/res/fav/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/res/fav/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/res/fav/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/res/fav/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/res/fav/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/res/fav/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/res/fav/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/res/fav/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="/res/fav/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/res/fav/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/res/fav/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/res/fav/favicon-16x16.png">
+		<link rel="manifest" href="/res/fav/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/res/fav/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		<!--Style-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=IBM+Plex+Mono&family=IBM+Plex+Sans+Condensed&family=Noto+Serif+JP&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a class="link" href="/">Home</a>
+        </li>
+        <li>
+          <a class="link" href="/about/">About</a>
+        </li>
+        <li>
+          <a class="link" href="/posts/">Posts</a>
+        </li>
+      </ul>
+    </nav>
+<article id="regular">
+<!--
+page_title: My First Few Months With Emacs
+page_description: Documenting some random thoughts and experiences with Emacs after my first few months of solid use.
+page_status: published
+page_date: 2022/09/02
+-->
+<h1 id="my-first-few-months-with-emacs">My First Few Months With Emacs</h1>
+<h2 id="from-vim-cultist-to-emacs-believer">From Vim Cultist to Emacs Believer</h2>
+<p>While this experience has been more eloquently documented in other places, I thought I’d collect some thoughts here regardless. Partly because I want to write about it, and <em>partly in the hope that one person sees it who wants to try using Emacs</em>!</p>
+<h3 id="background">Background</h3>
+<p>I have been a massive fan of Vim, and the terminal, for a few years now. I have a nicely configured <code>.vimrc</code> file, I’ve written custom functions, and even a <a href="https://github.com/julianorchard/desc.vim">little plugin</a> to try and get to know my favourite editor a little more. But, as the description of the <a href="https://github.com/doomemacs/doomemacs">Doom Emacs</a> framework most aptly puts it;</p>
+<blockquote>
+<p>It is a story as old as time. A stubborn, shell-dwelling, and melodramatic vimmer—envious of the features of modern text editors—spirals into despair before he succumbs to the dark side.</p>
+</blockquote>
+<p>The ‘<em>envious of the features of modern text editors</em>’ part is what <em>really</em> inspired me to try Emacs.</p>
+<p>Note: <em>I never really liked the idea of trying Doom. I really want to try and build my own config and understand it a bit more. However, I’ll probably come back to Doom when I feel like I’ve thoroughly made my own config, for other reasons.</em></p>
+<h3 id="first-contact">First Contact</h3>
+<p>I started by following along with the brilliant <a href="https://youtu.be/74zOY-vgkyw">Emacs From Scratch</a> YouTube series by <a href="https://systemcrafters.net/">David Wilson</a>. I was already feeling optimistic at this config file:</p>
+<pre class="elisp"><code>  (setq inhibit-startup-message t)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)</code></pre>
+<p>And I was almost fully invested in giving Emacs a serious go when I realised how few lines of Elisp is enough to get started with Evil Mode!</p>
+<p>I had thought of Emacs as being a really far-away thing for some reason; something reserved for only those who had understanding or dedication to make it work for them. I was put off by the key-bindings, the UI, leaving the terminal, and more. But the more I started to dig into it, the more I realised it <em>is</em> what most people who use the terminal are looking for. This is when I moved from ‘making Emacs enough like vim to work for me’ to ‘wait, we don’t have that in vim…’.</p>
+<h3 id="org-mode-is-great">Org Mode is great</h3>
+<p>Prior to playing with Emacs, I’d heard of two ‘killer packages’: the amazing <a href="https://github.com/magit/magit">Magit</a> (git porcelain) and <a href="https://orgmode.org/">Org Mode</a>. While I think both are great, org-mode, for me, is one of the best things about using Emacs.</p>
+<p><code>org-babel-tangle</code> allows you to write org-files (markdown-like documents) and tangle all the blocks of code to various files. Within a few weeks, I’d rewritten almost all of my config files, literately, and pushed them all to the <a href="https://github.com/julianorchard/config/">same repo</a>.</p>
+<p>Then there’s the power of <code>org-agenda</code>. It’s great! See a list of all your upcoming tasks, let Emacs look in multiple folders for org-files to add to your todo-list. It’s hard to explain why it’s so good if you’ve not used it, but it’s such a good way of noting things down.</p>
+<p>Agenda <em>really shines</em> with <code>org-capture</code>: enter a custom series of keys to capture a piece of org-text that can be templated in very complicated and useful ways. For example, I’ve been maintaining a personal <code>journal.org</code> file. I hit <code>SPC c</code> to bring up the <em>capture menu</em>, then <code>j</code> to select a journal capture. I the write a piece of org-text and upon <code>Ctrl-C Ctrl-C</code> (a very common binding in Emacs to confirm or run things) it gets inserted into the <code>journal.org</code> file under the year, month, date; like this:</p>
+<pre class="org"><code>
+* Year
+** Month
+*** Date
+**** Timestamp 
+     This is an entry!
+</code></pre>
+<p>I initially synced my collection of org documents with OneDrive, but I’ve stopped that. The beauty of them being small text files is that I can just sync them with scripts and other simple solutions. I use <a href="https://syncthing.net/">Syncthing</a> now, mainly, running on a server so I can connect it to my phone too (using <a href="https://github.com/orgzly/orgzly-android">Orgzly</a> to get notified of events and create new ones).</p>
+<h3 id="thoughts-on-vim">Thoughts on Vim</h3>
+<p>At the moment, I’m at a strange place with Vim.</p>
+<p>There’s a famous saying about Emacs:</p>
+<blockquote>
+<p>Emacs is a great operating system, lacking only a decent editor.</p>
+</blockquote>
+<p>This quote has actually made me realise that whilst I love the extensibility of Vim, the core component I really love is the modal editing. It’s actually quite a relief to know that this modal editing can be so successful in editing software other than the original, such as in Emacs with Evil Mode.</p>
+<p>Emacs really is a great combination for Vim users because the extensibility is there too. But it makes me less concerned about trying more VSCode and JetBrains Vim plugins in the future.</p>
+<h3 id="another-similarity-of-emacsterm-stuff">Another Similarity of Emacs/Term Stuff</h3>
+<p>In my first few weeks of hype around Emacs, I decided that I would be conservative about what I would and would not <em>ask</em> of Emacs. For example, managing mail (although I had previously used Neomutt) is something, I told myself, that was too much for me to bother to do with Emacs. However, as I get deeper and deeper into Emacs, I’m finding it harder to stick to said boundaries I’ve set.</p>
+<p>I was initially surprised by this, but actually realised that it’s similar with vim-like things for the terminal. When I first discovered the command line, I think I set myself the ‘line’ of not using it for file management. But tools like <a href="https://github.com/ranger/ranger">Ranger</a> or <a href="https://github.com/dylanaraps/fff">fff</a> have given me pause to reconsider that line, and I’ve used them quite extensively. I think it’s just a side effect of them being so extensible.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>This post is a bit all over the place but, contrary to this, I’m feeling quite clear about where I want to go next with my Emacs journey.</p>
+<p>I’m working on using Eshell and Dired a bit more, trying to get more language understanding, and trying to dive even further into Org. I will probably post a follow-up to this at some point, maybe at a year after using Emacs.</p>
+</article>
+
+<footer>
+  <div class="left">
+    <p>
+      Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+      <br />
+      LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+      <br />
+      Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
+      <br />
+      Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
+    </p>
+  </div><!--
+--><div class="right">
+    <p>
+      Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+      <br />
+      About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+    </p>
+    <p>
+      Copyright Julian Orchard, 2022
+    </p>
+  </div>
+</footer>
+
+<script src="/src/script.js"></script>
+</body>
+</html>
