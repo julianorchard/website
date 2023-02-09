@@ -58,9 +58,6 @@
         <li>
           <a class="link" href="/posts/">Posts</a>
         </li>
-	<li>
-	  <a class="link" href="/config/">Config</a>
-	</li>
       </ul>
     </nav>
 <article id="regular">
@@ -72,10 +69,22 @@ page_date: 2022/02/07
 page_image: https://julianorchard.co.uk/res/default.png
 -->
 <h1 id="my-offline-password-setup">My Offline Password Setup</h1>
-<p>I’ve recently, finally, started to move away from the standard online Google password storage system. This is for a few reasons, but it’s just something I’ve never felt 100% comfortable with.</p>
-<p>The best option I found that I wanted to briefly write about was the open source <a href="https://github.com/keepassxreboot/keepassxc">KeePassXC</a>. The <a href="https://github.com/keepassxreboot/keepassxc/releases/tag/2.6.6">portable</a> version of the project is what I found to be the best, as I wanted to be able to manage passwords even on machines I’d not visited, and figured the best way to do this, offline, would be to just carry them on a USB Stick.</p>
+<p>I’ve recently, finally, started to move away from the standard online
+Google password storage system. This is for a few reasons, but it’s just
+something I’ve never felt 100% comfortable with.</p>
+<p>The best option I found that I wanted to briefly write about was the
+open source <a
+href="https://github.com/keepassxreboot/keepassxc">KeePassXC</a>. The <a
+href="https://github.com/keepassxreboot/keepassxc/releases/tag/2.6.6">portable</a>
+version of the project is what I found to be the best, as I wanted to be
+able to manage passwords even on machines I’d not visited, and figured
+the best way to do this, offline, would be to just carry them on a USB
+Stick.</p>
 <h2 id="backing-up-the-database">Backing Up The Database</h2>
-<p>KeePassXC generates a database of passwords, <code>Passwords.kdbx</code> as standard. This is a script I wrote to back this up, so that when I plug in the USB into my home machine, I can just double click this script to run it;</p>
+<p>KeePassXC generates a database of passwords,
+<code>Passwords.kdbx</code> as standard. This is a script I wrote to
+back this up, so that when I plug in the USB into my home machine, I can
+just double click this script to run it;</p>
 <pre><code>&#39; File:        backup.vbs
 &#39; Author:      Julian Orachrd (hello@julianorchard.co.uk)
 &#39; Description: This script mainly exists to ensure I
@@ -105,8 +114,10 @@ page_image: https://julianorchard.co.uk/res/default.png
         End If
         fso.CopyFile &quot;KeePassXC\Passwords.kdbx&quot;, bkf
     End If</code></pre>
-<p>It’s mainly to remind me not to back up the password database to machines I don’t trust…</p>
-<p>That’s it, just wanted to share my setup as I’ve had fun doing it.</p>
+<p>It’s mainly to remind me not to back up the password database to
+machines I don’t trust…</p>
+<p>That’s it, just wanted to share my setup as I’ve had fun doing
+it.</p>
 </article>
 
 <footer>
@@ -115,8 +126,6 @@ page_image: https://julianorchard.co.uk/res/default.png
       Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
       <br />
       LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
-      <br />
-      Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
       <br />
       Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
     </p>
@@ -128,7 +137,7 @@ page_image: https://julianorchard.co.uk/res/default.png
       About <a href="/privacy/" class="highlight">Privacy Policy</a>.
     </p>
     <p>
-      Copyright Julian Orchard, 2022
+      Copyright (c) Julian Orchard, 2023
     </p>
   </div>
 </footer>

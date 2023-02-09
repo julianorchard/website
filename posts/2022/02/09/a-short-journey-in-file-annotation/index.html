@@ -58,9 +58,6 @@
         <li>
           <a class="link" href="/posts/">Posts</a>
         </li>
-	<li>
-	  <a class="link" href="/config/">Config</a>
-	</li>
       </ul>
     </nav>
 <article id="regular">
@@ -71,17 +68,25 @@ page_status: published
 page_date: 2022/02/09
 page_image: https://julianorchard.co.uk/res/default.png
 -->
-<h1 id="settling-upon-a-method-for-file-annotation">Settling Upon A Method For File Annotation</h1>
+<h1 id="settling-upon-a-method-for-file-annotation">Settling Upon A
+Method For File Annotation</h1>
 <h2 id="a-short-journey">A Short Journey…</h2>
-<p>I’ve been on a very short, but pretty interesting journey into file annotation. What I mean when I say ‘file annotation’ is this (it’s easier to show than tell, in this case…) : -</p>
+<p>I’ve been on a very short, but pretty interesting journey into file
+annotation. What I mean when I say ‘file annotation’ is this (it’s
+easier to show than tell, in this case…) : -</p>
 <pre><code>&lt;!--
 Name:        a-short-journey-in-file-annotation.markdown
 By:          julianorchard
 Tag Added:   09/02/2022
 Desciption:  What the file does, explained in a few words here.
 --&gt;</code></pre>
-<p>Inserting this into this document used my current, preferred method. I’ve been through a few. Method 0.1 would be me just manually typing. This meant the content of the description was almost always inconsistent, aesthetically and practically speaking. But it’s still something I do if I’m rushed for some reason…</p>
-<p>The next method was creating a short Bash script to insert it. It was something like this…</p>
+<p>Inserting this into this document used my current, preferred method.
+I’ve been through a few. Method 0.1 would be me just manually typing.
+This meant the content of the description was almost always
+inconsistent, aesthetically and practically speaking. But it’s still
+something I do if I’m rushed for some reason…</p>
+<p>The next method was creating a short Bash script to insert it. It was
+something like this…</p>
 <pre><code>#!/bin/bash
 
 # Title:         desc 
@@ -121,12 +126,21 @@ else
 # Error
   echo &quot;Error: This file doesn&#39;t seem to exist!&quot;
 fi</code></pre>
-<p>The problem with this was moving to Windows… in hindsight, and now that I use Git Bash more than CMD again (I’ve come full circle), I could have probably kept using this to good effect.</p>
-<p>The other thing it’s missing is the ability to add these descriptors to non-bash/python files. Files like this very markdown file which I’m writing now would benefit from <code>&lt;!--</code> comments, and <code>#</code> comments would be confusing and useless and bad!</p>
-<p>A far better method was staring my in the face, and I hadn’t even noticed…</p>
+<p>The problem with this was moving to Windows… in hindsight, and now
+that I use Git Bash more than CMD again (I’ve come full circle), I could
+have probably kept using this to good effect.</p>
+<p>The other thing it’s missing is the ability to add these descriptors
+to non-bash/python files. Files like this very markdown file which I’m
+writing now would benefit from <code>&lt;!--</code> comments, and
+<code>#</code> comments would be confusing and useless and bad!</p>
+<p>A far better method was staring my in the face, and I hadn’t even
+noticed…</p>
 <h2 id="vim-its-always-amazing">Vim; It’s Always Amazing</h2>
-<p>Vim and its scripting language were the ultimate solution for me, as I use Vim for basically everything other than very large projects (where I probably use Atom or VSCode instead).</p>
-<p>The below example just shows how this script works for HTML style comments:</p>
+<p>Vim and its scripting language were the ultimate solution for me, as
+I use Vim for basically everything other than very large projects (where
+I probably use Atom or VSCode instead).</p>
+<p>The below example just shows how this script works for HTML style
+comments:</p>
 <pre><code>let filename =  expand(&#39;%:t&#39;)
 let author   = &quot;julianorchard&quot;
 let curtime  =  strftime(&quot;%d/%m/%Y&quot;)
@@ -142,9 +156,22 @@ let curtime  =  strftime(&quot;%d/%m/%Y&quot;)
         \ . &quot;&lt;esc&gt;/DESCRIPTION&lt;cr&gt;cw&quot;
 
     &quot;...etc. for other file types</code></pre>
-<p>You simply type the word ‘desc’ to run it, and it writes the Name, Author, Date the tag was added, and then <code>Description: DESCRIPTION</code>, followed by the line break (<code>&lt;cr&gt;</code>) then <code>--&gt;</code>. Then it goes <code>&lt;esc&gt;</code> to get out of Vim’s insert mode, and runs <code>/DESCRIPTION&lt;cr&gt;cw</code>, which searches <code>/</code> for the string DESCRIPTION, hits enter, and <code>cw</code> changes the word. Works nicely!</p>
-<p>It’s stored in a file sourced by my .vim/vimrc, and it’s great. I might eventually make it a really robust, standalone Vim package so that I can just install it with <a href="https://github.com/junegunn/vim-plug">Vim Plug</a> etc. (Vim Plug being my favourite Vim plugin manager…).</p>
-<p>That’s it. If you don’t already use one of these, I’d love to hear if this is helpful, and if you do already use one, I’d love to know what solution you use!</p>
+<p>You simply type the word ‘desc’ to run it, and it writes the Name,
+Author, Date the tag was added, and then
+<code>Description: DESCRIPTION</code>, followed by the line break
+(<code>&lt;cr&gt;</code>) then <code>--&gt;</code>. Then it goes
+<code>&lt;esc&gt;</code> to get out of Vim’s insert mode, and runs
+<code>/DESCRIPTION&lt;cr&gt;cw</code>, which searches <code>/</code> for
+the string DESCRIPTION, hits enter, and <code>cw</code> changes the
+word. Works nicely!</p>
+<p>It’s stored in a file sourced by my .vim/vimrc, and it’s great. I
+might eventually make it a really robust, standalone Vim package so that
+I can just install it with <a
+href="https://github.com/junegunn/vim-plug">Vim Plug</a> etc. (Vim Plug
+being my favourite Vim plugin manager…).</p>
+<p>That’s it. If you don’t already use one of these, I’d love to hear if
+this is helpful, and if you do already use one, I’d love to know what
+solution you use!</p>
 </article>
 
 <footer>
@@ -153,8 +180,6 @@ let curtime  =  strftime(&quot;%d/%m/%Y&quot;)
       Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
       <br />
       LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
-      <br />
-      Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
       <br />
       Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
     </p>
@@ -166,7 +191,7 @@ let curtime  =  strftime(&quot;%d/%m/%Y&quot;)
       About <a href="/privacy/" class="highlight">Privacy Policy</a>.
     </p>
     <p>
-      Copyright Julian Orchard, 2022
+      Copyright (c) Julian Orchard, 2023
     </p>
   </div>
 </footer>

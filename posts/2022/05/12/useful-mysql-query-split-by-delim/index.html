@@ -58,9 +58,6 @@
         <li>
           <a class="link" href="/posts/">Posts</a>
         </li>
-	<li>
-	  <a class="link" href="/config/">Config</a>
-	</li>
       </ul>
     </nav>
 <article id="regular">
@@ -71,7 +68,9 @@ page_status: published
 page_date: 2022/05/12
 -->
 <h1 id="a-handly-little-mysql-trick">A Handly Little MySQL Trick</h1>
-<p>I recently needed to split a string by delimiter, in this case a full stop <code>.</code> character, and found the following extremely useful to do this:</p>
+<p>I recently needed to split a string by delimiter, in this case a full
+stop <code>.</code> character, and found the following extremely useful
+to do this:</p>
 <pre><code>
 SELECT
   REPLACE (
@@ -92,7 +91,11 @@ FROM your_table
 <blockquote>
 <p>Desired Text</p>
 </blockquote>
-<p>After subsequently looking it up online, it looks like there are quite a few functions similar to <code>LOCATE</code> (<code>SUBSTRING_INDEX</code>, for example, looks similar). But <code>LOCATE</code> was the first one I encountered, reading around potentially relevant functions, so <code>LOCATE</code> works for me!</p>
+<p>After subsequently looking it up online, it looks like there are
+quite a few functions similar to <code>LOCATE</code>
+(<code>SUBSTRING_INDEX</code>, for example, looks similar). But
+<code>LOCATE</code> was the first one I encountered, reading around
+potentially relevant functions, so <code>LOCATE</code> works for me!</p>
 <blockquote>
 <p>12/05/2022: Added <code>blockquote</code> styling!</p>
 </blockquote>
@@ -105,8 +108,6 @@ FROM your_table
       <br />
       LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
       <br />
-      Twitter: <a href="https://twitter.com/jdorchard/">@jdorchard</a>
-      <br />
       Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
     </p>
   </div><!--
@@ -117,7 +118,7 @@ FROM your_table
       About <a href="/privacy/" class="highlight">Privacy Policy</a>.
     </p>
     <p>
-      Copyright Julian Orchard, 2022
+      Copyright (c) Julian Orchard, 2023
     </p>
   </div>
 </footer>
