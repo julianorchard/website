@@ -167,13 +167,13 @@ func main() {
 		if d, err := isDirectory(path); err != nil || d {
 			continue
 		}
-		fmt.Println("reading file", path)
+		// fmt.Println("reading file", path)
 		file, err := readFileToString(path)
 		if err != nil {
 			fmt.Printf("couldn't read file: %s", file)
 		}
 
-		fmt.Println("getting preamble", path)
+		// fmt.Println("getting preamble", path)
 		preamble, err := getPreamble(string(file))
 		if err != nil {
 			fmt.Println("unable to get preamble:", err)
@@ -188,14 +188,14 @@ func main() {
 			continue
 		}
 
-		_, err = renderPage(meta)
+		render, err := renderPage(meta)
 		if err != nil {
 			fmt.Printf("failed to render %s: %v", path, err)
 		}
 
 		rel := outPath(meta, path)
-		fmt.Println("OUTPUTTING TO:", rel)
-		// writeFile(rel, render)
+		// fmt.Println("OUTPUTTING TO:", rel)
+		writeFile(rel, render)
 	}
 }
 
@@ -211,18 +211,16 @@ func writeFile(path string, content []byte) error {
 	return nil
 }
 
-// FIXME: this stuff
 func outPath(meta PageMetadata, path string) string {
 	// Date
 	urlPageDate := strings.ReplaceAll(meta.PageDate, "-", "/")
-	fmt.Println(meta.Rel, ": replace {date} with", urlPageDate)
 	r := strings.ReplaceAll(meta.Rel, "{date}", urlPageDate)
 
 	// Page Name
 	baseName := strings.TrimRight(path, "/")
 	baseName = strings.Split(baseName, "/")[len(strings.Split(baseName, "/"))-1]
-	baseName = strings.TrimSuffix(path, filepath.Ext(path))
-	r = strings.ReplaceAll(meta.Rel, "{name}", baseName)
+	baseName = strings.TrimSuffix(baseName, filepath.Ext(path))
+	r = strings.ReplaceAll(r, "{name}", baseName)
 
 	// Final path
 	r = filepath.Join("./output", fmt.Sprintf("%s.html", r))
