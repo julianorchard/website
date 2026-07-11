@@ -15,6 +15,11 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+var (
+	outputDirectory  string = "output"
+	contentDirectory string = "content"
+)
+
 func readFileToString(path string) ([]byte, error) {
 	content, err := os.ReadFile(path)
 	if err != nil {
@@ -56,8 +61,9 @@ type PageMetadata struct {
 	Rel         string    `yaml:"rel"`
 	Date        time.Time // this is parsed from PageDate
 	Content     string    // this is the page body
-	Styles      string    // CSS from another file
-	JavaScript  string    // JS from another file
+	// Inline the CSS/JS
+	// Styles      string    // CSS from another file
+	// JavaScript  string    // JS from another file
 }
 
 func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
@@ -106,25 +112,26 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 		return PageMetadata{}, fmt.Errorf("rel not provided and is required")
 	}
 
-	cssPath := "./src/style.css"
-	css, err := readFileToString(cssPath)
-	if err != nil {
-		return PageMetadata{}, fmt.Errorf(
-			"failed to include CSS at %s: %w",
-			cssPath, err,
-		)
-	}
-	output.Styles = string(css)
-
-	jsPath := "./src/script.js"
-	js, err := readFileToString(jsPath)
-	if err != nil {
-		return PageMetadata{}, fmt.Errorf(
-			"failed to include CSS at %s: %w",
-			jsPath, err,
-		)
-	}
-	output.JavaScript = string(js)
+	// Inline the CSS/JS
+	// cssPath := "./src/style.css"
+	// css, err := readFileToString(cssPath)
+	// if err != nil {
+	// 	return PageMetadata{}, fmt.Errorf(
+	// 		"failed to include CSS at %s: %w",
+	// 		cssPath, err,
+	// 	)
+	// }
+	// output.Styles = string(css)
+	//
+	// jsPath := "./src/script.js"
+	// js, err := readFileToString(jsPath)
+	// if err != nil {
+	// 	return PageMetadata{}, fmt.Errorf(
+	// 		"failed to include CSS at %s: %w",
+	// 		jsPath, err,
+	// 	)
+	// }
+	// output.JavaScript = string(js)
 
 	return output, nil
 }
@@ -149,17 +156,35 @@ func renderPage(meta PageMetadata) ([]byte, error) {
 	return output.Bytes(), nil
 }
 
+func copyResources(directory string) error {
+	err := os.CopyFS(
+		filepath.Join(outputDirectory, directory),
+		os.DirFS(directory),
+	)
+	if err != nil {
+		return fmt.Errorf("couldn't copy the static files %s", directory)
+	}
+	return nil
+}
+
 func main() {
+	for _, file := range []string{"res", "src"} {
+		if err := copyResources(file); err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+	}
+
 	fileList := []string{}
 	err := filepath.Walk(
-		"./content/",
+		contentDirectory,
 		func(path string, f os.FileInfo, err error) error {
 			fileList = append(fileList, path)
 			return nil
 		},
 	)
 	if err != nil {
-		fmt.Println("couldn't do it. just couldn't")
+		fmt.Println(err)
 		os.Exit(1)
 	}
 
@@ -167,13 +192,11 @@ func main() {
 		if d, err := isDirectory(path); err != nil || d {
 			continue
 		}
-		// fmt.Println("reading file", path)
 		file, err := readFileToString(path)
 		if err != nil {
 			fmt.Printf("couldn't read file: %s", file)
 		}
 
-		// fmt.Println("getting preamble", path)
 		preamble, err := getPreamble(string(file))
 		if err != nil {
 			fmt.Println("unable to get preamble:", err)
