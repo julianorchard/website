@@ -1,61 +1,21 @@
 # My Website
 
-I wanted to host a blog to occasionally write about topics that interest me, and
-about experiences I've had. However, I don't have much need for static site
-generators outside of this use case, so it seemed redundant to learn [Hugo](https://gohugo.io/) or
-[Jekyll](https://jekyllrb.com/), and I like to do things myself anyway. So I wrote a short Bash script
-(`blog`) as my own little static site generator. It has everything I'd want from
-it.
+This used to be a bash script! Check out [this
+hash](https://github.com/julianorchard/website/tree/f006a2c7a238ca0ce350b8254819a7a49dd5d745)
+to see what that was all about.
 
-## Usage
+## Hugo at home
 
-From `./blog -h`:
+This is just a `main.go` file which operates very similarly to my previous bash
+static site generator implementation in many ways. Rather than a full
+site-rewrite, I thought I'd just replace this slowly!
 
-```
-Usage of this tiny static site generator:
--n / --new         create a new post
--b / --build     build the full site
-```
+I started a full rewrite using the 11ty static site generator. And I do like
+the styles I came up with for that website. However, I didn't love 11ty, and
+all the `npm` supply chain attacks of late have made me reconsider going for
+Node at all. Plus this was fun!
 
-To elaborate on this, I took inspiration from [Hugo](https://gohugo.io/), and used comments at the
-start of the file to give basic information about the pages to build. For
-example:
+## License
 
-```
-<!--
-page_title: Title of a Blog Post
-page_description: This is the description of a blog post.
-page_status: published
-page_date: 2021/11/20
--->
-```
-
-The minimum a *post* needs to be published is a `page_status: published`, and a
-`page_date`. A static page is definied by not having a `page_date`. For example,
-you can create an "about" page by haing a post called `about.markdown` and;
-
-```
-<!--
-page_title: About Page
-page_description: This is the description of the about page.
-page_status: published
--->
-```
-
-It creates a folder `about` with an `index.html` file in there with this
-content.
-
-You can use `page_head:` to let the script know you want that page to generate
-with an expanded heading style (this simply changes what tag the bulk of the
-page is in).
-
-
-## Installation
-
-This setup doesn't really have anything linking it to a particular domain. I
-really just want this to be very simple to use. It should be `git clone`'d into
-your website directory, and from there, run the script with `./blog` (`chmod +x`
-if it's not executing).
-
-If you have any questions please email me,
-	[hello@julianorchard.co.uk](mailto:hello@julianorchard.co.uk).
+This is free software under the MIT license, see the [LICENSE](LICENSE) file
+for more information.

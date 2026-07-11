@@ -188,6 +188,7 @@ func main() {
 			fmt.Printf("failed to render %s: %v", path, err)
 		}
 
+		// TODO: Render pages differently
 		newPath := strings.TrimSuffix(path, filepath.Ext(path))
 		writeFile(
 			filepath.Join("./output", fmt.Sprintf("%s.html", newPath)),
