@@ -1,0 +1,33 @@
+---
+name: Build and deploy site
+on:
+  push:
+    branches: ['*']
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v6.5.0
+        with:
+          go-version: 1.26.4
+      - name: Build
+        id: build
+        run: go run main.go
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: output/
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployments.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.0

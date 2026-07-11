@@ -1,7 +1,7 @@
 <!--
 page_title: Privacy Policy
 page_description: I do care about Privacy Policies, and even though this is a small website, I want to make sure it's included.
-page_status: published
+rel: '{name}'
 -->
 
 # Privacy and Cookies
@@ -17,7 +17,7 @@ Twitter, at which point that's necessary data (and
 I'm not a business anyway at the end of the day).
 If you're contacting me *regarding* something
 business related, I won't share your info with
-anyone unless I'm granted permission by you. 
+anyone unless I'm granted permission by you.
 
 This site is hosted with [GitHub
 Pages](https://pages.github.com/) and you can

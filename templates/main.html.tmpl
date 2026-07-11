@@ -1,25 +1,26 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>
-      PAGE_TITLE
+      {{ .Name }}
     </title>
-    <meta name="description" content="PAGE_DESCRIPTION">
+    <meta name="description" content="{{ .Description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="index, follow">
 		<meta charset="utf-8">
 		<!--Social-->
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:site" content="@0x68ee">
-		<meta name="twitter:title" content="PAGE_TITLE">
-		<meta name="twitter:description" content="PAGE_DESCRIPTION">
-		<meta name="twitter:image" conteog:image:widthnt="PAGE_IMAGE">
+		<meta name="twitter:site" content="@jdorchard">
+		<meta name="twitter:title" content="{{ .Name }}">
+		<meta name="twitter:description" content="{{ .Description }}">
+		<meta name="twitter:image" conteog:image:widthnt="{{ .Image }}">
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="PAGE_TITLE" />
-		<meta property="og:description" content="PAGE_DESCRIPTION"/>
-		<meta property="og:url" content="PAGE_URL" />
-		<meta property="og:image" content="PAGE_IMAGE" />
+		<meta property="og:title" content="{{ .Name }}" />
+		<meta property="og:description" content="{{ .Description }}"/>
+		<meta property="og:url" content="{{/* TODO: PAGE URL */}}" />
+		<meta property="og:image" content="{{ .Image }}" />
 		<!--Favicon (https://www.favicon-generator.org/) -->
 		<link rel="apple-touch-icon" sizes="57x57" href="/res/fav/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="/res/fav/apple-icon-60x60.png">
@@ -42,7 +43,9 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=IBM+Plex+Mono&family=IBM+Plex+Sans+Condensed&family=Noto+Serif+JP&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="/src/style.css" />
+        <style>
+            {{ .Styles }}
+        </style>
   </head>
 
   <body>
@@ -59,3 +62,37 @@
         </li>
       </ul>
     </nav>
+
+
+    <article id="{{ .PageHead }}">
+    {{ .Content }}
+    </article>
+
+
+<footer>
+  <div class="left">
+    <p>
+      Email: <a href="mailto:hello@julianorchard.co.uk" class="highlight">hello@julianorchard.co.uk</a>
+      <br />
+      LinkedIn: <a href="https://linkedin.com/in/JulianOrchard" class="highlight">julianorchard</a>
+      <br />
+      Mastodon: <a rel="me" href="https://mastodon.social/@jdo" class="highlight">@jdo</a>
+    </p>
+  </div><!--
+--><div class="right">
+    <p>
+      Check out this site on <a href="https://github.com/julianorchard/julianorchard.github.io" class="highlight" target="_blank">GitHub</a>!
+      <br />
+      About <a href="/privacy/" class="highlight">Privacy Policy</a>.
+    </p>
+    <p>
+      Copyright (c) Julian Orchard, 2023
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript">
+{{ .JavaScript }}
+</script>
+</body>
+</html>
