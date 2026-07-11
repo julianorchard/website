@@ -1,7 +1,7 @@
 <!--
 page_title: Privacy Policy
 page_description: I do care about Privacy Policies, and even though this is a small website, I want to make sure it's included.
-rel: '{name}'
+rel: '{name}/index.html'
 -->
 
 # Privacy and Cookies

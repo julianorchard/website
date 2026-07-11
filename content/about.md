@@ -1,7 +1,7 @@
 <!--
 page_title: About Me | Julian Orchard
 page_description: I'm a professional Marketing Coordinator who really enjoys scripting, automation, and bringing technology to traditional roles.
-rel: '{name}'
+rel: '{name}/index.html'
 -->
 
 # About Me

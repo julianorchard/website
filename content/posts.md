@@ -1,7 +1,7 @@
 <!--
 page_title: Writings | Julian Orchard
 page_description: Some jottings and thoughts of Julian Orchard.
-rel: '{name}'
+rel: '{name}/index.html'
 -->
 
 # I occasionally write stuff
