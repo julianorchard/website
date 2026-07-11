@@ -3,7 +3,7 @@ page_title: NA Tiny Vim Tip
 page_description: Literally the smallest, but quite useful, tip for vim search and replace.
 draft: true
 page_date: 2022-07-26
-page_image:
+rel: posts/{date}/{name}
 -->
 
 # A Very Quick Tip For Vim

@@ -3,6 +3,7 @@ page_title: Testing Code Blocks and Images
 page_description: This is a quick test of how I've implemented <code> and <img stylings!
 page_date: 2021-12-05
 page_image: https://julianorchard.co.uk/res/default.png
+rel: posts/{date}/{name}
 -->
 
 # This Post Is An Example...

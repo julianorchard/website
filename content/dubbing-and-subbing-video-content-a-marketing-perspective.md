@@ -3,6 +3,7 @@ page_title: 'Dubbing and Subbing Video Content: A Marketing Perspective'
 page_description: Sharing tips and tricks for dubbing over, or adding subtitles to video content, from a Markering point of view.
 draft: true
 page_date: 2021-12-05
+rel: posts/{date}/{name}
 -->
 
 # Dubbing and Subtitling Video

@@ -2,6 +2,7 @@
 page_title: My First Few Months With Emacs
 page_description: Documenting some random thoughts and experiences with Emacs after my first few months of solid use.
 page_date: 2022-09-02
+rel: posts/{date}/{name}
 -->
 
 # My First Few Months With Emacs

@@ -53,6 +53,7 @@ type PageMetadata struct {
 	PageDate    string    `yaml:"page_date"`
 	Draft       bool      `yaml:"draft"`
 	PageHead    string    `yaml:"page_head"`
+	Rel         string    `yaml:"rel"`
 	Date        time.Time // this is parsed from PageDate
 	Content     string    // this is the page body
 	Styles      string    // CSS from another file
@@ -99,6 +100,10 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 
 	if output.PageHead == "" {
 		output.PageHead = "regular"
+	}
+
+	if output.Rel == "" {
+		return PageMetadata{}, fmt.Errorf("rel not provided and is required")
 	}
 
 	cssPath := "./src/style.css"
@@ -183,17 +188,14 @@ func main() {
 			continue
 		}
 
-		render, err := renderPage(meta)
+		_, err = renderPage(meta)
 		if err != nil {
 			fmt.Printf("failed to render %s: %v", path, err)
 		}
 
-		// TODO: Render pages differently
-		newPath := strings.TrimSuffix(path, filepath.Ext(path))
-		writeFile(
-			filepath.Join("./output", fmt.Sprintf("%s.html", newPath)),
-			render,
-		)
+		rel := outPath(meta, path)
+		fmt.Println("OUTPUTTING TO:", rel)
+		// writeFile(rel, render)
 	}
 }
 
@@ -207,4 +209,23 @@ func writeFile(path string, content []byte) error {
 	}
 
 	return nil
+}
+
+// FIXME: this stuff
+func outPath(meta PageMetadata, path string) string {
+	// Date
+	urlPageDate := strings.ReplaceAll(meta.PageDate, "-", "/")
+	fmt.Println(meta.Rel, ": replace {date} with", urlPageDate)
+	r := strings.ReplaceAll(meta.Rel, "{date}", urlPageDate)
+
+	// Page Name
+	baseName := strings.TrimRight(path, "/")
+	baseName = strings.Split(baseName, "/")[len(strings.Split(baseName, "/"))-1]
+	baseName = strings.TrimSuffix(path, filepath.Ext(path))
+	r = strings.ReplaceAll(meta.Rel, "{name}", baseName)
+
+	// Final path
+	r = filepath.Join("./output", fmt.Sprintf("%s.html", r))
+
+	return r
 }

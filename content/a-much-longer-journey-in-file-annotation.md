@@ -3,6 +3,7 @@ page_title: A Much Longer Journey Into File Annotation
 page_description: Previously, I wrote about how I added metadata to my files. This lead me down a far longer path than I realised!
 page_date: 2022-04-27
 page_image: 'https://julianorchard.co.uk/res/desc-vim.png'
+rel: posts/{date}/{name}
 -->
 
 # A Much Longer Journey Into File Annotation

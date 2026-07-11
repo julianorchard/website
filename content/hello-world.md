@@ -2,6 +2,7 @@
 page_title: Hello World!
 page_description: My first 'real' post on this blog I've written, in bash.
 page_date: 2021-11-30
+rel: posts/{date}/{name}
 -->
 
 # Hello world!

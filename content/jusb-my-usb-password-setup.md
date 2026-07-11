@@ -3,6 +3,7 @@ page_title: J-USB, My USB Password Setup
 page_description: I've started moving away from online password storage, and started using KeePassXC on a USB stick; here's how my setup works...
 page_date: 2022-02-07
 page_image: https://julianorchard.co.uk/res/default.png
+rel: posts/{date}/{name}
 -->
 
 # My Offline Password Setup

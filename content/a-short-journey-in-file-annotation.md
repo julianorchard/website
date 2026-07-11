@@ -3,6 +3,7 @@ page_title: A Short Journey In File Annotation
 page_description : I've gone through a tiny journey in how I annotate files I make, and it makes for an interesting look into the "best language/tool for the job" conversation
 page_date: 2022-02-09
 page_image: https://julianorchard.co.uk/res/default.png
+rel: posts/{date}/{name}
 -->
 
 # Settling Upon A Method For File Annotation

@@ -2,6 +2,7 @@
 page_title: Useful MySQL Query | Split by Delim
 page_description: A handly little MySQL trick I have just found a use for.
 page_date: 2022-05-12
+rel: posts/{date}/{name}
 -->
 
 # A Handly Little MySQL Trick

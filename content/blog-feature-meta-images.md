@@ -3,6 +3,7 @@ page_title: Meta Images are now built into this blog
 page_description: This is a quick post to showcase how I've implemented meta images into this blog, rather nicely.
 page_date: 2021-12-04
 page_image: https://images.unsplash.com/photo-1520004434532-668416a08753?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80
+rel: posts/{date}/{name}
 -->
 
 # Meta Images; now a feature of this blog!
