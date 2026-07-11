@@ -1,16 +1,25 @@
 <!--
 page_title: Homepage | Website and Blog
-page_description: A space on the internet belonging to Julian Orchard; Marketing Coordinator, internet enjoyer.
+page_description: A space on the internet belonging to Julian Orchard; DevOps Engineer, internet enjoyer.
 page_head: expanded
 rel: main
 -->
 
 # Hi there, I'm Julian Orchard
 
-## Welcome to my website/blog/slice of the www...
+## Welcome to my slice of the www...
 
-I'm a Marketing Coordinator who brings front-end development, scripting, automation, and other technical abilities to his roles. I'm a long time [GitHub](https://github.com/julianorchard/) contributor, enjoyer of Linux, vegetarian, and dad.
+I'm a DevOps Engineer working on backend systems for video games! My day-to-day
+work involves a lot of CI/CD automation, game migrations, and making Grafana
+drippy. I'm also a long time [GitHub](https://github.com/julianorchard/)
+contributor, enjoyer of Linux, vegetarian, and father of two.
 
-I use PHP, Python, JavaScript, CSS, and HTML, as well as having skills with Visual Basic, Lua, and scripting languages like Shell, PowerShell, and AutoHotkey on Windows.
+I like using Go, Python, Lua, HCL, Jsonnet (whenever I can find an excuse to
+use it!), TypeScript, and PowerShell (the most over-hated and powerful
+scripting language!).
 
-I enjoy Emacs and Vim. It's definitely possible to enjoy both (but only Emacs with Evil mode, of course...)! I might write about them, occasionally, on my [blog](/posts/).
+Previously, I was a Marketing Coordinator who worked on front-end web
+development with PHP, scripting, automation, and other technical bits.
+
+I have spent a lot of time learning and becoming efficient using Neovim... I
+might write about things I've learned, occasionally, on my [blog](/posts/).
