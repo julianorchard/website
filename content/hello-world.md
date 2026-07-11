@@ -1,8 +1,7 @@
 <!--
 page_title: Hello World!
 page_description: My first 'real' post on this blog I've written, in bash.
-page_status: published
-page_date: 2021/11/30
+page_date: 2021-11-30
 -->
 
 # Hello world!

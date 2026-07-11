@@ -7,8 +7,10 @@ import (
 	"path/filepath"
 	"strings"
 	"text/template"
+	"time"
 
 	"github.com/yuin/goldmark"
+	gmhtml "github.com/yuin/goldmark/renderer/html"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v2"
 )
@@ -44,15 +46,27 @@ func isDirectory(path string) (bool, error) {
 }
 
 type PageMetadata struct {
-	Name     string `yaml:"name"`
-	Icon     string `yaml:"icon"`
-	Template string `yaml:"template"`
-	Content  string // this is the page body
+	Name        string    `yaml:"page_title"`
+	Description string    `yaml:"page_description"`
+	Image       string    `yaml:"page_image"`
+	Template    string    `yaml:"template"`
+	PageDate    string    `yaml:"page_date"`
+	Draft       bool      `yaml:"draft"`
+	Date        time.Time // this is parsed from PageDate
+	Content     string    // this is the page body
+	Styles      string    // CSS from another file
+	JavaScript  string    // JS from another file
 }
 
 func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
+	// Unsafe 😎🔥
+	md := goldmark.New(
+		goldmark.WithRendererOptions(
+			gmhtml.WithUnsafe(),
+		),
+	)
 	var body bytes.Buffer
-	if err := goldmark.Convert(content, &body); err != nil {
+	if err := md.Convert(content, &body); err != nil {
 		return PageMetadata{}, fmt.Errorf(
 			"failed to convert document to HTML: %w",
 			err,
@@ -66,6 +80,42 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 	if err != nil {
 		return PageMetadata{}, fmt.Errorf("cannot unmarshal data: %w", err)
 	}
+
+	if output.PageDate == "" {
+		output.PageDate = "1996-10-12"
+	}
+	output.Date, err = time.Parse("2006-01-02", output.PageDate)
+	if err != nil {
+		return PageMetadata{}, fmt.Errorf(
+			"failed to parse time on page: %w",
+			err,
+		)
+	}
+
+	if output.Template == "" {
+		output.Template = "main"
+	}
+
+	cssPath := "./src/style.css"
+	css, err := readFileToString(cssPath)
+	if err != nil {
+		return PageMetadata{}, fmt.Errorf(
+			"failed to include CSS at %s: %w",
+			cssPath, err,
+		)
+	}
+	output.Styles = string(css)
+
+	jsPath := "./src/script.js"
+	js, err := readFileToString(jsPath)
+	if err != nil {
+		return PageMetadata{}, fmt.Errorf(
+			"failed to include CSS at %s: %w",
+			jsPath, err,
+		)
+	}
+	output.JavaScript = string(js)
+
 	return output, nil
 }
 
@@ -92,14 +142,14 @@ func renderPage(meta PageMetadata) ([]byte, error) {
 func main() {
 	fileList := []string{}
 	err := filepath.Walk(
-		"./articles/",
+		"./content/",
 		func(path string, f os.FileInfo, err error) error {
 			fileList = append(fileList, path)
 			return nil
 		},
 	)
 	if err != nil {
-		fmt.Println("ffs")
+		fmt.Println("couldn't do it. just couldn't")
 		os.Exit(1)
 	}
 
@@ -124,16 +174,31 @@ func main() {
 			fmt.Println("unable to parse preamble:", err)
 		}
 
-		fmt.Println("page name is", meta.Name)
-		fmt.Println("page icon is", meta.Icon)
-		fmt.Println("page template is", meta.Template)
-		fmt.Println("page content is", meta.Content)
+		if meta.Draft {
+			continue
+		}
 
 		render, err := renderPage(meta)
 		if err != nil {
 			fmt.Printf("failed to render %s: %v", path, err)
 		}
 
-		fmt.Println(string(render))
+		newPath := strings.TrimSuffix(path, filepath.Ext(path))
+		writeFile(
+			filepath.Join("./output", fmt.Sprintf("%s.html", newPath)),
+			render,
+		)
 	}
+}
+
+func writeFile(path string, content []byte) error {
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		return fmt.Errorf("create output directory for %q: %w", path, err)
+	}
+
+	if err := os.WriteFile(path, content, 0o644); err != nil {
+		return fmt.Errorf("write file %q: %w", path, err)
+	}
+
+	return nil
 }

@@ -1,8 +1,7 @@
 <!--
 page_title: A Much Longer Journey Into File Annotation
 page_description: Previously, I wrote about how I added metadata to my files. This lead me down a far longer path than I realised!
-page_status: Published
-page_date: 2022/04/27
+page_date: 2022-04-27
 page_image:https://julianorchard.co.uk/res/desc-vim.png
 -->
 
@@ -48,7 +47,7 @@ let g:desc_author = [["desc", "Julian Orchard <hello@julianorchard.co.uk>"],
 This conveniently solves the issue of how to easily define a signature, but also
 makes it possible for the user of the plugin to change the `iabbrev` *keyword*
 used. The list doesn't have to have multiple values; if you want to reclaim the
-word `desc` (the default keyword), you can just do something like this: 
+word `desc` (the default keyword), you can just do something like this:
 
 ```
 
@@ -57,7 +56,7 @@ let g:desc_author = [["trigger_desc", "Julian Orchard <hello@julianorchard.co.uk
 ```
 
 I was really happy with this solution, but what happens if someone doesn't add
-anything to their `.vimrc` file? 
+anything to their `.vimrc` file?
 
 Initially, I just removed the line from the description, if no `g:desc_author`
 was defined, but I came up with a pretty nice alternative... you can add this as
@@ -65,7 +64,7 @@ an `iabbrev` to your config files independently too, I think it's pretty good:
 
 ```
 
-iab <expr> ~g substitute(system('git config --global user.name') . " <" . 
+iab <expr> ~g substitute(system('git config --global user.name') . " <" .
     \system('git config --global user.email') . ">", '\n', '', 'g')
 
 ```
@@ -78,10 +77,10 @@ uses them to create the signature. Mine is `julianorchard <hello@julianorchard.c
 
 I think using `iabbrev` might have been a mistake, in hindsight. I didn't find
 it very flexible in how it works, and figuring out I needed `<expr>` took longer
-than it should have; it wasn't very intuitive. 
+than it should have; it wasn't very intuitive.
 
 The code also repeats itself more than I'd like as a result. It's not too bad,
-but I have four different `iabbrev`'s in the final version; 
+but I have four different `iabbrev`'s in the final version;
 
 - One for block comments and there is a signature to add
 - One for line comments and there is a signature to add
@@ -94,7 +93,7 @@ a remapped keybinding or some other feature.
 ### The Ugly
 
 I'm fairly certain the `autocmd`'s I have made use of do not work in the most
-performative way. I don't notice an impact from them, but each time the user goes into *insert mode*, the `iabbrev` is updated. 
+performative way. I don't notice an impact from them, but each time the user goes into *insert mode*, the `iabbrev` is updated.
 
 ## Perfectionist
 
@@ -103,7 +102,7 @@ plugin, but I have to praise myself; for my first Vim plugin, I'm pretty content
 with it.
 
 I've tested it with my Neovim config, which is new for me, and it seems to also
-work well. 
+work well.
 
 That's it.
 

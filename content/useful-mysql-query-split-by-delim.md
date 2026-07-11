@@ -1,8 +1,7 @@
 <!--
 page_title: Useful MySQL Query | Split by Delim
 page_description: A handly little MySQL trick I have just found a use for.
-page_status: published
-page_date: 2022/05/12
+page_date: 2022-05-12
 -->
 
 # A Handly Little MySQL Trick

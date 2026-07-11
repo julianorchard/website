@@ -1,8 +1,7 @@
 <!--
 page_title: A Short Journey In File Annotation
-page_ : I've gone through a tiny journey in how I annotate files I make, and it makes for an interesting look into the "best language/tool for the job" conversation
-page_status: published
-page_date: 2022/02/09
+page_description : I've gone through a tiny journey in how I annotate files I make, and it makes for an interesting look into the "best language/tool for the job" conversation
+page_date: 2022-02-09
 page_image: https://julianorchard.co.uk/res/default.png
 -->
 
@@ -35,7 +34,7 @@ like this...
 ```
 #!/bin/bash
 
-# Title:         desc 
+# Title:         desc
 # By:            julianorchard
 # Tag Added:     02/02/2020
 # Description:   Adds file descriptions to scripts I write.
@@ -60,7 +59,7 @@ if [[ -f ${filename} ]] ; then
 # Add title and description
   echo "# Description:  ${desc}" >> ${filenamecp}
 
-# Copy the rest of the file 
+# Copy the rest of the file
   sed -n '2,$ p' ${filename} >> ${filenamecp}
 
 # Replace file
@@ -76,7 +75,7 @@ fi
 
 The problem with this was moving to Windows... in hindsight, and now that I use
 Git Bash more than CMD again (I've come full circle), I could have probably kept
-using this to good effect. 
+using this to good effect.
 
 The other thing it's missing is the ability to add these descriptors to
 non-bash/python files. Files like this very markdown file which I'm writing now
@@ -90,9 +89,9 @@ and I hadn't even noticed...
 
 Vim and its scripting language were the ultimate solution for me, as I use Vim for
 basically everything other than very large projects (where I probably use Atom
-or VSCode instead). 
+or VSCode instead).
 
-The below example just shows how this script works for HTML style comments: 
+The below example just shows how this script works for HTML style comments:
 
 ```
 let filename =  expand('%:t')
@@ -101,9 +100,9 @@ let curtime  =  strftime("%d/%m/%Y")
 
 " <!-- These Style Comments -->
 	if (&ft=='html' ||
-		\&ft=='php'  || 
+		\&ft=='php'  ||
 		\&ft=='markdown')
-		iab <expr> desc "<!--<cr>Name:       " . filename 
+		iab <expr> desc "<!--<cr>Name:       " . filename
 		\ . "<cr>By:         " . author
 		\ . "<cr>Tag Added:  " . curtime
 		\ . "<cr>Desciption: DESCRIPTION<cr>-->"

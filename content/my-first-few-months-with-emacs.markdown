@@ -1,8 +1,7 @@
 <!--
 page_title: My First Few Months With Emacs
 page_description: Documenting some random thoughts and experiences with Emacs after my first few months of solid use.
-page_status: published
-page_date: 2022/09/02
+page_date: 2022-09-02
 -->
 
 # My First Few Months With Emacs
@@ -15,7 +14,7 @@ thoughts here regardless. Partly because I want to
 write about it, and *partly in the hope that one
 person sees it who wants to try using Emacs*!
 
-### Background 
+### Background
 
 I have been a massive fan of Vim, and the
 terminal,
@@ -27,7 +26,7 @@ But, as the description of the [Doom
 Emacs](https://github.com/doomemacs/doomemacs)
 framework most aptly puts it;
 
-> It is a story as old as time. A stubborn, shell-dwelling, and melodramatic vimmer—envious of the features of modern text editors—spirals into despair before he succumbs to the dark side. 
+> It is a story as old as time. A stubborn, shell-dwelling, and melodramatic vimmer—envious of the features of modern text editors—spirals into despair before he succumbs to the dark side.
 
 The '*envious of the features of modern text
 editors*' part is what *really* inspired me to try Emacs.
@@ -60,7 +59,7 @@ And I was almost fully invested in giving Emacs a serious go when I realised how
 I had thought of Emacs as being a really far-away
 thing for some reason; something reserved for only those who had
 understanding or dedication to make it work for
-them. I was put off by the key-bindings, the 
+them. I was put off by the key-bindings, the
 UI, leaving the terminal, and more. But the more I started to dig into it, the more I realised it *is* what most people who use the terminal are looking for. This is when I moved from 'making Emacs enough like vim to work for me' to 'wait, we don't have that in vim...'.
 
 ### Org Mode is great
@@ -72,7 +71,7 @@ Prior to playing with Emacs, I'd heard of two
 (markdown-like documents) and tangle all the
 blocks of code to various files. Within a few weeks, I'd
 rewritten almost all of my config files,
-literately, and pushed them all to the [same repo](https://github.com/julianorchard/config/). 
+literately, and pushed them all to the [same repo](https://github.com/julianorchard/config/).
 
 Then there's the power of `org-agenda`. It's
 great! See a list of all your upcoming tasks, let
@@ -98,7 +97,7 @@ the year, month, date; like this:
 * Year
 ** Month
 *** Date
-**** Timestamp 
+**** Timestamp
      This is an entry!
 
 ```
@@ -113,7 +112,7 @@ I use [Syncthing](https://syncthing.net/) now, mainly, running on a server so I 
 
 At the moment, I'm at a strange place with Vim.
 
-There's a famous saying about Emacs: 
+There's a famous saying about Emacs:
 
 > Emacs is a great operating system, lacking only a decent editor.
 
@@ -123,9 +122,9 @@ component I really love is the modal editing. It's
 actually quite a relief to know that this modal
 editing can be so successful in editing software
 other than the original, such as in Emacs with
-Evil Mode. 
+Evil Mode.
 
-Emacs really is a great combination for Vim users 
+Emacs really is a great combination for Vim users
 because the extensibility is there too. But it
 makes me less concerned about trying more VSCode and JetBrains
 Vim plugins in the future.
@@ -157,11 +156,11 @@ side effect of them being so extensible.
 
 This post is a bit all over the place but,
 contrary to this, I'm feeling quite clear about
-where I want to go next with my Emacs journey. 
+where I want to go next with my Emacs journey.
 
 I'm working on using Eshell and Dired a bit more,
 trying to get more language understanding, and
 trying to dive even further into Org. I will
 probably post a follow-up to this at some point,
-maybe at a year after using Emacs. 
+maybe at a year after using Emacs.
 
