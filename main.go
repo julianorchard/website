@@ -201,6 +201,7 @@ func main() {
 	}
 
 	var pages []PageMetadata
+	var postPages []PageMetadata
 	for _, path := range fileList {
 		if d, err := isDirectory(path); err != nil || d {
 			continue
@@ -225,6 +226,10 @@ func main() {
 			meta.PagePath = outPath(meta, path)
 		}
 
+		if strings.HasPrefix(meta.Rel, "posts") &&
+			meta.Rel != "posts/index.html" {
+			postPages = append(postPages, meta)
+		}
 		pages = append(pages, meta)
 	}
 
