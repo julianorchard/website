@@ -50,6 +50,16 @@ func isDirectory(path string) (bool, error) {
 	return f.IsDir(), err
 }
 
+type Item struct {
+	Name     string
+	Priority int
+	Href     string
+}
+
+type List struct {
+	Item []Item
+}
+
 type PageMetadata struct {
 	Name        string    `yaml:"page_title"`
 	Description string    `yaml:"page_description"`
@@ -59,8 +69,10 @@ type PageMetadata struct {
 	Draft       bool      `yaml:"draft"`
 	PageHead    string    `yaml:"page_head"`
 	Rel         string    `yaml:"rel"`
+	Lists       []string  `yaml:"lists"`
 	Date        time.Time // this is parsed from PageDate
 	Content     string    // this is the page body
+	PagePath    string    // stored after discovery of page
 	// Inline the CSS/JS
 	// Styles      string    // CSS from another file
 	// JavaScript  string    // JS from another file
@@ -188,6 +200,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	var pages []PageMetadata
 	for _, path := range fileList {
 		if d, err := isDirectory(path); err != nil || d {
 			continue
@@ -207,19 +220,25 @@ func main() {
 			fmt.Println("unable to parse preamble:", err)
 		}
 
-		if meta.Draft {
+		meta.PagePath = "index.html"
+		if meta.Rel != "main" {
+			meta.PagePath = outPath(meta, path)
+		}
+
+		pages = append(pages, meta)
+	}
+
+	for _, page := range pages {
+		if page.Draft {
 			continue
 		}
 
-		render, err := renderPage(meta)
+		render, err := renderPage(page)
 		if err != nil {
-			fmt.Printf("failed to render %s: %v", path, err)
+			fmt.Printf("failed to render %s: %v", page.PagePath, err)
 		}
 
-		rel := "output/index.html"
-		if meta.Rel != "main" {
-			rel = outPath(meta, path)
-		}
+		rel := filepath.Join(outputDirectory, page.PagePath)
 		writeFile(rel, render)
 	}
 }
@@ -248,7 +267,7 @@ func outPath(meta PageMetadata, path string) string {
 	r = strings.ReplaceAll(r, "{name}", baseName)
 
 	// Final path (ends /index.html so we have those sweet sweet URLs)
-	r = filepath.Join("./output", fmt.Sprintf("%s/index.html", r))
+	r = fmt.Sprintf("%s/index.html", r)
 
 	return r
 }
