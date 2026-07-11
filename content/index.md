@@ -2,7 +2,7 @@
 page_title: Homepage | Website and Blog
 page_description: A space on the internet belonging to Julian Orchard; Marketing Coordinator, internet enjoyer.
 page_head: expanded
-rel: '{name}'
+rel: main
 -->
 
 # Hi there, I'm Julian Orchard

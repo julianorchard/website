@@ -193,7 +193,10 @@ func main() {
 			fmt.Printf("failed to render %s: %v", path, err)
 		}
 
-		rel := outPath(meta, path)
+		rel := "output/index.html"
+		if meta.Rel != "main" {
+			rel = outPath(meta, path)
+		}
 		writeFile(rel, render)
 	}
 }
