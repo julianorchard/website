@@ -52,6 +52,7 @@ type PageMetadata struct {
 	Template    string    `yaml:"template"`
 	PageDate    string    `yaml:"page_date"`
 	Draft       bool      `yaml:"draft"`
+	PageHead    string    `yaml:"page_head"`
 	Date        time.Time // this is parsed from PageDate
 	Content     string    // this is the page body
 	Styles      string    // CSS from another file
@@ -94,6 +95,10 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 
 	if output.Template == "" {
 		output.Template = "main"
+	}
+
+	if output.PageHead == "" {
+		output.PageHead = "regular"
 	}
 
 	cssPath := "./src/style.css"

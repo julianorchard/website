@@ -1,20 +1,5 @@
 <!DOCTYPE html>
 
-<!-- TODO: Page URL -->
-<!--
-type PageMetadata struct {
-	Name        string    `yaml:"page_title"`
-	Description string    `yaml:"page_description"`
-	Image       string    `yaml:"page_image"`
-	Template    string    `yaml:"template"`
-	PageDate    string    `yaml:"page_date"`
-	Draft       bool      `yaml:"draft"`
-	Date        time.Time // this is parsed from PageDate
-	Content     string    // this is the page body
-	Styles      string    // CSS from another file
-}
---->
-
 <html>
   <head>
     <title>
@@ -79,18 +64,7 @@ type PageMetadata struct {
     </nav>
 
 
-    <!--
-    This is what we had before:
-
-    if [ ! -z $file_head ] && [ "$file_head"="large" ] ; then
-      echo "<article id=\"expanded\">">>$1index.html
-    else
-      echo "<article id=\"regular\">">>$1index.html
-    fi
-
-    -->
-
-    <article id="regular">
+    <article id="{{ .PageHead }}">
     {{ .Content }}
     </article>
 

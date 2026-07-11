@@ -1,7 +1,7 @@
 <!--
 page_title: Homepage | Website and Blog
 page_description: A space on the internet belonging to Julian Orchard; Marketing Coordinator, internet enjoyer.
-page_head: large
+page_head: expanded
 -->
 
 # Hi there, I'm Julian Orchard
