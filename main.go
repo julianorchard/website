@@ -194,7 +194,6 @@ func main() {
 		}
 
 		rel := outPath(meta, path)
-		// fmt.Println("OUTPUTTING TO:", rel)
 		writeFile(rel, render)
 	}
 }
@@ -222,8 +221,8 @@ func outPath(meta PageMetadata, path string) string {
 	baseName = strings.TrimSuffix(baseName, filepath.Ext(path))
 	r = strings.ReplaceAll(r, "{name}", baseName)
 
-	// Final path
-	r = filepath.Join("./output", fmt.Sprintf("%s.html", r))
+	// Final path (ends /index.html so we have those sweet sweet URLs)
+	r = filepath.Join("./output", fmt.Sprintf("%s/index.html", r))
 
 	return r
 }
