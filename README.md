@@ -15,6 +15,33 @@ the styles I came up with for that website. However, I didn't love 11ty, and
 all the `npm` supply chain attacks of late have made me reconsider going for
 Node at all. Plus this was fun!
 
+## Usage
+
+This repo mainly runs a GitHub Action to update a GitHub page based on
+artifacts created by the pipeline run. However, you can run things locally too!
+
+### Docker
+
+You can run this locally with Docker:
+
+```sh
+docker build -t julian-website .
+docker run --rm -p 8080:80 julian-website:latest
+open http://localhost:8080
+```
+
+This is useful for testing the site locally.
+
+### Make
+
+Use the makefile to clean and build the HTML files locally:
+
+```sh
+make all
+```
+
+Useful for testing files are outputting correctly!
+
 ## License
 
 This is free software under the MIT license, see the [LICENSE](LICENSE) file
