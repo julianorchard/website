@@ -18,6 +18,8 @@ import (
 var (
 	outputDirectory  string = "output"
 	contentDirectory string = "content"
+	cssRelPath       string = "./src/style.css"
+	jsRelPath        string = "./src/script.js"
 )
 
 func readFileToString(path string) ([]byte, error) {
@@ -74,8 +76,10 @@ type PageMetadata struct {
 	Content     string    // this is the page body
 	PagePath    string    // stored after discovery of page
 	// Inline the CSS/JS
-	// Styles      string    // CSS from another file
-	// JavaScript  string    // JS from another file
+	InlineCss  bool   `yaml:"inline_css"`
+	Styles     string // CSS from another file
+	InlineJs   bool   `yaml:"inline_js"`
+	JavaScript string // JS from another file
 }
 
 func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
@@ -124,26 +128,27 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 		return PageMetadata{}, fmt.Errorf("rel not provided and is required")
 	}
 
-	// Inline the CSS/JS
-	// cssPath := "./src/style.css"
-	// css, err := readFileToString(cssPath)
-	// if err != nil {
-	// 	return PageMetadata{}, fmt.Errorf(
-	// 		"failed to include CSS at %s: %w",
-	// 		cssPath, err,
-	// 	)
-	// }
-	// output.Styles = string(css)
-	//
-	// jsPath := "./src/script.js"
-	// js, err := readFileToString(jsPath)
-	// if err != nil {
-	// 	return PageMetadata{}, fmt.Errorf(
-	// 		"failed to include CSS at %s: %w",
-	// 		jsPath, err,
-	// 	)
-	// }
-	// output.JavaScript = string(js)
+	if output.InlineCss {
+		css, err := readFileToString(cssRelPath)
+		if err != nil {
+			return PageMetadata{}, fmt.Errorf(
+				"failed to include CSS at %s: %w",
+				cssRelPath, err,
+			)
+		}
+		output.Styles = string(css)
+	}
+
+	if output.InlineJs {
+		js, err := readFileToString(jsRelPath)
+		if err != nil {
+			return PageMetadata{}, fmt.Errorf(
+				"failed to include CSS at %s: %w",
+				jsRelPath, err,
+			)
+		}
+		output.JavaScript = string(js)
+	}
 
 	return output, nil
 }
