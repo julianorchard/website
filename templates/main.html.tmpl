@@ -64,6 +64,9 @@
 
     <article id="{{ .PageHead }}">
     {{ .Content }}
+    {{ if .ShowPostList }}
+    {{ .PostListPartial }}
+    {{ end }}
     </article>
 
 
