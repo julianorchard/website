@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"text/template"
 	"time"
@@ -258,6 +259,9 @@ func main() {
 	}
 
 	// for each file in partials directory?
+	slices.SortFunc(postPages, func(a, b PageMetadata) int {
+		return b.Date.Compare(a.Date)
+	})
 	postList, err := renderPartial("post-list", map[string]any{
 		"Posts": postPages,
 	})
