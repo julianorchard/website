@@ -2,10 +2,10 @@
 page_title: Writings | Julian Orchard
 page_description: Some jottings and thoughts of Julian Orchard.
 rel: '{name}'
+show_post_list: true
 -->
 
 # I occasionally write stuff
 
 ## A collection of thoughts about things I've worked on, and things that interest me
 
-page_list

@@ -63,18 +63,20 @@ type List struct {
 }
 
 type PageMetadata struct {
-	Name        string    `yaml:"page_title"`
-	Description string    `yaml:"page_description"`
-	Image       string    `yaml:"page_image"`
-	Template    string    `yaml:"template"`
-	PageDate    string    `yaml:"page_date"`
-	Draft       bool      `yaml:"draft"`
-	PageHead    string    `yaml:"page_head"`
-	Rel         string    `yaml:"rel"`
-	Lists       []string  `yaml:"lists"`
-	Date        time.Time // this is parsed from PageDate
-	Content     string    // this is the page body
-	PagePath    string    // stored after discovery of page
+	Name            string    `yaml:"page_title"`
+	Description     string    `yaml:"page_description"`
+	Image           string    `yaml:"page_image"`
+	Template        string    `yaml:"template"`
+	PageDate        string    `yaml:"page_date"`
+	Draft           bool      `yaml:"draft"`
+	PageHead        string    `yaml:"page_head"`
+	Rel             string    `yaml:"rel"`
+	Lists           []string  `yaml:"lists"`
+	ShowPostList    bool      `yaml:"show_post_list"`
+	PostListPartial string    // added dynamically
+	Date            time.Time // this is parsed from PageDate
+	Content         string    // this is the page body
+	PagePath        string    // stored after discovery of page
 	// Inline the CSS/JS
 	InlineCss  bool   `yaml:"inline_css"`
 	Styles     string // CSS from another file
@@ -153,6 +155,23 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 	return output, nil
 }
 
+func renderPartial(partialPath string, templateContent any) (string, error) {
+	templatePath := filepath.Join(
+		"templates",
+		partialPath+".html.tmpl",
+	)
+	tmpl, err := template.ParseFiles(templatePath)
+	if err != nil {
+		return "", fmt.Errorf("parse template %s: %w", templatePath, err)
+	}
+
+	var output bytes.Buffer
+	if err := tmpl.Execute(&output, templateContent); err != nil {
+		return "", fmt.Errorf("execute template %s: %w", templatePath, err)
+	}
+	return output.String(), nil
+}
+
 func renderPage(meta PageMetadata) ([]byte, error) {
 	templatePath := filepath.Join(
 		"templates",
@@ -206,6 +225,7 @@ func main() {
 	}
 
 	var pages []PageMetadata
+	var postPages []PageMetadata
 	for _, path := range fileList {
 		if d, err := isDirectory(path); err != nil || d {
 			continue
@@ -230,15 +250,31 @@ func main() {
 			meta.PagePath = outPath(meta, path)
 		}
 
+		if strings.HasPrefix(meta.Rel, "posts") &&
+			meta.Rel != "posts/index.html" {
+			postPages = append(postPages, meta)
+		}
 		pages = append(pages, meta)
 	}
 
-	for _, page := range pages {
+	// for each file in partials directory?
+	postList, err := renderPartial("post-list", map[string]any{
+		"Posts": postPages,
+	})
+	if err != nil {
+		fmt.Println("post list partial failed: %w", err)
+		os.Exit(1)
+	}
+	pgs := append(pages, postPages...)
+
+	for i, page := range pgs {
 		if page.Draft {
 			continue
 		}
 
-		render, err := renderPage(page)
+		// add postList partial
+		pgs[i].PostListPartial = postList
+		render, err := renderPage(pgs[i])
 		if err != nil {
 			fmt.Printf("failed to render %s: %v", page.PagePath, err)
 		}
