@@ -252,7 +252,8 @@ func main() {
 		}
 
 		if strings.HasPrefix(meta.Rel, "posts") &&
-			meta.Rel != "posts/index.html" {
+			meta.Rel != "posts/index.html" &&
+			!meta.Draft {
 			postPages = append(postPages, meta)
 		}
 		pages = append(pages, meta)
