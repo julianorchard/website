@@ -1,7 +1,7 @@
 <ul class="post-list">
     {{ range .Posts }}
     <li>
-        <a href="{{ .PagePath }}">{{ .Name }}</a>
+        <a href="../{{ .PagePath }}">{{ .Name }}</a>
         <div>{{ .PageDate }}</div>
     </li>
     {{ end }}
