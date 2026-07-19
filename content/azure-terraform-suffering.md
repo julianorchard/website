@@ -4,7 +4,6 @@ page_description: "A painful problem I've found in Azure, with an interesting so
 page_date: 2026-07-18
 page_image: https://julianorchard.co.uk/res/default.png
 rel: posts/{date}/{name}
-draft: true
 -->
 
 # Azure Terraform Pain
@@ -29,7 +28,7 @@ This is a pretty well known pattern that involves running some
 scripts](https://github.com/Azure/RDS-Templates/blob/10a904c0cf2c566941251d24b18d505769b11d36/wvd-sh/terraform-azurerm-azuresvirtualdesktop/archive/host.tf#L95C1-L126C2)
 and doing a VM restart.
 
-However: **when the VM is off, the Azure API [cannot interact with th
+However: **when the VM is off, the Azure API [cannot interact with the
 resource
 anymore](https://github.com/hashicorp/terraform-provider-azurerm/issues/6098#issuecomment-1156049806)**.
 The [AVD Scaling
