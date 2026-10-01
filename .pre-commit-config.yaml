@@ -18,4 +18,4 @@ repos:
     rev: v2.15.1
     hooks:
       - id: hadolint
-        args: [-f, json, --ignore, DL3008]
+        args: [-f, json, --ignore, DL3062]

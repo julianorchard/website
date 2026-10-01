@@ -8,4 +8,3 @@ show_post_list: true
 # I occasionally write stuff
 
 ## A collection of thoughts about things I've worked on, and things that interest me
-
