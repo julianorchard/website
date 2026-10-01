@@ -1,5 +1,7 @@
 # My Website
 
+[![CI](https://github.com/julianorchard/website/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/julianorchard/website/actions/workflows/ci.yml)
+
 This used to be a bash script! Check out [this
 hash](https://github.com/julianorchard/website/tree/f006a2c7a238ca0ce350b8254819a7a49dd5d745)
 to see what that was all about.

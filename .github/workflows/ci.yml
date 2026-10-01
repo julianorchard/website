@@ -2,7 +2,6 @@
 name: CI
 on:
   push:
-    branches: ['*']
   workflow_dispatch:
 jobs:
   precommit:
@@ -10,4 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.0
       - uses: actions/setup-python@v3
+      - name: Install hadolint
+        run: |
+          wget -O /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x /usr/local/bin/hadolint
       - uses: pre-commit/action@v3.0.1

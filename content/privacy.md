@@ -28,4 +28,3 @@ there too.
 
 I *will* update this policy, if and when I get
 round to implementing anything that uses cookies.
-

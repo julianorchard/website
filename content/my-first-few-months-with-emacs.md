@@ -164,4 +164,3 @@ trying to get more language understanding, and
 trying to dive even further into Org. I will
 probably post a follow-up to this at some point,
 maybe at a year after using Emacs.
-
