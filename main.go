@@ -251,6 +251,7 @@ func main() {
 			meta.PagePath = outPath(meta, path)
 		}
 
+		// This page is a post - add to postPages
 		if strings.HasPrefix(meta.Rel, "posts") &&
 			meta.Rel != "posts/index.html" &&
 			!meta.Draft {
@@ -263,6 +264,9 @@ func main() {
 	slices.SortFunc(postPages, func(a, b PageMetadata) int {
 		return b.Date.Compare(a.Date)
 	})
+	for i, p := range postPages {
+		postPages[i].PagePath = strings.Replace(p.PagePath, "index.html", "", 1)
+	}
 	postList, err := renderPartial("post-list", map[string]any{
 		"Posts": postPages,
 	})
