@@ -1,0 +1,13 @@
+---
+name: CI
+on:
+  push:
+    branches: ['*']
+  workflow_dispatch:
+jobs:
+  precommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-python@v3
+      - uses: pre-commit/action@v3.0.1
