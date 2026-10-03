@@ -289,6 +289,10 @@ article img {
 		width: calc(50%-10px);
 		color: #fff;
 	}
+  figcaption > p {
+	  line-height: 1;
+    margin: 0 !important;
+  }
 
 /*FOOTER*/
 footer>div {
