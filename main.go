@@ -10,6 +10,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/mangoumbrella/goldmark-figure"
 	"github.com/yuin/goldmark"
 	gmhtml "github.com/yuin/goldmark/renderer/html"
 	"golang.org/x/net/html"
@@ -90,6 +91,10 @@ func pageMetadata(rawMetadata string, content []byte) (PageMetadata, error) {
 	md := goldmark.New(
 		goldmark.WithRendererOptions(
 			gmhtml.WithUnsafe(),
+		),
+		goldmark.WithExtensions(
+			// NOTE: this is a feature on a fork branch at the minute
+			figure.Figure.WithAltTextFallbackCaption(),
 		),
 	)
 	var body bytes.Buffer

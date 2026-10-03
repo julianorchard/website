@@ -1,3 +1,5 @@
+github.com/julianorchard/goldmark-figure v1.5.0-altcaption.0 h1:0pXwgPB3jArzYZ5kj7l6Cwki5vvq8CWh91hFUhrdpag=
+github.com/julianorchard/goldmark-figure v1.5.0-altcaption.0/go.mod h1:iIL+fhdmCQDpE0l/TKtGhokWzIbo5lo/Y2OIAcx6usI=
 github.com/yuin/goldmark v1.8.2 h1:kEGpgqJXdgbkhcOgBxkC0X0PmoPG1ZyoZ117rDVp4zE=
 github.com/yuin/goldmark v1.8.2/go.mod h1:ip/1k0VRfGynBgxOz0yCqHrbZXhcjxyuS66Brc7iBKg=
 golang.org/x/net v0.57.0 h1:K5+3DljvIuDG9/Jv9rvyMywYNFCQ9RSUY6OOTTkT+tE=
